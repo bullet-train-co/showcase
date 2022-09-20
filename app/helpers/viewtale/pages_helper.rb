@@ -1,0 +1,2 @@
+module Viewtale::PagesHelper
+end
