@@ -1,13 +1,13 @@
 class Viewtale::Preview
   def self.find(path)
-    # TODO: Sanitize the path?
-    contents = Rails.root.join("app/views/tales/#{path}").read
-    new path, contents
+    if file = Dir.glob("app/views/tales/#{path}*", base: Rails.root.to_s).first
+      new "tales/#{path}"
+    end
   end
 
-  attr_reader :path, :contents
+  attr_reader :path
 
-  def initialize(path, contents)
-    @path, @contents = path, contents
+  def initialize(path)
+    @path = path
   end
 end
