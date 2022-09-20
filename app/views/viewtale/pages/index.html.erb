@@ -1,2 +1,5 @@
-<h1>Viewtale::Pages#index</h1>
-<p>Find me in app/views/viewtale/pages/index.html.erb</p>
+<% Viewtale::Menu.items.each do |item| %>
+  <details>
+    <summary><%= item.path %></summary>
+  </details>
+<% end %>
