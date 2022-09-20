@@ -12,6 +12,6 @@ class Viewtale::PagesControllerTest < ActionDispatch::IntegrationTest
     get viewtale_page_url("button")
 
     assert_response :success
-    assert_select %(button[class="text-sm"])
+    assert_select %(button[class="text-xl"]), text: "Button content"
   end
 end

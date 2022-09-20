@@ -1,2 +1,1 @@
-<% classes = { large: "text-xl", medium: "text-md", small: "text-sm" }.fetch(mode) %>
-<%= tag.button content, class: classes %>
+<%= render "components/button", content: "Button content", mode: :large %>
