@@ -5,6 +5,6 @@ class Viewtale::PagesControllerTest < ActionDispatch::IntegrationTest
     get viewtale_pages_url
 
     assert_response :success
-    assert_select "details", text: "button.html.erb"
+    assert_select "details summary", html: %(<a href="/viewtale/pages/button.html.erb">button.html.erb</a>)
   end
 end
