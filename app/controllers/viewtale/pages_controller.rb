@@ -1,6 +1,4 @@
-class Viewtale::PagesController < ApplicationController
-  layout "viewtale"
-
+class Viewtale::PagesController < Viewtale::ApplicationController
   def index
   end
 
