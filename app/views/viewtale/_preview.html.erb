@@ -1,3 +1,21 @@
-<h1>Previewing <%= preview.name %></h1>
+<%= render template: preview.path, locals: { viewtale: preview } %>
 
-<%= render template: preview.path %>
+<section class="vt-header">
+  <h1><%= preview.title || "Previewing #{preview.name}" %></h1>
+
+  <%= preview.description %>
+</section>
+
+<section class="vt-examples">
+  <% preview.examples.each do |example| %>
+    <article class="vt-example">
+      <div>
+        <%= capture(&example.block) %>
+      </div>
+
+      <pre>
+        <%= example.source %>
+      </pre>
+    </article>
+  <% end %>
+</section>
