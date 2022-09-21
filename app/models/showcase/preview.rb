@@ -1,6 +1,6 @@
 class Showcase::Preview
   def self.find(path)
-    if Dir.glob("app/views/tales/#{path}*", base: Rails.root.to_s).first
+    if Dir.glob("app/views/showcases/#{path}*", base: Rails.root.to_s).first
       new path
     end
   end
@@ -8,7 +8,7 @@ class Showcase::Preview
   attr_reader :name, :path, :examples
 
   def initialize(name)
-    @name, @path = name, "tales/#{name}"
+    @name, @path = name, "showcases/#{name}"
     @examples = []
   end
 

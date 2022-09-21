@@ -1,6 +1,6 @@
 class Showcase::Menu
   def self.items
-    root = Rails.root.join("app/views/tales").to_s
+    root = Rails.root.join("app/views/showcases").to_s
     paths = Dir.glob("**/*", base: root)
     paths.reject! { File.directory?(File.join(root, _1)) }
     paths.group_by { File.split(_1).first }.flat_map { Item.build _1, _2 }
