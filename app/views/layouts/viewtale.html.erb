@@ -1,5 +1,19 @@
-<%= render "viewtale/menu" %>
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Viewtale</title>
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
 
-<section>
-  <%= yield %>
-</section>
+    <%#= stylesheet_link_tag "application" %>
+  </head>
+
+  <body>
+    <%= render "viewtale/menu" %>
+
+    <section>
+      <%= yield %>
+    </section>
+  </body>
+</html>
