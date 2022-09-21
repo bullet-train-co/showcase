@@ -1,14 +1,14 @@
 <%= render template: preview.path, locals: { showcase: preview } %>
 
-<section class="vt-header">
+<section class="sc-header">
   <h1><%= preview.title || "Previewing #{preview.name}" %></h1>
 
   <%= preview.description %>
 </section>
 
-<section class="vt-examples">
+<section class="sc-examples">
   <% preview.examples.each do |example| %>
-    <article class="vt-example">
+    <article class="sc-example">
       <h3><%= example.name %></h3>
 
       <div>
