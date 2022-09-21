@@ -1,19 +1,15 @@
 class Viewtale::Menu
   def self.items
-    Item.extract Rails.root.join("app/views/tales")
+    Rails.root.join("app/views/tales").children.map { Item.new _1 }
   end
 
   class Item
     attr_reader :path, :name, :children
 
-    def self.extract(path)
-      path.children.map { new _1 }
-    end
-
     def initialize(path)
       @path = path
       @name = path.basename.to_s.split(".").first
-      @children = self.class.extract(path) rescue []
+      @children = path.children.map { self.class.new _1 } rescue []
     end
 
     def one?
