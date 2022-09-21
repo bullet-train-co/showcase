@@ -1,13 +1,13 @@
 class Viewtale::Preview
   def self.find(path)
-    if file = Dir.glob("app/views/tales/#{path}*", base: Rails.root.to_s).first
-      new "tales/#{path}"
+    if Dir.glob("app/views/tales/#{path}*", base: Rails.root.to_s).first
+      new path
     end
   end
 
-  attr_reader :path
+  attr_reader :name, :path
 
-  def initialize(path)
-    @path = path
+  def initialize(name)
+    @name, @path = name, "tales/#{name}"
   end
 end
