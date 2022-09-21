@@ -1,6 +1,10 @@
 <% viewtale.title "Button" %>
 <% viewtale.description "Button is our standard element for what to click on" %>
 
+<% viewtale.example do %>
+  <%= render "components/button", content: "Button content", mode: :small %>
+<% end %>
+
 <% viewtale.example "Large" do %>
   <%= render "components/button", content: "Button content", mode: :large %>
 <% end %>
