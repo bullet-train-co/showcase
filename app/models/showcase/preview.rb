@@ -5,11 +5,11 @@ class Showcase::Preview
     end
   end
 
-  attr_reader :name, :path, :examples
+  attr_reader :name, :path, :samples
 
   def initialize(name)
     @name, @path = name, "showcases/#{name}"
-    @examples = []
+    @samples = []
   end
 
   def title(value = nil)
@@ -22,11 +22,11 @@ class Showcase::Preview
     @description
   end
 
-  def example(name = nil, &block)
-    @examples << Example.new(name, block)
+  def sample(name = nil, &block)
+    @samples << Sample.new(name, block)
   end
 
-  class Example
+  class Sample
     attr_reader :name, :block
 
     def initialize(name = nil, block)

@@ -7,16 +7,16 @@
 </section>
 
 <section class="sc-examples">
-  <% preview.examples.each do |example| %>
-    <article class="sc-example">
-      <h3><%= example.name %></h3>
+  <% preview.samples.each do |sample| %>
+    <article class="sc-sample">
+      <h3><%= sample.name %></h3>
 
       <div>
-        <%= capture(&example.block) %>
+        <%= capture(&sample.block) %>
       </div>
 
       <pre>
-        <%= example.source %>
+        <%= sample.source %>
       </pre>
     </article>
   <% end %>
