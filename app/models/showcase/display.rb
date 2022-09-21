@@ -1,4 +1,4 @@
-class Showcase::Preview
+class Showcase::Display
   def self.find(path)
     if Dir.glob("app/views/showcases/#{path}*", base: Rails.root.to_s).first
       new path

@@ -1,13 +1,13 @@
-<%= render template: preview.path, locals: { showcase: preview } %>
+<%= render template: showcase.path, locals: { showcase: showcase } %>
 
 <section class="sc-header">
-  <h1><%= preview.title || "Previewing #{preview.name}" %></h1>
+  <h1><%= showcase.title || "Showcasing #{showcase.name}" %></h1>
 
-  <%= preview.description %>
+  <%= showcase.description %>
 </section>
 
 <section class="sc-examples">
-  <% preview.samples.each do |sample| %>
+  <% showcase.samples.each do |sample| %>
     <article class="sc-sample">
       <h3><%= sample.name %></h3>
 

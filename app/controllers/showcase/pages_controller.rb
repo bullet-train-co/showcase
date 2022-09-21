@@ -3,6 +3,6 @@ class Showcase::PagesController < Showcase::ApplicationController
   end
 
   def show
-    @preview = Showcase::Preview.find params[:id]
+    @showcase = Showcase::Display.find params[:id]
   end
 end
