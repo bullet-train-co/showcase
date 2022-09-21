@@ -2,7 +2,7 @@ require "test_helper"
 
 class Viewtale::PagesControllerTest < ActionDispatch::IntegrationTest
   test "should get index" do
-    get viewtale_pages_url
+    get viewtale_root_url
 
     assert_response :success
     assert_select "details summary", html: %(<a href="/viewtale/pages/button">button</a>)
