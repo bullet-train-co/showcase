@@ -1,4 +1,4 @@
-class Viewtale::Menu
+class Showcase::Menu
   def self.items
     root = Rails.root.join("app/views/tales").to_s
     paths = Dir.glob("**/*", base: root)

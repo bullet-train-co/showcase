@@ -1,12 +1,12 @@
-require_relative "lib/viewtale/version"
+require_relative "lib/showcase/version"
 
 Gem::Specification.new do |spec|
-  spec.name        = "viewtale"
-  spec.version     = Viewtale::VERSION
+  spec.name        = "showcase"
+  spec.version     = Showcase::VERSION
   spec.authors     = ["Kasper Timm Hansen"]
   spec.email       = ["hey@kaspth.com"]
-  spec.homepage    = "https://github.com/kaspth/viewtale"
-  spec.summary     = "Viewtale lets you build previews for partials, components, view helpers and Stimulus controllers."
+  spec.homepage    = "https://github.com/kaspth/showcase"
+  spec.summary     = "Showcase helps you show off and document your partials, components, view helpers and Stimulus controllers."
   spec.license     = "MIT"
 
   spec.metadata["homepage_uri"]    = spec.homepage

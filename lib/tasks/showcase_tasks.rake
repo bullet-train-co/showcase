@@ -1,4 +1,4 @@
 # desc "Explaining what the task does"
-# task :viewtale do
+# task :showcase do
 #   # Task goes here
 # end

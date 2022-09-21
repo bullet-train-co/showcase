@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    viewtale (0.1.0)
+    showcase (0.1.0)
       rails (>= 7.0.3.1)
 
 GEM
@@ -165,7 +165,7 @@ DEPENDENCIES
   puma (~> 5.6)
   sprockets-rails
   sqlite3
-  viewtale!
+  showcase!
 
 BUNDLED WITH
    2.3.21
