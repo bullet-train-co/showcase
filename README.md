@@ -8,7 +8,6 @@ Here's how to showcase a standard button component:
 
 ```erb
 <%# app/views/showcases/button.html.erb %>
-<% showcase.title "Our Button element" %>
 <% showcase.description "This button component handles what we click on" %>
 
 <% showcase.example do %>
