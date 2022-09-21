@@ -22,13 +22,15 @@ class Viewtale::Preview
     @description
   end
 
-  def example(&block)
-    @examples << Example.new(block)
+  def example(name = nil, &block)
+    @examples << Example.new(name, block)
   end
 
   class Example
-    def initialize(block)
-      @block = block
+    attr_reader :name, :block
+
+    def initialize(name = nil, block)
+      @name, @block = name, block
     end
 
     def source

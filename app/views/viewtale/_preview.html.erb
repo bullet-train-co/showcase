@@ -9,6 +9,8 @@
 <section class="vt-examples">
   <% preview.examples.each do |example| %>
     <article class="vt-example">
+      <h3><%= example.name %></h3>
+
       <div>
         <%= capture(&example.block) %>
       </div>
