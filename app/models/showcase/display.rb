@@ -12,11 +12,6 @@ class Showcase::Display
     @samples = []
   end
 
-  def title(value = nil)
-    @title = value if value
-    @title
-  end
-
   def description(value = nil)
     @description = value if value
     @description
