@@ -26,25 +26,19 @@ class Viewtale::Preview
     @examples << Example.new(block)
   end
 
-  class Example < Struct.new(:block)
-    class Buffer
-      def initialize
-        @raw_buffer = +""
-      end
-
-      def safe_append=(value)
-        @raw_buffer << "<%= #{value} %>" unless value.nil?
-      end
+  class Example
+    def initialize(block)
+      @block = block
     end
 
     def source
-      @output_buffer = Buffer.new
-      instance_exec(&block)
-      @output_buffer.presence
-    ensure
-      @output_buffer = nil
-    end
+      file, starting_line = @block.source_location
+      lines = File.readlines(file).slice!(starting_line..)
 
-    private attr_reader :output_buffer
+      index = lines.index { !_1.match?(/^\s+/) }
+      lines.slice!(index..) if index
+
+      lines.join("\n")
+    end
   end
 end
