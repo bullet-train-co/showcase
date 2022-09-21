@@ -1,7 +1,7 @@
 Rails.application.routes.draw do
   namespace :showcase do
-    get "pages/*id", to: "pages#show", as: :page
+    get "displays/*id", to: "displays#show", as: :display
 
-    root to: "pages#index"
+    root to: "displays#index"
   end
 end

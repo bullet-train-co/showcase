@@ -1,4 +1,4 @@
-class Showcase::PagesController < Showcase::ApplicationController
+class Showcase::DisplaysController < Showcase::ApplicationController
   def index
   end
 
