@@ -27,8 +27,24 @@ class Viewtale::Preview
   end
 
   class Example < Struct.new(:block)
-    def source
-      # TODO: Auto-derive source for an example by evaluating the code with a different output buffer
+    class Buffer
+      def initialize
+        @raw_buffer = +""
+      end
+
+      def safe_append=(value)
+        @raw_buffer << "<%= #{value} %>" unless value.nil?
+      end
     end
+
+    def source
+      @output_buffer = Buffer.new
+      instance_exec(&block)
+      @output_buffer.presence
+    ensure
+      @output_buffer = nil
+    end
+
+    private attr_reader :output_buffer
   end
 end
