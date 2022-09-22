@@ -22,7 +22,7 @@ class Showcase::Display
   end
 
   def options(&block)
-    @options ||= Options.new.tap(&block)
+    @options ||= Options.new.tap { yield _1 if block_given? }
   end
 
   class Sample

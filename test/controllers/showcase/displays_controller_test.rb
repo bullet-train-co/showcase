@@ -18,4 +18,10 @@ class Showcase::DisplaysControllerTest < ActionDispatch::IntegrationTest
     assert_select "table tr td", text: "The content to output as the button text"
     assert_select "table tr td", text: ":content"
   end
+
+  test "get nested component" do
+    get showcase_display_url("components/combobox")
+
+    assert_response :success
+  end
 end
