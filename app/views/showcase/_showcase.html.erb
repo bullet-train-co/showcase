@@ -13,9 +13,7 @@
 
       <%= tag.div(&sample.block) %>
 
-      <pre>
-        <code><%= sample.source %></code>
-      </pre>
+      <%= tag.pre tag.code(sample.source) %>
     </article>
   <% end %>
 </section>
