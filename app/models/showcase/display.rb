@@ -48,6 +48,7 @@ class Showcase::Display
 
     def initialize
       @options = []
+      @order = [ :name, :required, :type, :default, :description ]
     end
 
     def required(*arguments, **keywords)
@@ -66,7 +67,7 @@ class Showcase::Display
     end
 
     def headers
-      @headers ||= @options.flat_map(&:keys).uniq.sort
+      @headers ||= @order | @options.flat_map(&:keys).uniq.sort
     end
 
     def each(&block)
