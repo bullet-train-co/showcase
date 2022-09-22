@@ -59,11 +59,10 @@ class Showcase::Display
       option(*arguments, **keywords, required: false)
     end
 
-    def option(name, _type = nil, _description = nil, default: (no_default = true), **options)
-      options[:type] ||= _type
-      options[:type] ||= type_from_default(default) unless no_default
+    def option(name, _type = nil, _description = nil, type: _type, default: (no_default = true), **options)
+      type ||= type_from_default(default) unless no_default
 
-      @options << options.with_defaults(name: name, description: _description, default: default)
+      @options << options.with_defaults(name: name, type: type, default: default, description: _description)
     end
 
     def headers
