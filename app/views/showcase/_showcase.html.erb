@@ -11,9 +11,7 @@
     <article class="sc-sample">
       <h3><%= sample.name %></h3>
 
-      <div>
-        <%= capture(&sample.block) %>
-      </div>
+      <%= tag.div(&sample.block) %>
 
       <pre>
         <code><%= sample.source %></code>
