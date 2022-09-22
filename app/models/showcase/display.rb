@@ -50,6 +50,7 @@ class Showcase::Display
       @options = []
       @order = [ :name, :required, :type, :default, :description ]
     end
+    delegate :empty?, to: :@options
 
     def required(*arguments, **keywords)
       option(*arguments, **keywords, required: true)
