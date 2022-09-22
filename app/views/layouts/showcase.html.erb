@@ -11,7 +11,7 @@
 
   <body style="display: grid; grid-template-columns: 25% 75%; column-gap: 25px;">
     <nav class="sc-nav">
-      <%= render partial: "showcase/menu/item", collection: Showcase::Menu.items %>
+      <%= render Showcase::Menu.items %>
     </nav>
 
     <section class="sc-main">

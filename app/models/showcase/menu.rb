@@ -27,5 +27,9 @@ class Showcase::Menu
     def one?
       children.empty?
     end
+
+    def to_partial_path
+      "showcase/menu/item"
+    end
   end
 end
