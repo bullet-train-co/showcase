@@ -23,5 +23,6 @@ class Showcase::DisplaysControllerTest < ActionDispatch::IntegrationTest
     get showcase_display_url("components/combobox")
 
     assert_response :success
+    assert_select "table", count: 0
   end
 end
