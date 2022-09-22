@@ -14,5 +14,8 @@ class Showcase::DisplaysControllerTest < ActionDispatch::IntegrationTest
     assert_response :success
     assert_select %(button[class="text-sm"]), text: "Button content"
     assert_select %(button[class="text-xl"]), text: "Button content"
+
+    assert_select "table tr td", text: "The content to output as the button text"
+    assert_select "table tr td", text: "content"
   end
 end

@@ -21,6 +21,10 @@ class Showcase::Display
     @samples << Sample.new(name, block)
   end
 
+  def options(&block)
+    @options ||= Options.new.tap(&block)
+  end
+
   class Sample
     attr_reader :name, :block
 
@@ -36,6 +40,50 @@ class Showcase::Display
       lines.slice!(index..) if index
 
       lines.join("\n")
+    end
+  end
+
+  class Options
+    include Enumerable
+
+    def initialize
+      @options = []
+    end
+
+    def required(*arguments, **keywords)
+      option(*arguments, **keywords, required: true)
+    end
+
+    def optional(*arguments, **keywords)
+      option(*arguments, **keywords, required: false)
+    end
+
+    def option(name, _type = nil, _description = nil, default: (no_default = true), **options)
+      options[:type] ||= _type
+      options[:type] ||= type_from_default(default) unless no_default
+
+      @options << options.with_defaults(name: name, description: _description, default: default)
+    end
+
+    def headers
+      @headers ||= @options.flat_map(&:keys).uniq.sort
+    end
+
+    def each(&block)
+      @options.each do |option|
+        yield headers.map { option[_1] }
+      end
+    end
+
+    private
+
+    def type_from_default(default)
+      case default
+      when true, false then "Boolean"
+      when nil         then "Nil"
+      else
+        default.class
+      end
     end
   end
 end
