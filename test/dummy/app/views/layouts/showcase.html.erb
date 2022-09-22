@@ -23,16 +23,18 @@
         }
       })
 
-      Stimulus.register("showcase-event", class extends Controller {
-        static targets = [ "relay" ]
-        static values = { events: Array }
-
-        connect() {
-          this.eventsValue.forEach((name) => this.element.addEventListener(name, (event) => this.emit(event)))
+      window.customElements.define("showcase-sample", class extends HTMLElement {
+        constructor() {
+          super()
+          this.events = JSON.parse(this.getAttribute("events")) || []
         }
 
-        disconnect() {
-          this.eventsValue.forEach(this.element.removeEventListener)
+        connectedCallback() {
+          this.events.forEach((name) => this.addEventListener(name, (event) => this.emit(event)))
+        }
+
+        disconnectedCallback() {
+          this.events.forEach(this.removeEventListener)
         }
 
         emit(event) {
@@ -41,13 +43,11 @@
         }
 
         relay(event) {
-          if (!this.hasRelayTarget) return
-
           const { controller, ...detail } = event.detail
 
           const node = document.createElement("div")
           node.innerHTML = JSON.stringify({ type: event.type, detail })
-          this.relayTarget.appendChild(node)
+          this.appendChild(node)
         }
       })
     </script>

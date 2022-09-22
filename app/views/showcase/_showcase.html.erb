@@ -8,7 +8,7 @@
   <h2>Samples</h2>
 
   <% showcase.samples.each do |sample| %>
-    <article class="sc-sample" data-controller="showcase-event" data-showcase-event-events-value="<%= sample.events %>">
+    <showcase-sample class="sc-sample" events="<%= sample.events %>">
       <h3><%= sample.name %></h3>
 
       <%= tag.div(&sample.block) %>
@@ -16,7 +16,7 @@
       <%= tag.pre tag.code(sample.source) %>
 
       <div data-showcase-event-target="relay"></div>
-    </article>
+    </showcase-sample>
   <% end %>
 </section>
 
