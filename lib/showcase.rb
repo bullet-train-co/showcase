@@ -2,5 +2,5 @@ require "showcase/version"
 require "showcase/engine"
 
 module Showcase
-  autoload :Assets, "showcase/assets"
+  # Your code goes here...
 end
