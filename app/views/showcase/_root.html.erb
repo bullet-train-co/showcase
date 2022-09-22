@@ -1,0 +1,9 @@
+<section style="display: grid; grid-template-columns: 25% 75%; column-gap: 25px;">
+  <nav class="sc-nav">
+    <%= render Showcase::Menu.items %>
+  </nav>
+
+  <section class="sc-main">
+    <%= yield %>
+  </section>
+</section>
