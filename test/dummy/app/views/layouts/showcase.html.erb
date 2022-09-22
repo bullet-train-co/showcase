@@ -5,7 +5,23 @@
     <meta name="viewport" content="width=device-width,initial-scale=1">
 
     <%= stylesheet_link_tag "application" %>
-    <%#= javascript_include_tag "application" %>
+
+    <script type="module">
+      import { Application, Controller } from "https://unpkg.com/@hotwired/stimulus/dist/stimulus.js"
+      window.Stimulus = Application.start()
+
+      Stimulus.register("welcome", class extends Controller {
+        static targets = [ "greeter" ]
+        static values = { yell: Boolean }
+
+        connect() {
+          let greeting = this.hasGreeterTarget ? `Welcome, ${this.greeterTarget.textContent}!` : "Welcome!"
+          if (this.yellValue) greeting = greeting.toUpperCase()
+          console.log(greeting)
+        }
+      })
+    </script>
+
   </head>
 
   <body>
