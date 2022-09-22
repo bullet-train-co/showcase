@@ -10,11 +10,11 @@
   </head>
 
   <body style="display: grid; grid-template-columns: 25% 75%; column-gap: 25px;">
-    <nav>
+    <nav class="sc-nav">
       <%= render partial: "showcase/menu/item", collection: Showcase::Menu.items %>
     </nav>
 
-    <section>
+    <section class="sc-main">
       <%= yield %>
     </section>
   </body>
