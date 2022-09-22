@@ -17,8 +17,8 @@ class Showcase::Display
     @description
   end
 
-  def sample(name = nil, &block)
-    @samples << Sample.new(name, block)
+  def sample(name = nil, events: nil, &block)
+    @samples << Sample.new(name, events, block)
   end
 
   def options(&block)
@@ -26,10 +26,10 @@ class Showcase::Display
   end
 
   class Sample
-    attr_reader :name, :block
+    attr_reader :name, :events, :block
 
-    def initialize(name = nil, block)
-      @name, @block = name, block
+    def initialize(name = nil, events = nil, block)
+      @name, @events, @block = name, Array(events), block
     end
 
     def source

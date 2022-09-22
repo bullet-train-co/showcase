@@ -1,16 +1,16 @@
 <% showcase.description "The welcome controller says hello when it enters the screen" %>
 
-<% showcase.sample "Basic" do %>
+<% showcase.sample "Basic", events: "welcome:greeting" do %>
   <div data-controller="welcome">I've just said welcome!</div>
 <% end %>
 
-<% showcase.sample "With greeter" do %>
+<% showcase.sample "With greeter", events: "welcome:greeting" do %>
   <div data-controller="welcome">
     <div data-welcome-target="greeter">Somebody</div>
   </div>
 <% end %>
 
-<% showcase.sample "Yelling!!!" do %>
+<% showcase.sample "Yelling!!!", events: "welcome:greeting" do %>
   <div data-controller="welcome" data-welcome-yell-value="true">
 <% end %>
 

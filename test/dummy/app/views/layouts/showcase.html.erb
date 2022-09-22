@@ -17,11 +17,40 @@
         connect() {
           let greeting = this.hasGreeterTarget ? `Welcome, ${this.greeterTarget.textContent}!` : "Welcome!"
           if (this.yellValue) greeting = greeting.toUpperCase()
+
           console.log(greeting)
+          this.dispatch("greeting", { detail: { greeting } })
+        }
+      })
+
+      Stimulus.register("showcase-event", class extends Controller {
+        static targets = [ "relay" ]
+        static values = { events: Array }
+
+        connect() {
+          this.eventsValue.forEach((name) => this.element.addEventListener(name, (event) => this.emit(event)))
+        }
+
+        disconnect() {
+          this.eventsValue.forEach(this.element.removeEventListener)
+        }
+
+        emit(event) {
+          console.log(event)
+          this.relay(event)
+        }
+
+        relay(event) {
+          if (!this.hasRelayTarget) return
+
+          const { controller, ...detail } = event.detail
+
+          const node = document.createElement("div")
+          node.innerHTML = JSON.stringify({ type: event.type, detail })
+          this.relayTarget.appendChild(node)
         }
       })
     </script>
-
   </head>
 
   <body>
