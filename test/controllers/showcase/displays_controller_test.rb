@@ -25,4 +25,13 @@ class Showcase::DisplaysControllerTest < ActionDispatch::IntegrationTest
     assert_response :success
     assert_select "table", count: 0
   end
+
+  test "rendering stimulus controller" do
+    get showcase_display_url("stimulus_controllers/welcome")
+
+    assert_response :success
+    assert_select %(div[data-controller="welcome"]), count: 3
+    assert_select %(div[data-controller="welcome"][data-welcome-yell-value])
+    assert_select %(div[data-controller="welcome"] div[data-welcome-target="greeter"])
+  end
 end

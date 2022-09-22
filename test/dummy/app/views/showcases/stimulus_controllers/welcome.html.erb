@@ -1,0 +1,20 @@
+<% showcase.description "The welcome controller says hello when it enters the screen" %>
+
+<% showcase.sample "Basic" do %>
+  <div data-controller="welcome">I've just said welcome!</div>
+<% end %>
+
+<% showcase.sample "With greeter" do %>
+  <div data-controller="welcome">
+    <div data-welcome-target="greeter">Somebody</div>
+  </div>
+<% end %>
+
+<% showcase.sample "Yelling!!!" do %>
+  <div data-controller="welcome" data-welcome-yell-value="true">
+<% end %>
+
+<% showcase.options do |o| %>
+  <% o.optional "data-welcome-target", String, "If the id of the target element must be printed" %>
+  <% o.optional "data-welcome-yell-value", default: false, description: "Whether the hello is to be YELLED" %>
+<% end %>
