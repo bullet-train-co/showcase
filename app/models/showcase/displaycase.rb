@@ -4,12 +4,7 @@ class Showcase::Displaycase
   mattr_reader :root, default: Rails.root.join("app/views/showcases")
 
   def self.all
-    Dir.glob("*", base: root).map { self[_1] }.sort_by(&:name)
-  end
-
-  def self.[](name)
-    @groups ||= {}
-    @groups[name] ||= new(name)
+    Dir.glob("*", base: root).map { new _1 }.sort_by(&:name)
   end
 
   attr_reader :name, :displays
