@@ -1,0 +1,9 @@
+<details open>
+  <summary><%= displaycase.name.humanize %></summary>
+
+  <ul>
+    <% displaycase.displays.each do |display| %>
+      <li><%= link_to display.name.humanize, showcase_display_path(displaycase, display) %></li>
+    <% end %>
+  </ul>
+</details>

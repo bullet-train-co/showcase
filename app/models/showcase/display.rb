@@ -3,10 +3,11 @@ class Showcase::Display
     new path if Rails.root.glob("app/views/showcases/#{path}*").any?
   end
 
-  attr_reader :name, :path, :samples
+  attr_reader :name, :samples
+  attr_accessor :group
 
-  def initialize(name)
-    @name, @path = name, "showcases/#{name}"
+  def initialize(path)
+    @name  = path.split(".").first
     @samples = []
   end
 
