@@ -15,7 +15,7 @@
     }
 
     emit(event) {
-      console.log(event)
+      console.log({ originator: this, event })
       this.relay(event)
     }
 
