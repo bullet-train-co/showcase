@@ -23,5 +23,6 @@ class Showcase::Displaycase
 
   def find_displays
     Dir.children(root.join(name)).map { self << find(_1) }
+    displays.sort_by!(&:name)
   end
 end
