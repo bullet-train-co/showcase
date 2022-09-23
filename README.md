@@ -7,7 +7,7 @@ Add a view template to `app/views/showcases` and it'll show up in Showcase's men
 Here's how to showcase a standard button component:
 
 ```erb
-<%# app/views/showcases/button.html.erb %>
+<%# app/views/showcases/components/button.html.erb %>
 <% showcase.description "This button component handles what we click on" %>
 
 <% showcase.sample "Basic" do %>

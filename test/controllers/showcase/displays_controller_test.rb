@@ -5,11 +5,11 @@ class Showcase::DisplaysControllerTest < ActionDispatch::IntegrationTest
     get showcase_root_url
 
     assert_response :success
-    assert_select "details summary", html: %(<a href="/showcase/displays/button">button</a>)
+    assert_select "details summary", html: %(<a href="/showcase/displays/components/button">button</a>)
   end
 
   test "should get show" do
-    get showcase_display_url("button")
+    get showcase_display_url("components/button")
 
     assert_response :success
     assert_select %(button[class="text-sm"]), text: "Button content"
