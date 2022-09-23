@@ -1,8 +1,8 @@
 class Showcase::Display
-  attr_reader :name, :samples
-  attr_accessor :group
+  attr_reader :name, :group, :samples
 
-  def initialize(path)
+  def initialize(group, path)
+    @group = group
     @name  = path.split(".").first
     @samples = []
   end

@@ -15,7 +15,7 @@ class Showcase::Displaycase
   delegate :each, :<<, to: :displays
 
   def find(id)
-    Showcase::Display.new(id).tap { _1.group = self }
+    Showcase::Display.new(self, id)
   end
 
   protected def find_displays
