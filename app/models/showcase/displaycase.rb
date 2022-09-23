@@ -25,6 +25,10 @@ class Showcase::Displaycase
     displays << display
   end
 
+  def find(id)
+    displays.find { _1.name == id }
+  end
+
   private
 
   def find_displays

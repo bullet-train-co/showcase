@@ -1,14 +1,14 @@
 class Showcase::Display
-  def self.find(path)
-    new path if Rails.root.glob("app/views/showcases/#{path}*").any?
-  end
-
   attr_reader :name, :samples
   attr_accessor :group
 
   def initialize(path)
     @name  = path.split(".").first
     @samples = []
+  end
+
+  def template_path
+    "showcases/#{group.name}/#{name}"
   end
 
   def description(value = nil)
