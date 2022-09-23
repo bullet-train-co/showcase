@@ -13,20 +13,15 @@ class Showcase::Displaycase
     @name, @displays = name, []
     find_displays
   end
-  delegate :each, to: :displays
-
-  def <<(display)
-    display.group = self
-    displays << display
-  end
+  delegate :each, :<<, to: :displays
 
   def find(id)
-    displays.find { _1.name == id }
+    Showcase::Display.new(id).tap { _1.group = self }
   end
 
   private
 
   def find_displays
-    Dir.children(root.join(name)).map { self << Showcase::Display.new(_1) }
+    Dir.children(root.join(name)).map { self << find(_1) }
   end
 end
