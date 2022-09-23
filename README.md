@@ -10,12 +10,17 @@ Here's how to showcase a standard button component:
 <%# app/views/showcases/button.html.erb %>
 <% showcase.description "This button component handles what we click on" %>
 
-<% showcase.example do %>
+<% showcase.sample "Basic" do %>
   <%= render "component/button", content: "Button content", mode: :small %>
 <% end %>
 
-<% showcase.example "Large" do %>
+<% showcase.sample "Large" do %>
   <%= render "component/button", content: "Button content", mode: :large %>
+<% end %>
+
+<% showcase.options do |o| %>
+  <% o.required :content, String, "The content to output as the button text" %>
+  <% o.optional :mode, default: :small, values: %i[ small medium large ], description: "We support three modes" %>
 <% end %>
 ```
 
