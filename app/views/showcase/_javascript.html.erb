@@ -1,0 +1,30 @@
+<script type="module">
+  window.customElements.define("showcase-sample", class extends HTMLElement {
+    constructor() {
+      super()
+      this.events = JSON.parse(this.getAttribute("events")) || []
+    }
+
+    connectedCallback() {
+      this.relayTarget = this.querySelector("[data-showcase-sample-target='relay']")
+      this.events.forEach((name) => this.addEventListener(name, (event) => this.emit(event)))
+    }
+
+    disconnectedCallback() {
+      this.events.forEach(this.removeEventListener)
+    }
+
+    emit(event) {
+      console.log(event)
+      this.relay(event)
+    }
+
+    relay(event) {
+      const { controller, ...detail } = event.detail
+
+      const node = document.createElement("div")
+      node.innerHTML = JSON.stringify({ type: event.type, detail })
+      this.relayTarget?.appendChild(node)
+    }
+  })
+</script>
