@@ -30,6 +30,7 @@
         }
 
         connectedCallback() {
+          this.relayTarget = this.querySelector("[data-showcase-sample-target='relay']")
           this.events.forEach((name) => this.addEventListener(name, (event) => this.emit(event)))
         }
 
@@ -47,7 +48,7 @@
 
           const node = document.createElement("div")
           node.innerHTML = JSON.stringify({ type: event.type, detail })
-          this.appendChild(node)
+          this.relayTarget?.appendChild(node)
         }
       })
     </script>
