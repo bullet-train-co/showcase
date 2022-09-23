@@ -1,8 +1,6 @@
 class Showcase::Display
   def self.find(path)
-    if Dir.glob("app/views/showcases/#{path}*", base: Rails.root.to_s).first
-      new path
-    end
+    new path if Rails.root.glob("app/views/showcases/#{path}*").any?
   end
 
   attr_reader :name, :path, :samples
