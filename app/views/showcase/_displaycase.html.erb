@@ -3,7 +3,7 @@
 
   <ul>
     <% displaycase.displays.each do |display| %>
-      <li><%= link_to display.name.humanize, showcase_display_path(displaycase, display) %></li>
+      <li><%= link_to display.name.humanize, showcase_display_path(displaycase.name, display.name) %></li>
     <% end %>
   </ul>
 </details>
