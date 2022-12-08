@@ -1,4 +1,4 @@
-<%= render template: showcase.template_path, locals: { showcase: showcase } %>
+<%= render template: "showcases/" + params.values_at(:section_id, :id).join("/"), locals: { showcase: showcase } %>
 
 <div class="space-y-8">
   <section>

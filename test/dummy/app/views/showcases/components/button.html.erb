@@ -9,6 +9,6 @@
 <% end %>
 
 <% showcase.options do |o| %>
-  <% o.required :content, String, "The content to output as the button text" %>
-  <% o.optional :mode, default: :small, values: %i[ small medium large ], description: "We support three modes" %>
+  <% o.required :content, "The content to output as the button text" %>
+  <% o.optional :mode, "We support three modes", default: :small, options: %i[ small medium large ] %>
 <% end %>
