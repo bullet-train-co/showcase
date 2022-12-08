@@ -2,7 +2,7 @@ class Showcase::Section
   mattr_reader :root, default: Rails.root.join("app/views/showcase")
 
   def self.all(view_context)
-    Dir.glob("*", base: root).map { new(view_context, _1).tap(&:find_displays) }.sort_by(&:title)
+    Dir.glob("*", base: root).map { new(view_context, _1).tap(&:find_displays) }
   end
 
   attr_reader :title, :displays
