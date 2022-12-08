@@ -1,1 +1,2 @@
-<%= render "showcase/showcase", showcase: @showcase %>
+<%= render template: "showcase/" + params[:id], locals: { showcase: @showcase } %>
+<%= render "showcase/displays/display", showcase: @showcase %>
