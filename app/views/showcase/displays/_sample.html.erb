@@ -1,4 +1,4 @@
-<showcase-sample class="sc-sample" id="<%= sample.id %>" events="<%= sample.details[:events] %>">
+<showcase-sample class="sc-sample" id="<%= sample.id %>" events="<%= Array(sample.details[:events]) %>">
   <h3><%= link_to sample.name, "##{sample.id}" %></h3>
 
   <section>
