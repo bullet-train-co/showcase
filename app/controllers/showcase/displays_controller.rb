@@ -3,6 +3,6 @@ class Showcase::DisplaysController < Showcase::ApplicationController
   end
 
   def show
-    @showcase = Showcase::Displaycase.new(params[:displaycase_id]).find params[:id]
+    @showcase = Showcase::Section.new(params[:section_id]).find params[:id]
   end
 end
