@@ -3,6 +3,6 @@ class Showcase::DisplaysController < Showcase::ApplicationController
   end
 
   def show
-    @showcase = Showcase::Section.new(view_context, params[:section_id]).find params[:id]
+    @showcase = Showcase::Display.new(view_context, title: params[:id].split("/").last.titleize)
   end
 end
