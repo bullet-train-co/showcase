@@ -2,7 +2,7 @@ PATH
   remote: .
   specs:
     showcase (0.1.0)
-      rails (>= 7.0.3.1)
+      rails (>= 6.1.0)
 
 GEM
   remote: https://rubygems.org/
@@ -163,9 +163,9 @@ PLATFORMS
 
 DEPENDENCIES
   puma (~> 5.6)
+  showcase!
   sprockets-rails
   sqlite3
-  showcase!
 
 BUNDLED WITH
    2.3.21
