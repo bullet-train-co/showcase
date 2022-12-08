@@ -1,6 +1,4 @@
 class Showcase::Section
-  include Enumerable
-
   mattr_reader :root, default: Rails.root.join("app/views/showcase")
 
   def self.all(view_context)
