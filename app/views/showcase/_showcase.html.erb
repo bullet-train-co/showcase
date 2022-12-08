@@ -1,14 +1,28 @@
 <%= render template: showcase.template_path, locals: { showcase: showcase } %>
 
-<section class="sc-header">
-  <%= showcase.description %>
-</section>
+<div class="space-y-8">
+  <section>
+    <% if showcase.title %>
+      <div class="flex items-center space-x-2 mb-2">
+        <h2 class="font-semibold text-3xl"><%= showcase.title %></h2>
 
-<section class="sc-samples">
-  <h2>Samples</h2>
-  <%= render partial: "showcase/display/sample", collection: showcase.samples %>
-</section>
+        <%# TODO: Insert default badge support here. %>
+      </div>
+    <% end %>
 
-<% if options = showcase.options.presence %>
-  <%= render "showcase/displays/options", options: options %>
-<% end %>
+    <% if showcase.description %>
+      <p class="font-normal text-base"><%= showcase.description %></p>
+    <% end %>
+  </section>
+
+  <% if showcase.samples.any? %>
+    <section>
+      <h2 class="font-semibold text-xl mb-2">Samples</h2>
+      <%= render partial: "showcase/displays/sample", collection: showcase.samples %>
+    </section>
+  <% end %>
+
+  <% if options = showcase.options.presence %>
+    <%= render "showcase/displays/options", options: options %>
+  <% end %>
+</div>
