@@ -6,40 +6,9 @@
 
 <section class="sc-samples">
   <h2>Samples</h2>
-
-  <% showcase.samples.each do |sample| %>
-    <showcase-sample class="sc-sample" events="<%= sample.events %>">
-      <h3><%= sample.name %></h3>
-
-      <%= tag.div(&sample.block) %>
-
-      <%= tag.pre tag.code(sample.source) %>
-
-      <div data-showcase-sample-target="relay"></div>
-    </showcase-sample>
-  <% end %>
+  <%= render partial: "showcase/display/sample", collection: showcase.samples %>
 </section>
 
 <% if options = showcase.options.presence %>
-  <section class="sc-options">
-    <table>
-      <thead>
-        <tr>
-          <% options.headers.each do |header| %>
-            <th><%= header.to_s.humanize %></th>
-          <% end %>
-        </tr>
-      </thead>
-
-      <tbody>
-        <% options.each do |option| %>
-          <tr>
-            <% option.each do |value| %>
-              <td><%= value %></td>
-            <% end %>
-          </tr>
-        <% end %>
-      </tbody>
-    </table>
-  </section>
+  <%= render "showcase/displays/options", options: options %>
 <% end %>

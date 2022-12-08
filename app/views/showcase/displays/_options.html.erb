@@ -1,0 +1,21 @@
+<section class="sc-options">
+  <table>
+    <thead>
+      <tr>
+        <% options.headers.each do |header| %>
+          <th><%= header.to_s.humanize %></th>
+        <% end %>
+      </tr>
+    </thead>
+
+    <tbody>
+      <% options.each do |option| %>
+        <tr>
+          <% option.each do |value| %>
+            <td><%= value %></td>
+          <% end %>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+</section>

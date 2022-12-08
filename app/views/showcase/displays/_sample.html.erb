@@ -1,0 +1,9 @@
+<showcase-sample class="sc-sample" events="<%= sample.events %>">
+  <h3><%= sample.name %></h3>
+
+  <%= tag.div(&sample.block) %>
+
+  <%= tag.pre tag.code(sample.source) %>
+
+  <div data-showcase-sample-target="relay"></div>
+</showcase-sample>
