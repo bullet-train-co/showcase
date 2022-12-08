@@ -16,8 +16,11 @@ class Showcase::Section
     Showcase::Display.new(@view_context, title: id.split(".").first)
   end
 
-  protected def find_displays
-    Dir.children(root.join(title)).map { self << find(_1) }
-    displays.sort_by!(&:title)
+  protected
+
+  def find_displays
+    if root.join(title).directory?
+      Dir.children(root.join(title)).map { self << find(_1) }
+    end
   end
 end
