@@ -15,6 +15,6 @@
 <% end %>
 
 <% showcase.options do |o| %>
-  <% o.optional "data-welcome-target", String, "If the id of the target element must be printed" %>
-  <% o.optional "data-welcome-yell-value", default: false, description: "Whether the hello is to be YELLED" %>
+  <% o.optional "data-welcome-target", "If the id of the target element must be printed" %>
+  <% o.optional "data-welcome-yell-value", "Whether the hello is to be YELLED", default: false %>
 <% end %>
