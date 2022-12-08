@@ -1,9 +1,9 @@
 <details open>
-  <summary><%= section.name.titleize %></summary>
+  <summary><%= section.title.titleize %></summary>
 
   <ul>
     <% section.displays.each do |display| %>
-      <li><%= link_to display.title.titleize, showcase_display_path(section.name, display.title) %></li>
+      <li><%= link_to display.title.titleize, showcase_display_path(section.title, display.title) %></li>
     <% end %>
   </ul>
 </details>
