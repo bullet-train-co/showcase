@@ -1,4 +1,6 @@
-<section class="sc-options">
+<section class="w-full overflow-x-auto">
+  <h2 class="text-xl font-semibold mb-2">Options</h2>
+
   <table>
     <thead>
       <tr>
@@ -11,8 +13,12 @@
     <tbody>
       <% options.each do |option| %>
         <tr>
-          <% option.each do |value| %>
-            <td><%= value %></td>
+          <% option.each do |key, value| %>
+            <% if key == :required %>
+              <td><%= tag.input type: :checkbox, checked: value, disabled: true if value %></td>
+            <% else %>
+              <td><%= tag.pre value %></td>
+            <% end %>
           <% end %>
         </tr>
       <% end %>
