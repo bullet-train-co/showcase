@@ -2,28 +2,39 @@ class Showcase::Display
   autoload :Sample,  "showcase/display/sample"
   autoload :Options, "showcase/display/options"
 
-  attr_reader :name, :group, :samples
+  attr_reader :badges, :samples
 
-  def initialize(group, path)
-    @group = group
-    @name  = path.split(".").first
-    @samples = []
+  def initialize(view_context, title: nil)
+    @view_context, @badges, @samples = view_context, [], []
+    title title
   end
 
-  def template_path
-    "showcases/#{group.name}/#{name}"
+  def title(content = nil)
+    @title = content if content
+    @title
   end
 
-  def description(value = nil)
-    @description = value if value
+  def description(content = nil, &block)
+    @description = content || @view_context.capture(&block) if content || block_given?
     @description
   end
 
-  def sample(name, events: nil, &block)
-    @samples << Sample.new(name, events, block)
+  def badge(*badges)
+    @badges.concat badges
   end
 
-  def options(&block)
-    @options ||= Options.new.tap { yield _1 if block_given? }
+  def sample(name, **options, &block)
+    @samples << sample = Sample.new(@view_context, name, **options)
+
+    if block.arity.zero?
+      sample.preview(&block)
+      sample.extract(&block)
+    else
+      @view_context.capture(sample, &block)
+    end
+  end
+
+  def options
+    @options ||= Options.new(@view_context).tap { yield _1 if block_given? }
   end
 end

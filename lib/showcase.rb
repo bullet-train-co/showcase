@@ -2,5 +2,6 @@ require "showcase/version"
 require "showcase/engine"
 
 module Showcase
-  # Your code goes here...
+  singleton_class.attr_accessor :sample_renderer
+  @sample_renderer = ->(lines) { lines.join }
 end
