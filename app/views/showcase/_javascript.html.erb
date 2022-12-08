@@ -11,6 +11,7 @@
     }
 
     disconnectedCallback() {
+      this.relayTarget = null
       this.events.forEach(this.removeEventListener)
     }
 
