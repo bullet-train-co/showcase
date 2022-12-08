@@ -10,17 +10,14 @@ class Showcase::Section
   def initialize(view_context, title)
     @view_context, @title, @displays = view_context, title, []
   end
-  delegate :each, :<<, to: :displays
-
-  def find(id)
-    Showcase::Display.new(@view_context, title: id.split(".").first)
-  end
 
   protected
 
   def find_displays
     if root.join(title).directory?
-      Dir.children(root.join(title)).map { self << find(_1) }
+      Dir.children(root.join(title)).map do
+        displays << Showcase::Display.new(@view_context, title: _1)
+      end
     end
   end
 end
