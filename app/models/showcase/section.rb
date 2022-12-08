@@ -15,7 +15,7 @@ class Showcase::Section
   delegate :each, :<<, to: :displays
 
   def find(id)
-    Showcase::Display.new(@view_context, title: id)
+    Showcase::Display.new(@view_context, title: id.split(".").first)
   end
 
   protected def find_displays
