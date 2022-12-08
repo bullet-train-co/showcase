@@ -1,6 +1,6 @@
 <section style="display: grid; grid-template-columns: 25% 75%; column-gap: 25px;">
   <nav class="sc-nav">
-    <%= render partial: "showcase/section", collection: Showcase::Section.all %>
+    <%= render partial: "showcase/section", collection: Showcase::Section.all(self) %>
   </nav>
 
   <section class="sc-main">

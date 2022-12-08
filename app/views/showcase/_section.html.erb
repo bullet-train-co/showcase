@@ -3,7 +3,7 @@
 
   <ul>
     <% section.displays.each do |display| %>
-      <li><%= link_to display.name.titleize, showcase_display_path(section.name, display.name) %></li>
+      <li><%= link_to display.title.titleize, showcase_display_path(section.name, display.title) %></li>
     <% end %>
   </ul>
 </details>
