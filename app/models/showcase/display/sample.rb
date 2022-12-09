@@ -2,9 +2,10 @@ class Showcase::Display::Sample
   attr_reader :name, :id, :details
   attr_reader :source
 
-  def initialize(view_context, name, id: name.parameterize, **details)
+  def initialize(view_context, name, description: nil, id: name.parameterize, **details)
     @view_context = view_context
     @name, @id, @details = name, id, details
+    description description if description
   end
 
   def description(content = nil, &block)
