@@ -1,23 +1,27 @@
-<div class="bg-white justify-around border border-gray-200 rounded-md rounded-b-none">
-  <showcase-sample id="<%= sample.id %>" events="<%= Array(sample.details[:events]) %>"
-    class="px-4 py-2 flex justify-between items-center bg-white sm:items-baseline rounded-md rounded-b-none">
-
-    <header class="flex-shrink min-w-0 flex space-x-2 items-center">
-      <h3 class="font-semibold text-base md:text-lg leading-snug truncate"><%= link_to sample.name, "##{sample.id}" %></h3>
+<section class="mb-4 border border-gray-200 rounded-md">
+  <showcase-sample id="<%= sample.id %>" events="<%= Array(sample.details[:events]) %>">
+    <header class="border border-gray-200 border-0 border-b">
+      <h3 class="px-4 py-2 font-semibold text-base md:text-lg leading-snug truncate"><%= link_to sample.name, "##{sample.id}" %></h3>
 
       <% if sample.description %>
         <p class="px-4 py-2 text-base"><%= sample.description %></p>
       <% end %>
     </header>
 
-    <section class="mb-4 rounded-md border border-gray-200 border-t-0 rounded-t-none">
+    <section class="px-4 py-2 border border-gray-200 border-0 border-b">
       <%= sample.preview %>
     </section>
 
-    <section class="relative overflow-hidden rounded-b-md">
-      <%= sample.source %>
-    </section>
+    <% if sample.source %>
+      <details class="px-4 py-2">
+        <summary>View Source</summary>
+
+        <section class="relative overflow-hidden">
+          <%= sample.source %>
+        </section>
+      </details>
+    <% end %>
 
     <div data-showcase-sample-target="relay"></div>
   </showcase-sample>
-</div>
+</section>

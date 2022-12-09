@@ -1,6 +1,8 @@
 <main class="flex flex-wrap">
   <section class="grid grid-cols-12 w-full">
     <nav class="col-span-3 xl:col-span-2 py-5 h-full">
+      <h1 class="font-black text-2xl py-2 pl-4 cursor-pointer"><%= link_to "Showcase", root_url %></h1>
+
       <%= render partial: "showcase/path/tree", collection: Showcase::Path::Tree.all %>
     </nav>
 
