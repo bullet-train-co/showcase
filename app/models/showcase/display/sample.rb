@@ -9,12 +9,12 @@ class Showcase::Display::Sample
   end
 
   def description(content = nil, &block)
-    @description = content || @view_context.capture(&block) if content || block
+    @description = content || @view_context.capture(&block) if content || block_given?
     @description
   end
 
   def preview(&block)
-    block ? @preview = @view_context.capture(&block) : @preview
+    block_given? ? @preview = @view_context.capture(&block) : @preview
   end
 
   def extract(&block)
