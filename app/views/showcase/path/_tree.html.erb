@@ -1,9 +1,9 @@
-<details open>
-  <summary><%= tree.id.titleize %></summary>
+<details open class="flex flex-col">
+  <%= tag.summary tree.id.titleize, class: [ "font-medium text-black text-base py-2 pl-4 cursor-pointer", hidden: tree.root? ] %>
 
   <% tree.paths.each do |path| %>
-    <section>
+    <article class="font-medium text-black text-base py-2 px-5 pl-4 hover:bg-coolGray-100">
       <%= link_to path.basename.titleize, display_path(path.id) %>
-    <section>
+    </article>
   <% end %>
 </details>

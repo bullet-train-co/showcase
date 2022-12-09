@@ -1,9 +1,11 @@
-<section style="display: grid; grid-template-columns: 25% 75%; column-gap: 25px;">
-  <nav class="sc-nav">
-    <%= render partial: "showcase/path/tree", collection: Showcase::Path::Tree.all %>
-  </nav>
+<main class="flex flex-wrap">
+  <section class="grid grid-cols-12 w-full">
+    <nav class="col-span-3 xl:col-span-2 py-5 h-full">
+      <%= render partial: "showcase/path/tree", collection: Showcase::Path::Tree.all %>
+    </nav>
 
-  <section class="sc-main">
-    <%= yield %>
+    <section class="col-span-9 xl:col-span-10 w-full min-h-screen rounded-tl-xl bg-trueGray-25 p-12 shadow-lg border">
+      <%= yield %>
+    </section>
   </section>
-</section>
+</main>

@@ -3,6 +3,10 @@ class Showcase::Path
     def self.all
       Showcase::Path.all.group_by(&:dirname).map { new _1, _2 }
     end
+
+    def root?
+      id == "."
+    end
   end
 
   def self.all
