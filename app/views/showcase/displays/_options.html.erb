@@ -1,23 +1,23 @@
 <section class="w-full overflow-x-auto">
   <h2 class="text-xl font-semibold mb-2">Options</h2>
 
-  <table class="table bg-white">
+  <table class="table border-collapse border border-gray-200">
     <thead>
-      <tr>
+      <tr class="bg-slate-50">
         <% options.headers.each do |header| %>
-          <th><%= header.to_s.humanize %></th>
+          <th class="px-4 py-2"><%= header.to_s.humanize %></th>
         <% end %>
       </tr>
     </thead>
 
     <tbody>
       <% options.each do |option| %>
-        <tr>
+        <tr class="border-t border-gray-200">
           <% option.each do |key, value| %>
             <% if key == :required %>
-              <td><%= tag.input type: :checkbox, checked: value, disabled: true if value %></td>
+              <td class="p-4"><%= tag.input type: :checkbox, checked: value, disabled: true if value %></td>
             <% else %>
-              <td><%= tag.pre value %></td>
+              <td class="p-4"><%= tag.pre value %></td>
             <% end %>
           <% end %>
         </tr>
