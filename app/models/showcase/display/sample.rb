@@ -19,13 +19,12 @@ class Showcase::Display::Sample
 
   def extract(&block)
     @source = Showcase.sample_renderer.call \
-      extract_inner_block_lines_from_matched_indentation_starting_at(block)
+      extract_block_lines_via_matched_indentation_from(*block.source_location)
   end
 
   private
 
-  def extract_inner_block_lines_from_matched_indentation_starting_at(block)
-    file, starting_index = block.source_location
+  def extract_block_lines_via_matched_indentation_from(file, starting_index)
     first_line, *lines = File.readlines(file).from(starting_index - 1)
 
     indentation = first_line.match(/^\s+(?=<%)/).to_s
