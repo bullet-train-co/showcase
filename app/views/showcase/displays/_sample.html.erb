@@ -1,5 +1,5 @@
 <section class="mb-4 border border-gray-200 rounded-md">
-  <showcase-sample id="<%= sample.id %>" events="<%= Array(sample.details[:events]) %>">
+  <showcase-sample id="<%= sample.id %>" events="<%= sample.events %>">
     <header class="border border-gray-200 border-0 border-b">
       <h3 class="px-4 py-2 font-semibold text-base md:text-lg leading-snug truncate"><%= link_to sample.name, "##{sample.id}" %></h3>
 
@@ -13,15 +13,21 @@
     </section>
 
     <% if sample.source %>
-      <details class="px-4 py-2">
-        <summary>View Source</summary>
+      <details>
+        <summary class="px-4 py-2 hover:bg-indigo-50 cursor-pointer">View Source</summary>
 
-        <section class="relative overflow-hidden">
+        <section class="px-4 py-2 relative overflow-hidden">
           <%= sample.source %>
         </section>
       </details>
     <% end %>
 
-    <div data-showcase-sample-target="relay"></div>
+    <% if sample.events.any? %>
+      <section class="px-4 py-2 text-sm bg-indigo-50">
+        <h4 class="font-medium text-base">JavaScript Events</h4>
+
+        <pre data-showcase-sample-target="relay"></pre>
+      </section>
+    <% end %>
   </showcase-sample>
 </section>

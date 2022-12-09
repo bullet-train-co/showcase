@@ -1,10 +1,11 @@
 class Showcase::Display::Sample
-  attr_reader :name, :id, :details
+  attr_reader :name, :id, :events, :details
   attr_reader :source
 
-  def initialize(view_context, name, description: nil, id: name.parameterize, **details)
+  def initialize(view_context, name, description: nil, id: name.parameterize, events: nil, **details)
     @view_context = view_context
     @name, @id, @details = name, id, details
+    @events = Array(events)
     description description if description
   end
 
