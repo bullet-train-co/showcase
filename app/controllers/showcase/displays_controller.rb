@@ -3,6 +3,5 @@ class Showcase::DisplaysController < Showcase::ApplicationController
   end
 
   def show
-    @showcase = Showcase::Display.new(view_context, title: params[:id].split("/").last.titleize)
   end
 end

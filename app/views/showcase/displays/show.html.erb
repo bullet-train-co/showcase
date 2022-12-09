@@ -1,2 +1,3 @@
-<%= render template: "showcase/" + params[:id], locals: { showcase: @showcase } %>
-<%= render "showcase/displays/display", showcase: @showcase %>
+<% showcase = Showcase::Display.new(self, title: params[:id].split("/").last.titleize) %>
+<%= render template: "showcase/" + params[:id], locals: { showcase: showcase } %>
+<%= render "showcase/displays/display", showcase: showcase %>
