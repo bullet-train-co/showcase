@@ -1,13 +1,23 @@
-<showcase-sample class="sc-sample" id="<%= sample.id %>" events="<%= Array(sample.details[:events]) %>">
-  <h3><%= link_to sample.name, "##{sample.id}" %></h3>
+<div class="bg-white justify-around border border-gray-200 rounded-md rounded-b-none">
+  <showcase-sample id="<%= sample.id %>" events="<%= Array(sample.details[:events]) %>"
+    class="px-4 py-2 flex justify-between items-center bg-white sm:items-baseline rounded-md rounded-b-none">
 
-  <section>
-    <%= sample.preview %>
-  </section>
+    <header class="flex-shrink min-w-0 flex space-x-2 items-center">
+      <h3 class="font-semibold text-base md:text-lg leading-snug truncate"><%= link_to sample.name, "##{sample.id}" %></h3>
 
-  <section>
-    <%= sample.source %>
-  </section>
+      <% if sample.description %>
+        <p class="px-4 py-2 text-base"><%= sample.description %></p>
+      <% end %>
+    </header>
 
-  <div data-showcase-sample-target="relay"></div>
-</showcase-sample>
+    <section class="mb-4 rounded-md border border-gray-200 border-t-0 rounded-t-none">
+      <%= sample.preview %>
+    </section>
+
+    <section class="relative overflow-hidden rounded-b-md">
+      <%= sample.source %>
+    </section>
+
+    <div data-showcase-sample-target="relay"></div>
+  </showcase-sample>
+</div>
