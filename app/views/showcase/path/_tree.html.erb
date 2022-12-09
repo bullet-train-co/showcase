@@ -1,0 +1,9 @@
+<details open>
+  <summary><%= tree.id.titleize %></summary>
+
+  <% tree.paths.each do |path| %>
+    <section>
+      <%= link_to path.basename.titleize, display_path(path.id) %>
+    <section>
+  <% end %>
+</details>
