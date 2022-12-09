@@ -27,8 +27,7 @@ class Showcase::Display
     @samples << sample = Sample.new(@view_context, name, **options)
 
     if block.arity.zero?
-      sample.preview(&block)
-      sample.extract(&block)
+      sample.collect(&block)
     else
       @view_context.capture(sample, &block)
     end

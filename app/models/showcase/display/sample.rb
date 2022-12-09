@@ -13,6 +13,11 @@ class Showcase::Display::Sample
     @description
   end
 
+  def collect(&block)
+    preview(&block)
+    extract(&block)
+  end
+
   def preview(&block)
     block_given? ? @preview = @view_context.capture(&block) : @preview
   end
