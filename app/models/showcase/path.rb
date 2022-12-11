@@ -1,12 +1,12 @@
 class Showcase::Path
   class Tree < Struct.new(:id, :paths)
-    def self.all
-      Showcase::Path.all.group_by(&:dirname).map { new _1, _2 }
-    end
-
     def root?
       id == "."
     end
+  end
+
+  def self.tree
+    all.group_by(&:dirname).map { Tree.new _1, _2 }
   end
 
   def self.all
