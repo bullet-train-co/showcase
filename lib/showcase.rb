@@ -7,6 +7,6 @@ module Showcase
   @sample_renderer = ->(lines) { lines.join }
 
   def self.filenames
-    Dir.glob("**/*.*", base: root).reject { _1.start_with? "displays" }
+    Dir.glob("**/*.*", base: root)
   end
 end
