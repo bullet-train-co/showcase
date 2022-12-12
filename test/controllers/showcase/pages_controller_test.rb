@@ -1,19 +1,19 @@
 require "test_helper"
 
-class Showcase::DisplaysControllerTest < ActionDispatch::IntegrationTest
+class Showcase::PagesControllerTest < ActionDispatch::IntegrationTest
   test "should get index" do
-    get showcase_root_url
+    get root_url
 
     assert_response :success
     assert_select "details summary", "Components"
-    assert_select "details li", html: %(<a href="/showcase/displays/components/button">Button</a>)
-    assert_select "details li", html: %(<a href="/showcase/displays/components/combobox">Combobox</a>)
+    assert_select "details li", html: %(<a href="/showcase/pages/button">Button</a>)
+    assert_select "details li", html: %(<a href="/showcase/pages/combobox">Combobox</a>)
     assert_select "details summary", "Stimulus controllers"
-    assert_select "details li", html: %(<a href="/showcase/displays/stimulus_controllers/welcome">Welcome</a>)
+    assert_select "details li", html: %(<a href="/showcase/pages/stimulus_controllers/welcome">Welcome</a>)
   end
 
   test "should get show" do
-    get showcase_display_url("components", "button")
+    get page_url("button")
 
     assert_response :success
     assert_select %(button[class="text-sm"]), text: "Button content"
@@ -24,14 +24,14 @@ class Showcase::DisplaysControllerTest < ActionDispatch::IntegrationTest
   end
 
   test "get nested component" do
-    get showcase_display_url("components", "combobox")
+    get page_url("combobox")
 
     assert_response :success
     assert_select "table", count: 0
   end
 
   test "rendering stimulus controller" do
-    get showcase_display_url("stimulus_controllers", "welcome")
+    get page_url("stimulus_controllers/welcome")
 
     assert_response :success
     assert_select %(div[data-controller="welcome"]), count: 3

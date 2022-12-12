@@ -1,0 +1,3 @@
+<% showcase = @path.page_for(self) %>
+<%= render template: @path.template_path, locals: { showcase: showcase } %>
+<%= render "showcase/pages/page", showcase: showcase %>

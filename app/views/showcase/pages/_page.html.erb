@@ -16,11 +16,11 @@
   <% if showcase.samples.any? %>
     <section>
       <h2 class="font-semibold text-xl mb-2">Samples</h2>
-      <%= render partial: "showcase/displays/sample", collection: showcase.samples %>
+      <%= render partial: "showcase/pages/sample", collection: showcase.samples %>
     </section>
   <% end %>
 
   <% if options = showcase.options.presence %>
-    <%= render "showcase/displays/options", options: options %>
+    <%= render "showcase/pages/options", options: options %>
   <% end %>
 </div>

@@ -21,10 +21,10 @@ class Showcase::Path
   end
 
   def template_path
-    "showcase/#{id}"
+    "showcase/pages/templates/#{id}"
   end
 
-  def display_for(view_context, title: basename.titleize)
-    Showcase::Display.new(view_context, title: title)
+  def page_for(view_context, title: basename.titleize)
+    Showcase::Page.new(view_context, title: title)
   end
 end

@@ -1,6 +1,6 @@
-class Showcase::Display
-  autoload :Sample,  "showcase/display/sample"
-  autoload :Options, "showcase/display/options"
+class Showcase::Page
+  autoload :Sample,  "showcase/page/sample"
+  autoload :Options, "showcase/page/options"
 
   attr_reader :badges, :samples
 

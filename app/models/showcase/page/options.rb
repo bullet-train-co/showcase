@@ -1,4 +1,4 @@
-class Showcase::Display::Options
+class Showcase::Page::Options
   include Enumerable
 
   def initialize(view_context)
