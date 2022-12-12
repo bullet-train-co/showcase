@@ -1,26 +1,27 @@
 require "test_helper"
 
-class Showcase::PagesControllerTest < ActionDispatch::IntegrationTest
+class Showcase::PagesControllerTest < Showcase::IntegrationTest
   test "should get index" do
     get root_url
 
     assert_response :success
-    assert_select "details summary", "Components"
-    assert_select "details li", html: %(<a href="/showcase/pages/button">Button</a>)
-    assert_select "details li", html: %(<a href="/showcase/pages/combobox">Combobox</a>)
-    assert_select "details summary", "Stimulus controllers"
-    assert_select "details li", html: %(<a href="/showcase/pages/stimulus_controllers/welcome">Welcome</a>)
+    assert_select "details summary", "Pages"
+    assert_select %(details a[href="/docs/showcase/pages/button"]),   "Button"
+    assert_select %(details a[href="/docs/showcase/pages/combobox"]), "Combobox"
+
+    assert_select "details summary", "Stimulus Controllers"
+    assert_select %(details a[href="/docs/showcase/pages/stimulus_controllers/welcome"]), "Welcome"
   end
 
   test "should get show" do
     get page_url("button")
 
     assert_response :success
-    assert_select %(button[class="text-sm"]), text: "Button content"
-    assert_select %(button[class="text-xl"]), text: "Button content"
+    assert_select %(button[class~="text-sm"]), text: "Button content"
+    assert_select %(button[class~="text-xl"]), text: "Button content"
 
-    assert_select "table tr td", text: "The content to output as the button text"
-    assert_select "table tr td", text: ":content"
+    assert_select "table tr td pre", text: "The content to output as the button text"
+    assert_select "table tr td pre", text: "content"
   end
 
   test "get nested component" do

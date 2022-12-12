@@ -12,3 +12,10 @@ if ActiveSupport::TestCase.respond_to?(:fixture_path=)
   ActiveSupport::TestCase.file_fixture_path = ActiveSupport::TestCase.fixture_path + "/files"
   ActiveSupport::TestCase.fixtures :all
 end
+
+Showcase.root = "test/dummy/#{Showcase.root}"
+
+class Showcase::IntegrationTest < ActionDispatch::IntegrationTest
+  include Showcase::Engine.routes.url_helpers
+  setup { @routes = Showcase::Engine.routes }
+end
