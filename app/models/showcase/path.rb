@@ -25,7 +25,7 @@ class Showcase::Path
   end
 
   def template_path
-    "showcase/pages/templates/#{id}"
+    Showcase.template_path_to id
   end
 
   def page_for(view_context, title: basename.titleize)
