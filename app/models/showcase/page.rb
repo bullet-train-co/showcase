@@ -39,7 +39,7 @@ class Showcase::Page
   end
 
   def render_template
-    @view_context.render template: id, prefixes: [Showcase.root], locals: { showcase: self }
+    @view_context.render template: id, prefixes: [Showcase.templates_path], locals: { showcase: self }
     nil
   end
 end

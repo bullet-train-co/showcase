@@ -11,6 +11,6 @@ module Showcase
   end
 
   def self.filenames
-    Dir.glob("**/*.*", base: File.join("app/views", templates_path))
+    Dir.glob("**/*.*", base: Rails.root.join("app/views", templates_path))
   end
 end
