@@ -3,6 +3,6 @@ class Showcase::PagesController < Showcase::ApplicationController
   end
 
   def show
-    @path = Showcase::Path.new params[:id]
+    @page = Showcase::Path.new(params[:id]).page_for view_context
   end
 end

@@ -2,10 +2,11 @@ class Showcase::Page
   autoload :Sample,  "showcase/page/sample"
   autoload :Options, "showcase/page/options"
 
-  attr_reader :badges, :samples
+  attr_reader :id, :badges, :samples
 
-  def initialize(view_context, title: nil)
-    @view_context, @badges, @samples = view_context, [], []
+  def initialize(view_context, id:, title: nil)
+    @view_context, @id = view_context, id
+    @badges, @samples = [], []
     title title
   end
 

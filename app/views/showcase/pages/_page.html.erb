@@ -1,26 +1,28 @@
+<% render template: page.id, prefixes: [Showcase.root], locals: { showcase: page } %>
+
 <div class="space-y-8">
   <section>
-    <% if showcase.title %>
+    <% if page.title %>
       <div class="flex items-center space-x-2 mb-2">
-        <h2 class="font-semibold text-3xl"><%= showcase.title %></h2>
+        <h2 class="font-semibold text-3xl"><%= page.title %></h2>
 
         <%# TODO: Insert default badge support here. %>
       </div>
     <% end %>
 
-    <% if showcase.description %>
-      <p class="font-normal text-base"><%= showcase.description %></p>
+    <% if page.description %>
+      <p class="font-normal text-base"><%= page.description %></p>
     <% end %>
   </section>
 
-  <% if showcase.samples.any? %>
+  <% if page.samples.any? %>
     <section>
       <h2 class="font-semibold text-xl mb-2">Samples</h2>
-      <%= render partial: "showcase/pages/sample", collection: showcase.samples %>
+      <%= render partial: "showcase/pages/sample", collection: page.samples %>
     </section>
   <% end %>
 
-  <% if options = showcase.options.presence %>
+  <% if options = page.options.presence %>
     <%= render "showcase/pages/options", options: options %>
   <% end %>
 </div>
