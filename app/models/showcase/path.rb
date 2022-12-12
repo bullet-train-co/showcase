@@ -1,5 +1,9 @@
 class Showcase::Path
   class Tree < Struct.new(:id, :paths)
+    def name
+      root? ? "Pages" : id
+    end
+
     def root?
       id == "."
     end
