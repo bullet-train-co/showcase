@@ -24,10 +24,6 @@ class Showcase::Path
     @dirname, @basename = File.split(@id)
   end
 
-  def template_path
-    Showcase.template_path_to id
-  end
-
   def page_for(view_context, title: basename.titleize)
     Showcase::Page.new(view_context, title: title)
   end
