@@ -37,4 +37,9 @@ class Showcase::Page
   def options
     @options ||= Options.new(@view_context).tap { yield _1 if block_given? }
   end
+
+  def render_template
+    @view_context.render template: id, prefixes: [Showcase.root], locals: { showcase: self }
+    nil
+  end
 end

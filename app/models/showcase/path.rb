@@ -25,6 +25,6 @@ class Showcase::Path
   end
 
   def page_for(view_context)
-    Showcase::Page.new(view_context, id: id, title: basename.titleize)
+    Showcase::Page.new(view_context, id: id, title: basename.titleize).tap(&:render_template)
   end
 end
