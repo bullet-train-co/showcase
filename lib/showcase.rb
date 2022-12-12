@@ -7,7 +7,7 @@ module Showcase
   @sample_renderer = ->(lines) { lines.join }
 
   def self.templates_path
-    File.join(templates_directory_prefix, "showcase/pages/templates").delete_prefix("/")
+    @templates_path ||= File.join(templates_directory_prefix, "showcase/pages/templates").delete_prefix("/")
   end
 
   def self.filenames
