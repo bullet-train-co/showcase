@@ -6,7 +6,7 @@
 
     <%= stylesheet_link_tag "application" %>
     <%= stylesheet_link_tag "showcase" %>
-    <%= render "showcase/javascript" %>
+    <%= javascript_include_tag "showcase" %>
 
     <script type="module">
       import { Application, Controller } from "https://unpkg.com/@hotwired/stimulus/dist/stimulus.js"
