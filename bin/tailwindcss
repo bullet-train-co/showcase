@@ -1,0 +1,5 @@
+#!/usr/bin/env bash
+
+executable="$(bundle show tailwindcss-rails)/exe/tailwindcss"
+
+exec $executable -o app/assets/builds/showcase.css -c config/tailwind.config.js "$@"
