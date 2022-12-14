@@ -4,9 +4,8 @@
     <title>Showcase</title>
     <meta name="viewport" content="width=device-width,initial-scale=1">
 
-    <%= stylesheet_link_tag "application" %>
-    <%= stylesheet_link_tag "showcase" %>
-    <%= javascript_include_tag "showcase" %>
+    <%= stylesheet_link_tag    "application", "showcase" %>
+    <%= javascript_include_tag "application", "showcase" %>
 
     <script type="module">
       import { Application, Controller } from "https://unpkg.com/@hotwired/stimulus/dist/stimulus.js"
