@@ -12,11 +12,9 @@ window.customElements.define("showcase-sample", class extends HTMLElement {
     this.relay(event)
   }
 
-  relay(event) {
-    const { controller, ...detail } = event.detail
-
+  relay({ type, detail }) {
     const node = document.createElement("div")
-    node.innerHTML = JSON.stringify({ type: event.type, detail })
+    node.innerHTML = JSON.stringify({ type, detail })
     this.relayTarget?.appendChild(node)
   }
 
