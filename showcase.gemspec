@@ -1,7 +1,7 @@
 require_relative "lib/showcase/version"
 
 Gem::Specification.new do |spec|
-  spec.name        = "showcase"
+  spec.name        = "showcase-rails"
   spec.version     = Showcase::VERSION
   spec.authors     = ["Kasper Timm Hansen"]
   spec.email       = ["hey@kaspth.com"]
