@@ -24,6 +24,10 @@ Here's how to showcase a standard button component:
 <% end %>
 ```
 
+## View examples
+
+Clone the repository, run `bundle install`, then run `bin/rails server`, visit localhost:3000 in your browser.
+
 ## Installation
 
 Add this line to your application's Gemfile:
