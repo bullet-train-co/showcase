@@ -25,6 +25,10 @@ Here's how to showcase a standard button component:
 <% end %>
 ```
 
+Which will then render the following:
+
+![](/readme/example.png?raw=true "Showcase showing a button component")
+
 ## View examples
 
 Clone the repository, run `bundle install`, then run `bin/rails server`, visit localhost:3000 in your browser.
