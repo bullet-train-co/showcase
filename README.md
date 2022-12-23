@@ -41,20 +41,20 @@ All paths shown here are assumed to be in `app/views`.
 
 The actions all use a `layout "showcase"`, which renders like this:
 
-- layouts/showcase.html.erb
-  - showcase/_root.html.erb
-    - showcase/path/_tree.html.erb
+- [layouts/showcase.html.erb](app/views/layouts/showcase.html.erb)
+  - [showcase/_root.html.erb](app/views/showcase/_root.html.erb)
+    - [showcase/path/_tree.html.erb](app/views/showcase/path/_tree.html.erb)
 
 So for `Showcase::PagesController#index` we render:
 
-- showcase/pages/index.html.erb
+- [showcase/pages/index.html.erb](app/views/showcase/pages/index.html.erb)
 
 And for `Showcase::PagesController#show` we render:
 
-- showcase/pages/show.html.erb
-  - showcase/pages/_page.html.erb
-    - showcase/pages/_sample.html.erb
-    - showcase/pages/_options.html.erb
+- [showcase/pages/show.html.erb](app/views/showcase/pages/show.html.erb)
+  - [showcase/pages/_page.html.erb](app/views/showcase/pages/_page.html.erb)
+    - [showcase/pages/_sample.html.erb](app/views/showcase/pages/_sample.html.erb)
+    - [showcase/pages/_options.html.erb](app/views/showcase/pages/_options.html.erb)
 
 If you want to override any specific rendering, e.g. how a `Showcase::Page` is rendered,
 copy the file from our repo `app/views` directory into your `app/views` directory.
