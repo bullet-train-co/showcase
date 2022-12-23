@@ -33,6 +33,32 @@ Which will then render the following:
 
 Clone the repository, run `bundle install`, then run `bin/rails server`, visit localhost:3000 in your browser.
 
+## Overriding Showcase's default rendering
+
+Showcase's rendering happens through the [`Showcase::PagesController`](blob/main/app/controllers/showcase/pages_controller.rb) with either the root url `index` or `show`.
+
+All paths shown here are assumed to be in `app/views`.
+
+The actions all use a `layout "showcase"`, which renders like this:
+
+- layouts/showcase.html.erb
+  - showcase/_root.html.erb
+    - showcase/path/_tree.html.erb
+
+So for `Showcase::PagesController#index` we render:
+
+- showcase/pages/index.html.erb
+
+And for `Showcase::PagesController#show` we render:
+
+- showcase/pages/show.html.erb
+  - showcase/pages/_page.html.erb
+    - showcase/pages/_sample.html.erb
+    - showcase/pages/_options.html.erb
+
+If you want to override any specific rendering, e.g. how a `Showcase::Page` is rendered,
+copy the file from our repo `app/views` directory into your `app/views` directory.
+
 ## Installation
 
 Add this line to your application's Gemfile:
