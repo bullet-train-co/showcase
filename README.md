@@ -1,13 +1,14 @@
 # Showcase
 
-Showcase lets you build previews for partials, components, view helpers and Stimulus controllers.
+Showcase lets you build previews for your partials, components, view helpers, Stimulus controllers and more.
 
-Add a view template to `app/views/showcases` and it'll show up in Showcase's menu.
+Add a template to `app/views/showcase/pages/templates` and it'll show up in Showcase's menu.
 
 Here's how to showcase a standard button component:
 
 ```erb
-<%# app/views/showcases/components/button.html.erb %>
+<%# app/views/showcase/pages/templates/button.html.erb %>
+<% showcase.title "Button" %> <%# `title` is optional and inferred from the filename, by default. %>
 <% showcase.description "This button component handles what we click on" %>
 
 <% showcase.sample "Basic" do %>
@@ -19,8 +20,8 @@ Here's how to showcase a standard button component:
 <% end %>
 
 <% showcase.options do |o| %>
-  <% o.required :content, String, "The content to output as the button text" %>
-  <% o.optional :mode, default: :small, values: %i[ small medium large ], description: "We support three modes" %>
+  <% o.required :content, "The content to output as the button text" %>
+  <% o.optional :mode, "We support three modes", default: :small, options: %i[ small medium large ] %>
 <% end %>
 ```
 
