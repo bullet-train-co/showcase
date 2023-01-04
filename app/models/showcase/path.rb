@@ -1,7 +1,7 @@
 class Showcase::Path
   class Tree < Struct.new(:id, :children)
     def name
-      root? ? "Pages" : id
+      root? ? "Templates" : id
     end
 
     def root?
