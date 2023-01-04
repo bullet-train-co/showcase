@@ -1,5 +1,5 @@
 class Showcase::Path
-  class Tree < Struct.new(:id, :paths)
+  class Tree < Struct.new(:id, :children)
     def name
       root? ? "Pages" : id
     end
@@ -7,21 +7,29 @@ class Showcase::Path
     def root?
       id == "."
     end
+
+    def tree?
+      true
+    end
   end
 
   def self.tree
-    all.group_by(&:dirname).map { Tree.new _1, _2 }
+    Showcase.templates.map do |engine_id, templates|
+      contents = templates.map { new engine_id, _1 }.sort_by!(&:id).group_by(&:dirname).map { Tree.new _1, _2 }
+      Tree.new(engine_id, contents)
+    end
   end
 
-  def self.all
-    Showcase.filenames.map { new _1 }.sort_by!(&:id)
-  end
+  attr_reader :engine_id, :id, :dirname, :basename
 
-  attr_reader :id, :dirname, :basename
-
-  def initialize(path)
+  def initialize(engine_id, path)
+    @engine_id = engine_id
     @id = path.split(".").first
     @dirname, @basename = File.split(@id)
+  end
+
+  def tree?
+    false
   end
 
   def page_for(view_context)
