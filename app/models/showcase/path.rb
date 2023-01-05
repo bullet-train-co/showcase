@@ -32,7 +32,7 @@ class Showcase::Path
       find(id) || insert(id)
     end
 
-    protected
+    private
 
     def find(id)   = children.find { _1.id == id }
     def insert(id) = self.class.new(id).tap { self << _1 }
