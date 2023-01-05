@@ -1,5 +1,10 @@
 class Showcase::Path
   class Tree < Struct.new(:id, :children)
+    def initialize(id, children = [])
+      super
+    end
+    delegate :<<, to: :children
+
     def name
       root? ? "Templates" : id
     end
@@ -11,11 +16,31 @@ class Showcase::Path
     def tree?
       true
     end
+
+    def self.sieve(paths, &block)
+      new(:discardable_root).tap { _1.sieve(paths, &block) }.children
+    end
+
+    def sieve(paths)
+      paths.each do |path|
+        ids = yield path
+        ids.inject(self, :edge_for) << path
+      end
+    end
+
+    def edge_for(id)
+      find(id) || insert(id)
+    end
+
+    protected
+
+    def find(id)   = children.find { _1.id == id }
+    def insert(id) = self.class.new(id).tap { self << _1 }
   end
 
   def self.tree
     paths = Showcase.templates.map { new _1 }.sort_by!(&:id)
-    paths.group_by(&:dirname).map { Tree.new _1, _2 }
+    Tree.sieve(paths) { _1.dirname.split("/") }
   end
 
   attr_reader :id, :dirname, :basename
