@@ -13,8 +13,8 @@ class Showcase::Path
       id == "."
     end
 
-    def tree?
-      true
+    def partition
+      children.partition { _1.is_a?(Tree) }
     end
 
     def self.sieve(paths, &block)
@@ -48,10 +48,6 @@ class Showcase::Path
   def initialize(path)
     @id = path.split(".").first
     @dirname, @basename = File.split(@id)
-  end
-
-  def tree?
-    false
   end
 
   def page_for(view_context)
