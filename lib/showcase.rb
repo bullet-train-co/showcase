@@ -13,6 +13,6 @@ module Showcase
   def self.templates
     ActionController::Base.view_paths.map(&:path).flat_map do |root|
       Dir.glob("**/*.*", base: File.join(root, templates_path))
-    end
+    end.uniq
   end
 end
