@@ -10,15 +10,9 @@ module Showcase
     @templates_path ||= File.join(templates_directory_prefix, "showcase/pages/templates").delete_prefix("/")
   end
 
-  def self.engines
-    @engines ||= ([Rails.application] + Rails::Engine.subclasses.select { _1.paths["app/views"].existent.any? }).index_by(&:engine_name)
-  end
-
   def self.templates
-    engines.transform_values do |engine|
-      engine.paths["app/views"].existent.flat_map do |path|
-        Dir.glob("**/*.*", base: File.join(path, templates_path))
-      end
-    end.reject { _2.empty? }
+    ActionController::Base.view_paths.map(&:path).flat_map do |root|
+      Dir.glob("**/*.*", base: File.join(root, templates_path))
+    end
   end
 end

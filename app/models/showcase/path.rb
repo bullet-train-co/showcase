@@ -14,16 +14,13 @@ class Showcase::Path
   end
 
   def self.tree
-    Showcase.templates.map do |engine_id, templates|
-      contents = templates.map { new engine_id, _1 }.sort_by!(&:id).group_by(&:dirname).map { Tree.new _1, _2 }
-      Tree.new(engine_id, contents)
-    end
+    paths = Showcase.templates.map { new _1 }.sort_by!(&:id)
+    paths.group_by(&:dirname).map { Tree.new _1, _2 }
   end
 
-  attr_reader :engine_id, :id, :dirname, :basename
+  attr_reader :id, :dirname, :basename
 
-  def initialize(engine_id, path)
-    @engine_id = engine_id
+  def initialize(path)
     @id = path.split(".").first
     @dirname, @basename = File.split(@id)
   end
