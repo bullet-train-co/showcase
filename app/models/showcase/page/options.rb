@@ -1,6 +1,5 @@
 class Showcase::Page::Options
-  extend Contexts
-  include Enumerable
+  include Enumerable, Contexts
 
   def initialize(view_context)
     @view_context = view_context

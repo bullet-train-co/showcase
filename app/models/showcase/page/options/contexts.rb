@@ -7,33 +7,36 @@ module Showcase::Page::Options::Contexts
     end
   end
 
-  #   Showcase.options.context :stimulus do
-  #     def value(name, ...)
-  #       option("data-#{@controller}-#{name}-value", ...)
-  #     end
-  #   end
-  #
-  #   showcase.options.stimulus controller: :welcome do |o|
-  #     o.value :greeting, default: "Hello"
-  #   end
-  def context(key, *accessors, &block)
-    contexts[key] ||= Class.new(Context)
-    contexts[key].class_eval(&block) # Lets users reopen an already defined context class.
-
-    class_eval <<~RUBY, __FILE__, __LINE__ + 1
-      def #{key}(**kwargs)
-        self.class.contexts[:#{key}].new(@view_context, @options, **kwargs).tap do
-          yield _1 if block_given?
-        end
-      end
-    RUBY
+  # showcase.options.context :stimulus, controller: :welcome
+  def context(key, **options, &block)
+    self.class.contexts[key].new(@view_context, @options, **options).tap do
+      yield _1 if block_given?
+    end
   end
 
-  def contexts
-    @contexts ||= {}
+  module ClassMethods
+    #   Showcase.options.context :stimulus do
+    #     def value(name, ...)
+    #       option("data-#{@controller}-#{name}-value", ...)
+    #     end
+    #   end
+    #
+    #   showcase.options.stimulus controller: :welcome do |o|
+    #     o.value :greeting, default: "Hello"
+    #   end
+    def context(key, *accessors, &block)
+      contexts[key] ||= Class.new(Context)
+      contexts[key].class_eval(&block) # Lets users reopen an already defined context class.
+    end
+
+    def contexts
+      @contexts ||= {}
+    end
   end
 
-  def self.extended(klass)
+  def self.included(klass)
+    klass.extend ClassMethods
+
     klass.context :stimulus do
       def target(name, ...)
         option(%(data-#{@controller}-target="#{name}"), ...)
