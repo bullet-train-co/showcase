@@ -5,8 +5,8 @@ class Showcase::Path
     end
     delegate :<<, to: :children
 
-    to_partial_path = "showcase/path/tree"
-    define_method(:to_partial_path) { to_partial_path }
+    cached_partial_path = "showcase/path/tree"
+    define_method(:to_partial_path) { cached_partial_path }
 
     def name
       root? ? "Templates" : id
@@ -54,8 +54,8 @@ class Showcase::Path
     @segments = File.dirname(@id).split("/")
   end
 
-  to_partial_path = "showcase/path/path"
-  define_method(:to_partial_path) { to_partial_path }
+  cached_partial_path = "showcase/path/path"
+  define_method(:to_partial_path) { cached_partial_path }
 
   def page_for(view_context)
     Showcase::Page.new(view_context, id: id, title: basename.titleize).tap(&:render_template)
