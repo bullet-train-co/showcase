@@ -1,8 +1,7 @@
 module Showcase::Page::Options::Contexts
-  class Context
-    delegate :required, :optional, :option, to: :@options
-
-    def initialize(options, **kwargs)
+  class Context < Showcase::Page::Options
+    def initialize(view_context, options, **kwargs)
+      super(view_context)
       @options = options
       kwargs.each { instance_variable_set(:"@#{_1}", _2) }
     end
@@ -23,7 +22,7 @@ module Showcase::Page::Options::Contexts
 
     class_eval <<~RUBY, __FILE__, __LINE__ + 1
       def #{key}(**kwargs)
-        self.class.contexts[:#{key}].new(self, **kwargs).tap do
+        self.class.contexts[:#{key}].new(@view_context, @options, **kwargs).tap do
           yield _1 if block_given?
         end
       end

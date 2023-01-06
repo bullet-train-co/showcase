@@ -10,11 +10,19 @@ class Showcase::Page::Options
   delegate :empty?, to: :@options
 
   def required(*arguments, **keywords, &block)
-    option(*arguments, **keywords, required: true, &block)
+    if arguments.none?
+      with_options required: true
+    else
+      option(*arguments, **keywords, required: true, &block)
+    end
   end
 
   def optional(*arguments, **keywords, &block)
-    option(*arguments, **keywords, required: false, &block)
+    if arguments.none?
+      with_options required: false
+    else
+      option(*arguments, **keywords, required: false, &block)
+    end
   end
 
   DEFAULT_OMITTED = Object.new

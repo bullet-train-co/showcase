@@ -15,6 +15,6 @@
 <% end %>
 
 <% showcase.options.stimulus controller: :welcome do |o| %>
-  <% o.target :greeter, "If the id of the target element must be printed" %>
-  <% o.value :yell, "Whether the hello is to be YELLED", default: false %>
+  <% o.optional.target :greeter, "If the id of the target element must be printed" %>
+  <% o.required.value :yell, "Whether the hello is to be YELLED", default: false %>
 <% end %>
