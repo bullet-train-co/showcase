@@ -10,7 +10,9 @@ module Showcase
     @templates_path ||= File.join(templates_directory_prefix, "showcase/pages/templates").delete_prefix("/")
   end
 
-  def self.filenames
-    Dir.glob("**/*.*", base: Rails.root.join("app/views", templates_path))
+  def self.templates
+    ActionController::Base.view_paths.map(&:path).flat_map do |root|
+      Dir.glob("**/*.*", base: File.join(root, templates_path))
+    end.uniq
   end
 end
