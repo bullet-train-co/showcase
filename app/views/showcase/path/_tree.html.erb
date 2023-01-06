@@ -2,12 +2,6 @@
   <%= tag.summary tree.name.titleize, class: "hover:bg-indigo-50 font-medium text-black text-base py-2 pl-4 cursor-pointer" %>
 
   <% trees, paths = tree.partition %>
-
-  <% paths.each do |path| %>
-    <article class="hover:bg-indigo-50 <%= "bg-indigo-50" if path.id == params[:id] %>">
-      <%= link_to path.basename.titleize, page_path(path.id), class: "inline-block py-2 px-8 w-full" %>
-    </article>
-  <% end %>
-
+  <%= render partial: "showcase/path/path", collection: paths %>
   <%= render partial: "showcase/path/tree", collection: trees %>
 </details>
