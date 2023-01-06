@@ -5,7 +5,7 @@ class Showcase::PagesControllerTest < Showcase::IntegrationTest
     get root_url
 
     assert_response :success
-    assert_select "details summary", "Pages"
+    assert_select "details summary", "Templates"
     assert_select %(details a[href="/docs/showcase/pages/button"]),   "Button"
     assert_select %(details a[href="/docs/showcase/pages/combobox"]), "Combobox"
 
@@ -17,7 +17,7 @@ class Showcase::PagesControllerTest < Showcase::IntegrationTest
     get page_url("button")
 
     assert_response :success
-    assert_select %(button[class~="text-sm"]), text: "Button content"
+    assert_select %(button[class~="text-xs"]), text: "Button content"
     assert_select %(button[class~="text-xl"]), text: "Button content"
 
     assert_select "table tr td pre", text: "The content to output as the button text"
