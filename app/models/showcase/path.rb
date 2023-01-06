@@ -16,12 +16,12 @@ class Showcase::Path
       id == "."
     end
 
-    def partition
-      children.partition { _1.is_a?(Tree) }
+    def ordered_children
+      children.partition { !_1.is_a?(Tree) }.flatten
     end
 
     def self.index(...)
-      new(:discardable_root).tap { _1.index(...) }.children
+      new(:discardable_root).tap { _1.index(...) }.ordered_children
     end
 
     def index(paths)
