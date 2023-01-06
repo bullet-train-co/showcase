@@ -49,7 +49,7 @@ class Showcase::Path
   attr_reader :id, :segments, :basename
 
   def initialize(path)
-    @id = path.split(".").first
+    @id = path.split(".").first.delete_prefix("_").sub(/\/_/, "/")
     @basename = File.basename(@id)
     @segments = File.dirname(@id).split("/")
   end
@@ -58,6 +58,6 @@ class Showcase::Path
   define_method(:to_partial_path) { cached_partial_path }
 
   def page_for(view_context)
-    Showcase::Page.new(view_context, id: id, title: basename.titleize).tap(&:render_template)
+    Showcase::Page.new(view_context, id: id, title: basename.titleize).tap(&:render_associated_partial)
   end
 end

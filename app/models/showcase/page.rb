@@ -96,8 +96,8 @@ class Showcase::Page
     @options ||= Options.new(@view_context).tap { yield _1 if block_given? }
   end
 
-  def render_template
-    @view_context.render template: id, prefixes: [Showcase.templates_path], locals: { showcase: self }
+  def render_associated_partial
+    @view_context.render "#{Showcase.templates_path}/#{id}", showcase: self
     nil
   end
 end
