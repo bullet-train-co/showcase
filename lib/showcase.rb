@@ -13,4 +13,8 @@ module Showcase
       Dir.glob("**/*.*", base: File.join(root, templates_path))
     end.uniq
   end
+
+  def self.options
+    Page::Options
+  end
 end

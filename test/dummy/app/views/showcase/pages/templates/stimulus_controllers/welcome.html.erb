@@ -14,7 +14,7 @@
   <div data-controller="welcome" data-welcome-yell-value="true">
 <% end %>
 
-<% showcase.options do |o| %>
-  <% o.optional "data-welcome-target", "If the id of the target element must be printed" %>
-  <% o.optional "data-welcome-yell-value", "Whether the hello is to be YELLED", default: false %>
+<% showcase.options.stimulus controller: :welcome do |o| %>
+  <% o.target :greeter, "If the id of the target element must be printed" %>
+  <% o.value :yell, "Whether the hello is to be YELLED", default: false %>
 <% end %>
