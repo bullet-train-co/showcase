@@ -69,13 +69,7 @@ class Showcase::Page
   #   - the `sample.events` what JavaScript `events` to listen for on the element
   #   - any other custom options are available in `sample.details`.
   def sample(name, **options, &block)
-    @samples << sample = Sample.new(@view_context, name, **options)
-
-    if block.arity.zero?
-      sample.collect(&block)
-    else
-      @view_context.capture(sample, &block)
-    end
+    @samples << Sample.new(@view_context, name, **options).tap { _1.collect(&block) }
   end
 
   # Yields an Options object to help define the configuration table for a Page.

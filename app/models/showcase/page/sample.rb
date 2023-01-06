@@ -15,8 +15,12 @@ class Showcase::Page::Sample
   end
 
   def collect(&block)
-    preview(&block)
-    extract(&block)
+    if block.arity.zero?
+      preview(&block)
+      extract(&block)
+    else
+      @view_context.capture(self, &block)
+    end
   end
 
   def preview(&block)
