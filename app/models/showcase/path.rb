@@ -40,14 +40,15 @@ class Showcase::Path
 
   def self.tree
     paths = Showcase.templates.map { new _1 }.sort_by!(&:id)
-    Tree.index(paths) { _1.dirname.split("/") }
+    Tree.index(paths, &:segments)
   end
 
-  attr_reader :id, :dirname, :basename
+  attr_reader :id, :segments, :basename
 
   def initialize(path)
     @id = path.split(".").first
-    @dirname, @basename = File.split(@id)
+    @basename = File.basename(@id)
+    @segments = File.dirname(@id).split("/")
   end
 
   def page_for(view_context)
