@@ -2,13 +2,11 @@ require "showcase/version"
 require "showcase/engine"
 
 module Showcase
-  singleton_class.attr_accessor :templates_directory_prefix, :sample_renderer
-  @templates_directory_prefix = ""
+  singleton_class.attr_accessor :sample_renderer
   @sample_renderer = ->(lines) { lines.join }
 
-  def self.templates_path
-    @templates_path ||= File.join(templates_directory_prefix, "showcase/pages/templates").delete_prefix("/")
-  end
+  singleton_class.attr_reader :templates_path
+  @templates_path = "showcase/pages/templates"
 
   def self.templates
     Showcase::ApplicationController.view_paths.map(&:path).flat_map do |root|
