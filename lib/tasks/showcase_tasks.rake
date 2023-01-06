@@ -4,7 +4,7 @@
 #     prefix = "app/views/#{directory}"
 #
 #     Dir.glob(File.join(Dir.pwd, prefix, "**/*.*")).each do |filename|
-#       new_filename = filename.sub(directory, "showcase/pages/templates").sub(/\/_/, "/")
+#       new_filename = filename.sub(directory, Showcase.templates_path).sub(/\/_/, "/")
 #       mkdir_p File.dirname(new_filename)
 #       copy_file filename, new_filename
 #     end

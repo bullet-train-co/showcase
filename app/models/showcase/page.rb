@@ -11,7 +11,7 @@ class Showcase::Page
   end
 
   # Set a custom title for the Page. By default, it's automatically inferred from the sidebar title,
-  # e.g. showcase/pages/templates/button.html.erb will have Button as the title.
+  # e.g. showcase/samples/_button.html.erb will have Button as the title.
   def title(content = nil)
     @title = content if content
     @title
