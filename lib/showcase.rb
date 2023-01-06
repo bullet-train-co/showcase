@@ -3,7 +3,7 @@ require "showcase/engine"
 
 module Showcase
   singleton_class.attr_accessor :sample_renderer
-  @sample_renderer = ->(lines) { lines.join }
+  @sample_renderer = ->(lines) { simple_format(lines.join) }
 
   singleton_class.attr_reader :templates_path
   @templates_path = "showcase/pages/templates"

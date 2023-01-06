@@ -24,8 +24,8 @@ class Showcase::Page::Sample
   end
 
   def extract(&block)
-    @source = Showcase.sample_renderer.call \
-      extract_block_lines_via_matched_indentation_from(*block.source_location)
+    lines = extract_block_lines_via_matched_indentation_from(*block.source_location)
+    @source = @view_context.instance_exec(lines, &Showcase.sample_renderer)
   end
 
   private
