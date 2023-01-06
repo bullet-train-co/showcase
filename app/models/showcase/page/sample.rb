@@ -33,7 +33,7 @@ class Showcase::Page::Sample
   def extract_block_lines_via_matched_indentation_from(file, starting_index)
     first_line, *lines = File.readlines(file).from(starting_index - 1)
 
-    indentation = first_line.match(/^\s+(?=<%)/).to_s
+    indentation = first_line.match(/^\s+(?=\b)/).to_s
     matcher = /^#{indentation}\S/
 
     index = lines.index { _1.match?(matcher) }
