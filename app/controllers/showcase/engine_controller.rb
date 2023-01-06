@@ -1,4 +1,4 @@
-class Showcase::ApplicationController < ActionController::Base
+class Showcase::EngineController < ActionController::Base
   layout "showcase"
 
   if defined?(::ApplicationController)
