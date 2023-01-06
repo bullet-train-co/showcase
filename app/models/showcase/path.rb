@@ -17,11 +17,11 @@ class Showcase::Path
       children.partition { _1.is_a?(Tree) }
     end
 
-    def self.sieve(paths, &block)
-      new(:discardable_root).tap { _1.sieve(paths, &block) }.children
+    def self.index(...)
+      new(:discardable_root).tap { _1.index(...) }.children
     end
 
-    def sieve(paths)
+    def index(paths)
       paths.each do |path|
         ids = yield path
         ids.inject(self, :edge_for) << path
@@ -40,7 +40,7 @@ class Showcase::Path
 
   def self.tree
     paths = Showcase.templates.map { new _1 }.sort_by!(&:id)
-    Tree.sieve(paths) { _1.dirname.split("/") }
+    Tree.index(paths) { _1.dirname.split("/") }
   end
 
   attr_reader :id, :dirname, :basename
