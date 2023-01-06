@@ -1,7 +1,4 @@
 <details open class="flex flex-col">
   <%= tag.summary tree.name.titleize, class: "hover:bg-indigo-50 font-medium text-black text-base py-2 pl-4 cursor-pointer" %>
-
-  <% trees, paths = tree.partition %>
-  <%= render partial: "showcase/path/path", collection: paths %>
-  <%= render partial: "showcase/path/tree", collection: trees %>
+  <%= render tree.partition.reverse.flatten %>
 </details>
