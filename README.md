@@ -59,6 +59,22 @@ And for `Showcase::PagesController#show` we render:
 If you want to override any specific rendering, e.g. how a `Showcase::Page` is rendered,
 copy the file from our repo `app/views` directory into your `app/views` directory.
 
+### Loading your own assets
+
+Showcase bundles its own `showcase.js` and `showcase.css` asset files through
+Action View's [javascript_include_tag][] and [stylesheet_link_tag][].
+
+If your assets require more sophisticated loading techniques, declare your own
+versions of the [showcase/engine/_javascripts.html.erb][] and
+[showcase/engine/_stylesheets.html.erb][] partials. When customizing those
+partials, make sure to include `"showcase"` in your list of assets.
+
+
+[javascript_include_tag]: https://edgeapi.rubyonrails.org/classes/ActionView/Helpers/AssetTagHelper.html#method-i-javascript_include_tag
+[stylesheet_link_tag]: https://edgeapi.rubyonrails.org/classes/ActionView/Helpers/AssetTagHelper.html#method-i-stylesheet_link_tag
+[showcase/engine/_javascripts.html.erb]: ./showcase/engine/_javascripts.html.erb
+[showcase/engine/_stylesheets.html.erb]: ./showcase/engine/_stylesheets.html.erb
+
 ## Installation
 
 Add this line to your application's Gemfile:
