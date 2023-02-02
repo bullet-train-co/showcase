@@ -1,34 +1,34 @@
-<section class="mb-4 border border-gray-200 rounded-md">
+<section class="sc-mb-4 sc-border sc-border-gray-200 sc-rounded-md">
   <showcase-sample id="<%= sample.id %>" events="<%= sample.events %>">
-    <header class="bg-slate-100/50">
-      <h3 class="px-4 py-2 font-medium text-base md:text-lg leading-snug truncate"><%= link_to sample.name, "##{sample.id}" %></h3>
+    <header class="sc-bg-slate-100/50">
+      <h3 class="sc-px-4 sc-py-2 sc-font-medium sc-text-base md:sc-text-lg sc-leading-snug sc-truncate"><%= link_to sample.name, "##{sample.id}" %></h3>
 
       <% if sample.description %>
-        <p class="px-4 py-2 text-base"><%= sample.description %></p>
+        <p class="sc-px-4 sc-py-2 sc-text-base"><%= sample.description %></p>
       <% end %>
     </header>
 
     <% if sample.preview %>
-      <section class="px-4 py-2 border border-gray-200 border-0 border-b">
+      <section class="sc-px-4 sc-py-2 sc-border sc-border-gray-200 sc-border-0 sc-border-b">
         <%= sample.preview %>
       </section>
     <% end %>
 
     <% if sample.source %>
       <details>
-        <summary class="px-4 py-2 hover:bg-indigo-50 cursor-pointer select-none">View Source</summary>
+        <summary class="sc-px-4 sc-py-2 hover:sc-bg-indigo-50 sc-cursor-pointer sc-select-none">View Source</summary>
 
-        <section class="px-4 py-2 relative overflow-y-auto hover:select-all">
+        <section class="sc-px-4 sc-py-2 sc-relative sc-overflow-y-auto hover:sc-select-all">
           <%= sample.source %>
         </section>
       </details>
     <% end %>
 
     <% if sample.events.any? %>
-      <section class="px-4 py-2 font-small bg-slate-50">
-        <h4 class="mb-2 font-medium text-base">JavaScript Events</h4>
+      <section class="sc-px-4 sc-py-2 sc-font-small sc-bg-slate-50">
+        <h4 class="sc-mb-2 sc-font-medium sc-text-base">JavaScript Events</h4>
 
-        <div class="overflow-scroll max-h-20">
+        <div class="sc-overflow-scroll sc-max-h-20">
           <pre data-showcase-sample-target="relay"></pre>
         </div>
       </section>
