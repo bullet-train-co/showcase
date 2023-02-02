@@ -11,7 +11,7 @@ class Showcase::Page
   end
 
   # Set a custom title for the Page. By default, it's automatically inferred from the sidebar title,
-  # e.g. showcase/pages/templates/button.html.erb will have Button as the title.
+  # e.g. showcase/samples/_button.html.erb will have Button as the title.
   def title(content = nil)
     @title = content if content
     @title
@@ -90,8 +90,8 @@ class Showcase::Page
     @options ||= Options.new(@view_context).tap { yield _1 if block_given? }
   end
 
-  def render_template
-    @view_context.render template: id, prefixes: [Showcase.templates_path], locals: { showcase: self }
+  def render_associated_partial
+    @view_context.render "#{Showcase.templates_path}/#{id}", showcase: self
     nil
   end
 end
