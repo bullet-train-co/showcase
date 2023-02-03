@@ -50,6 +50,41 @@ class Showcase::PagesControllerTest < Showcase::IntegrationTest
     end
   end
 
+  test "#show reads samples from partials in app/views/showcase/samples/" do
+    name = SecureRandom.uuid
+
+    template_file "showcase/samples/_test_local_sample.html.erb", <<~HTML
+      <% showcase.sample "#{name}" do %>
+        A new sample: #{name}
+      <% end %>
+    HTML
+
+    get page_path("test_local_sample")
+
+    within :navigation do
+      assert_link "Test Local Sample", href: page_path("test_local_sample")
+    end
+    within :section, "Samples" do
+      assert_region name, text: "A new sample: #{name}"
+    end
+  end
+
+  test "#show renders Custom sample partials" do
+    template_file "showcase/pages/_sample.html.erb", <<~HTML
+      <turbo-frame id="<%= sample.id %>_frame">
+        <%= sample.name %>
+      </turbo-frame>
+    HTML
+
+    get page_path("stimulus_controllers/welcome")
+
+    within :section, "Samples" do
+      assert_element "turbo-frame", text: "Basic"
+      assert_element "turbo-frame", text: "With greeter"
+      assert_element "turbo-frame", text: "Yelling!!!"
+    end
+  end
+
   test "#show renders options" do
     get page_path("stimulus_controllers/welcome")
 

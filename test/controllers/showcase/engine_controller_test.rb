@@ -33,4 +33,19 @@ class Showcase::EngineControllerTest < Showcase::IntegrationTest
       end
     end
   end
+
+  test "#index template can be overridden" do
+    template_file "showcase/engine/index.html.erb", <<~HTML
+      <section aria-labelledby="title">
+        <h2 id="title">A Custom Welcome</h2>
+      </section>
+    HTML
+
+    get showcase_path
+
+    assert_response :ok
+    within :main, "Showcase" do
+      assert_region "A Custom Welcome"
+    end
+  end
 end
