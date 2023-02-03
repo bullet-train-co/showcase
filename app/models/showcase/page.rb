@@ -1,6 +1,8 @@
 class Showcase::Page
-  autoload :Sample,  "showcase/page/sample"
-  autoload :Options, "showcase/page/options"
+  unless Rails.autoloaders.zeitwerk_enabled?
+    autoload :Sample,  "showcase/page/sample"
+    autoload :Options, "showcase/page/options"
+  end
 
   attr_reader :id, :badges, :samples
 
