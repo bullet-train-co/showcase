@@ -21,3 +21,11 @@ gem "sprockets-rails"
 # gem "debug", ">= 1.0.0"
 
 gem "puma", "~> 5.6"
+
+group :test do
+  gem "action_dispatch-testing-integration-capybara",
+    github: "thoughtbot/action_dispatch-testing-integration-capybara", tag: "v0.1.1",
+    require: "action_dispatch/testing/integration/capybara/minitest"
+  gem "capybara_accessible_selectors",
+    github: "citizensadvice/capybara_accessible_selectors", tag: "v0.10.0"
+end
