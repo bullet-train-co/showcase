@@ -16,12 +16,7 @@
           <% option.each do |key, value| %>
             <% if key == :required %>
               <td class="sc-p-4">
-                <% if value %>
-                  <%= tag.label do %>
-                    <span class="sc-sr-only">true</span>
-                    <%= tag.input type: :checkbox, checked: value, readonly: true %>
-                  <% end %>
-                <% end %>
+                <%= tag.input type: :checkbox, checked: value, disabled: true if value%>
               </td>
             <% else %>
               <td class="sc-p-4"><%= tag.pre value %></td>

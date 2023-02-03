@@ -45,7 +45,7 @@ class Showcase::PagesControllerTest < Showcase::IntegrationTest
 
     within :section, "Options" do
       assert_table with_rows: [
-        {"Name" => "content", "Required" => "true", "Type" => "String", "Default" => "", "Description" => "The content to output as the button text", "Options" => ""},
+        {"Name" => "content", "Required" => "", "Type" => "String", "Default" => "", "Description" => "The content to output as the button text", "Options" => ""},
         {"Name" => "mode", "Required" => "", "Type" => "Symbol", "Default" => ":small", "Description" => "We support three modes", "Options" => "[:small, :medium, :large]"}
       ]
     end
