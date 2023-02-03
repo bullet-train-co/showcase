@@ -1,7 +1,4 @@
 class Showcase::Page
-  autoload :Sample,  "showcase/page/sample"
-  autoload :Options, "showcase/page/options"
-
   attr_reader :id, :badges, :samples
 
   def initialize(view_context, id:, title: nil)

@@ -1,3 +1,3 @@
 class ApplicationRecord < ActiveRecord::Base
-  primary_abstract_class
+  respond_to?(:primary_abstract_class) ? primary_abstract_class : abstract_class
 end

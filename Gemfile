@@ -6,6 +6,15 @@ gemspec
 
 gem "sqlite3"
 
+rails_version = ENV.fetch("RAILS_VERSION", "7.0")
+
+rails_constraint = if rails_version == "main"
+  {github: "rails/rails"}
+else
+  "~> #{rails_version}.0"
+end
+
+gem "rails", rails_constraint
 gem "sprockets-rails"
 
 # Start debugger with binding.b [https://github.com/ruby/debug]
