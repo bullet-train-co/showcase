@@ -29,4 +29,11 @@ jobs:
           ruby-version: ${{ matrix.ruby-version }}
           bundler-cache: true
 
-      - run: bin/rails test test/**/*_test.rb
+      - name: Build Styles with tailwindcss-rails
+        run: bin/rails runner 'require "tailwindcss-rails"; `bin/tailwindcss`'
+
+      - name: Execute Test Suite
+        run: bin/rails test test/**/*_test.rb
+
+      - name: Fail when generated changes are not checked-in
+        run: git update-index --refresh && git diff-index --quiet HEAD --
