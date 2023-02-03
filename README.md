@@ -35,7 +35,10 @@ Clone the repository, run `bundle install`, then run `bin/rails server`, visit l
 
 ## Overriding Showcase's default rendering
 
-Showcase's rendering happens through the [`Showcase::PagesController`](app/controllers/showcase/pages_controller.rb) with either the root url `index` or `show`.
+Showcase's rendering happens through two controllers:
+
+1. [`Showcase::EngineController`](app/controllers/showcase/engine_controller.rb)
+1. [`Showcase::PagesController`](app/controllers/showcase/pages_controller.rb)
 
 All paths shown here are assumed to be in `app/views`.
 
@@ -45,9 +48,9 @@ The actions all use a `layout "showcase"`, which renders like this:
   - [showcase/_root.html.erb](app/views/showcase/_root.html.erb)
     - [showcase/path/_tree.html.erb](app/views/showcase/path/_tree.html.erb)
 
-So for `Showcase::PagesController#index` we render:
+So for `Showcase::EngineController#index` we render:
 
-- [showcase/pages/index.html.erb](app/views/showcase/pages/index.html.erb)
+- [showcase/engines/index.html.erb](app/views/showcase/engines/index.html.erb)
 
 And for `Showcase::PagesController#show` we render:
 
