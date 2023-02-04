@@ -765,12 +765,6 @@ select {
   align-items: center;
 }
 
-.sc-space-y-4 > :not([hidden]) ~ :not([hidden]) {
-  --tw-space-y-reverse: 0;
-  margin-top: calc(1rem * calc(1 - var(--tw-space-y-reverse)));
-  margin-bottom: calc(1rem * var(--tw-space-y-reverse));
-}
-
 .sc-space-y-8 > :not([hidden]) ~ :not([hidden]) {
   --tw-space-y-reverse: 0;
   margin-top: calc(2rem * calc(1 - var(--tw-space-y-reverse)));
@@ -781,6 +775,12 @@ select {
   --tw-space-x-reverse: 0;
   margin-right: calc(0.5rem * var(--tw-space-x-reverse));
   margin-left: calc(0.5rem * calc(1 - var(--tw-space-x-reverse)));
+}
+
+.sc-space-y-4 > :not([hidden]) ~ :not([hidden]) {
+  --tw-space-y-reverse: 0;
+  margin-top: calc(1rem * calc(1 - var(--tw-space-y-reverse)));
+  margin-bottom: calc(1rem * var(--tw-space-y-reverse));
 }
 
 .sc-overflow-scroll {
@@ -904,16 +904,16 @@ select {
   font-weight: 900;
 }
 
-.sc-font-normal {
-  font-weight: 400;
+.sc-font-medium {
+  font-weight: 500;
 }
 
 .sc-font-semibold {
   font-weight: 600;
 }
 
-.sc-font-medium {
-  font-weight: 500;
+.sc-font-normal {
+  font-weight: 400;
 }
 
 .sc-italic {
