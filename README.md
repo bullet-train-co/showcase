@@ -44,7 +44,7 @@ Clone the repository, run `bundle install`, then run `bin/rails server`, visit l
 Showcase's rendering happens through two controllers:
 
 1. [`Showcase::EngineController`](app/controllers/showcase/engine_controller.rb)
-1. [`Showcase::PagesController`](app/controllers/showcase/previews_controller.rb)
+1. [`Showcase::PreviewsController`](app/controllers/showcase/previews_controller.rb)
 
 All paths shown here are assumed to be in `app/views`.
 
@@ -58,14 +58,14 @@ So for `Showcase::EngineController#index` we render:
 
 - [showcase/engines/index.html.erb](app/views/showcase/engines/index.html.erb)
 
-And for `Showcase::PagesController#show` we render:
+And for `Showcase::PreviewsController#show` we render:
 
-- [showcase/previews/show.html.erb](app/views/showcase/previews/show.html.erb)
-  - [showcase/previews/_preview.html.erb](app/views/showcase/previews/_preview.html.erb)
-    - [showcase/previews/_sample.html.erb](app/views/showcase/previews/_sample.html.erb)
-    - [showcase/previews/_options.html.erb](app/views/showcase/previews/_options.html.erb)
+- [showcase/engine/show.html.erb](app/views/showcase/engine/show.html.erb)
+  - [showcase/engine/previews/_preview.html.erb](app/views/showcase/engine/previews/_preview.html.erb)
+    - [showcase/engine/previews/_sample.html.erb](app/views/showcase/engine/previews/_sample.html.erb)
+    - [showcase/engine/previews/_options.html.erb](app/views/showcase/engine/previews/_options.html.erb)
 
-If you want to override any specific rendering, e.g. how a `Showcase::Page` is rendered,
+If you want to override any specific rendering, e.g. how a `Showcase::Preview` is rendered,
 copy the file from our repo `app/views` directory into your `app/views` directory.
 
 ### Loading your own assets

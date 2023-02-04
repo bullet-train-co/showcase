@@ -1,6 +1,6 @@
 require "test_helper"
 
-module Showcase::Pages
+module Showcase::Previews
   class SamplePartialTest < ActionView::TestCase
     test "showcase/previews/sample renders its name and description" do
       sample = showcase_sample "A sample" do |partial|

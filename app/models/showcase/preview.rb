@@ -7,14 +7,14 @@ class Showcase::Preview
     title title
   end
 
-  # Set a custom title for the Page. By default, it's automatically inferred from the sidebar title,
+  # Set a custom title for the Preview. By default, it's automatically inferred from the sidebar title,
   # e.g. showcase/previews/_button.html.erb will have Button as the title.
   def title(content = nil)
     @title = content if content
     @title
   end
 
-  # Describe the Page in more detail to help guide other developers on what the inner partial/component etc.'s purpose is.
+  # Describe the Preview in more detail to help guide other developers on what the inner partial/component etc.'s purpose is.
   #
   #   <% showcase.description "Our button element" %>
   #   <% showcase.description do %>
@@ -69,7 +69,7 @@ class Showcase::Preview
     @samples << Showcase::Sample.new(@view_context, name, **options).tap { _1.collect(&block) }
   end
 
-  # Yields an Options object to help define the configuration table for a Page.
+  # Yields an Options object to help define the configuration table for a Preview.
   #
   #   <% showcase.options do |o| %>
   #     <% o.required :content,    "Pass the inner content text that the button should display" %>
