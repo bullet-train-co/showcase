@@ -69,6 +69,18 @@ class Showcase::PagesControllerTest < Showcase::InternalIntegrationTest
     end
   end
 
+  test "#show samples can access URL helpers for the main_app" do
+    template_file "showcase/samples/_link.html.erb", <<~HTML
+      <% showcase.sample "root" do %>
+        <%= link_to "root", main_app_root_path %>
+      <% end %>
+    HTML
+
+    get page_path("link")
+
+    assert_link "root", href: "/main_app_root"
+  end
+
   test "#show renders Custom sample partials" do
     template_file "showcase/pages/_sample.html.erb", <<~HTML
       <turbo-frame id="<%= sample.id %>_frame">
