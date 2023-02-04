@@ -1,6 +1,6 @@
 require "test_helper"
 
-class Showcase::EngineControllerTest < Showcase::IntegrationTest
+class Showcase::EngineControllerTest < Showcase::InternalIntegrationTest
   test "#index renders Welcome content" do
     get showcase_path
 

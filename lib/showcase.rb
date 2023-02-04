@@ -2,6 +2,8 @@ require "showcase/version"
 require "showcase/engine"
 
 module Showcase
+  autoload :IntegrationTest, "showcase/integration_test"
+
   singleton_class.attr_accessor :sample_renderer
   @sample_renderer = ->(lines) { tag.pre lines.join.strip_heredoc }
 

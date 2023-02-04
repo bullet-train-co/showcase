@@ -19,7 +19,7 @@ class ActiveSupport::TestCase
   include TemplateHelpers
 end
 
-class Showcase::IntegrationTest < ActionDispatch::IntegrationTest
+class Showcase::InternalIntegrationTest < ActionDispatch::IntegrationTest
   include Showcase::Engine.routes.url_helpers
   setup { @routes = Showcase::Engine.routes }
 end

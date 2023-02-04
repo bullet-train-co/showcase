@@ -29,6 +29,12 @@ Which will then render the following:
 
 ![](/readme/example.png?raw=true "Showcase showing a button component")
 
+## Automatic smokescreen testing
+
+Run `bin/rails showcase:install:integration_test` to automatic testing installed in `test/integration/showcase_test.rb`.
+
+This will render every Showcase you've defined and assert they respond with `200 OK`. You can add custom assertions by overriding `assert_showcase_preview`.
+
 ## View examples
 
 Clone the repository, run `bundle install`, then run `bin/rails server`, visit localhost:3000 in your browser.

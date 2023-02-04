@@ -1,6 +1,6 @@
 require "test_helper"
 
-class Showcase::PagesControllerTest < Showcase::IntegrationTest
+class Showcase::PagesControllerTest < Showcase::InternalIntegrationTest
   test "#show renders samples and options" do
     get page_path("button")
 
