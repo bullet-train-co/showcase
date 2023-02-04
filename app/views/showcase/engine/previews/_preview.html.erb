@@ -1,0 +1,26 @@
+<div class="sc-space-y-8">
+  <section>
+    <% if preview.title %>
+      <div class="sc-flex sc-items-center sc-space-x-2 sc-mb-2">
+        <h2 class="sc-font-semibold sc-text-3xl"><%= preview.title %></h2>
+
+        <%# TODO: Insert default badge support here. %>
+      </div>
+    <% end %>
+
+    <% if preview.description %>
+      <p class="sc-font-normal sc-text-base"><%= preview.description %></p>
+    <% end %>
+  </section>
+
+  <% if preview.samples.any? %>
+    <section>
+      <h2 class="sc-font-semibold sc-text-xl sc-mb-2">Samples</h2>
+      <%= render partial: "showcase/engine/previews/sample", collection: preview.samples %>
+    </section>
+  <% end %>
+
+  <% if options = preview.options.presence %>
+    <%= render "showcase/engine/previews/options", options: options %>
+  <% end %>
+</div>

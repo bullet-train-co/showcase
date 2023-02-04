@@ -44,7 +44,7 @@ Clone the repository, run `bundle install`, then run `bin/rails server`, visit l
 Showcase's rendering happens through two controllers:
 
 1. [`Showcase::EngineController`](app/controllers/showcase/engine_controller.rb)
-1. [`Showcase::PagesController`](app/controllers/showcase/pages_controller.rb)
+1. [`Showcase::PagesController`](app/controllers/showcase/previews_controller.rb)
 
 All paths shown here are assumed to be in `app/views`.
 
@@ -60,10 +60,10 @@ So for `Showcase::EngineController#index` we render:
 
 And for `Showcase::PagesController#show` we render:
 
-- [showcase/pages/show.html.erb](app/views/showcase/pages/show.html.erb)
-  - [showcase/pages/_page.html.erb](app/views/showcase/pages/_page.html.erb)
-    - [showcase/pages/_sample.html.erb](app/views/showcase/pages/_sample.html.erb)
-    - [showcase/pages/_options.html.erb](app/views/showcase/pages/_options.html.erb)
+- [showcase/previews/show.html.erb](app/views/showcase/previews/show.html.erb)
+  - [showcase/previews/_preview.html.erb](app/views/showcase/previews/_preview.html.erb)
+    - [showcase/previews/_sample.html.erb](app/views/showcase/previews/_sample.html.erb)
+    - [showcase/previews/_options.html.erb](app/views/showcase/previews/_options.html.erb)
 
 If you want to override any specific rendering, e.g. how a `Showcase::Page` is rendered,
 copy the file from our repo `app/views` directory into your `app/views` directory.

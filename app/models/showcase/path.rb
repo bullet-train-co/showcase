@@ -9,7 +9,7 @@ class Showcase::Path
     define_method(:to_partial_path) { cached_partial_path }
 
     def name
-      root? ? "Templates" : id
+      root? ? "Previews" : id
     end
 
     def root?

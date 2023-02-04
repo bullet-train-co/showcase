@@ -25,7 +25,7 @@ class Showcase::Preview
     @description
   end
 
-  # Optional badges you can give to a page:
+  # Optional badges you can give to a preview:
   #
   #   <% showcase.badge :partial, :view_helper %>
   def badge(*badges)
