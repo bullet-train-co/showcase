@@ -1,5 +1,3 @@
-require "showcase/route_helper"
-
 class Showcase::EngineController < ActionController::Base
   layout "showcase"
 
@@ -7,5 +5,8 @@ class Showcase::EngineController < ActionController::Base
 
   if defined?(::ApplicationController)
     helper all_helpers_from_path ::ApplicationController.helpers_path
+  end
+
+  def index
   end
 end
