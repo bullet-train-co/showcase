@@ -29,6 +29,10 @@ Which will then render the following:
 
 ![](/readme/example.png?raw=true "Showcase showing a button component")
 
+## Automatic smokescreen testing for Showcase samples
+
+Run `bin/rails showcase:install:smokescreen_test` to have a smokescreen test installed, which will automatically render every Showcase you've defined and assert they respond with `200 OK`.
+
 ## View examples
 
 Clone the repository, run `bundle install`, then run `bin/rails server`, visit localhost:3000 in your browser.
