@@ -51,12 +51,12 @@ All paths shown here are assumed to be in `app/views`.
 The actions all use a `layout "showcase"`, which renders like this:
 
 - [layouts/showcase.html.erb](app/views/layouts/showcase.html.erb)
-  - [showcase/_root.html.erb](app/views/showcase/_root.html.erb)
-    - [showcase/path/_tree.html.erb](app/views/showcase/path/_tree.html.erb)
+  - [showcase/engine/_root.html.erb](app/views/showcase/engine/_root.html.erb)
+    - [showcase/engine/path/_tree.html.erb](app/views/showcase/engine/path/_tree.html.erb)
 
-So for `Showcase::EngineController#index` we render:
+So for `Showcase::PreviewsController#index` we render:
 
-- [showcase/engines/index.html.erb](app/views/showcase/engines/index.html.erb)
+- [showcase/engine/index.html.erb](app/views/showcase/engine/index.html.erb)
 
 And for `Showcase::PreviewsController#show` we render:
 
