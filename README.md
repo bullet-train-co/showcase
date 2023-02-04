@@ -56,7 +56,7 @@ The actions all use a `layout "showcase"`, which renders like this:
 
 So for `Showcase::EngineController#index` we render:
 
-- [showcase/engines/index.html.erb](app/views/showcase/engines/index.html.erb)
+- [showcase/engine/index.html.erb](app/views/showcase/engine/index.html.erb)
 
 And for `Showcase::PagesController#show` we render:
 
