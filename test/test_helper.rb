@@ -4,6 +4,7 @@ ENV["RAILS_ENV"] = "test"
 require_relative "../test/dummy/config/environment"
 ActiveRecord::Migrator.migrations_paths = [File.expand_path("../test/dummy/db/migrate", __dir__)]
 require "rails/test_help"
+require "capybara/cuprite"
 require "capybara_extensions"
 
 # Load fixtures from the engine
@@ -17,4 +18,8 @@ end
 class Showcase::IntegrationTest < ActionDispatch::IntegrationTest
   include Showcase::Engine.routes.url_helpers
   setup { @routes = Showcase::Engine.routes }
+end
+
+class Showcase::SystemTest < ActionDispatch::SystemTestCase
+  driven_by :cuprite
 end
