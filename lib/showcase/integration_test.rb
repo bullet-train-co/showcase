@@ -1,5 +1,7 @@
 class Showcase::IntegrationTest < ActionDispatch::IntegrationTest
   def self.inherited(test_class)
+    super
+
     tree = Showcase::Path.tree
     tree.flat_map(&:ordered_children).each do |path|
       test_class.test "Showcase: GET showcase/pages/#{path.id} renders successfully" do
