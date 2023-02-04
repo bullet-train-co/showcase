@@ -5,6 +5,10 @@ class ShowcaseTest < Showcase::IntegrationTest
     assert Showcase::VERSION
   end
 
+  test "defines tests reflectively" do
+    refute_empty self.class.runnable_methods.grep(/\Atest_Showcase/)
+  end
+
   def assert_showcase_preview(path)
   end
 end
