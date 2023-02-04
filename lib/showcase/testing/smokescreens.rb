@@ -1,6 +1,7 @@
 module Showcase::Testing::Smokescreens
   def self.included(klass)
-    Showcase::Path.tree.flat_map(&:ordered_children).each do |path|
+    tree = Showcase::Path.tree
+    tree.flat_map(&:ordered_children).each do |path|
       klass.test "showcase renders #{path.id} successfully" do
         @path = path
 
@@ -8,6 +9,10 @@ module Showcase::Testing::Smokescreens
         visit showcase.page_path(@path.id)
         assert_showcase_preview
       end
+    end
+
+    klass.test "showcase isn't empty" do
+      assert_not_empty tree, "Showcase couldn't find any samples to generate tests for"
     end
   end
 
