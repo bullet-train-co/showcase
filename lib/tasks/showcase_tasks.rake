@@ -9,7 +9,7 @@ namespace :showcase do
         require "test_helper"
 
         class ShowcaseTest < Showcase::IntegrationTest
-          def assert_showcase_preview(path)
+          def assert_showcase_preview(id)
             # Add any custom page response body assertions here.
           end
         end

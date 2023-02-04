@@ -6,7 +6,7 @@ class Showcase::IntegrationTest < ActionDispatch::IntegrationTest
         get showcase.page_path(path.id)
 
         assert_response :ok
-        assert_showcase_preview(path)
+        assert_showcase_preview(path.id)
       end
     end
 
@@ -16,6 +16,6 @@ class Showcase::IntegrationTest < ActionDispatch::IntegrationTest
   end
 
   # Override `assert_showcase_preview` to add custom assertions.
-  def assert_showcase_preview(path)
+  def assert_showcase_preview(id)
   end
 end
