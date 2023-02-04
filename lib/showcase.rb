@@ -1,9 +1,9 @@
-require "showcase/version"
-require "showcase/engine"
+require "zeitwerk"
+loader = Zeitwerk::Loader.for_gem
+loader.ignore("#{__dir__}/showcase-rails.rb")
+loader.setup
 
 module Showcase
-  autoload :IntegrationTest, "showcase/integration_test"
-
   singleton_class.attr_accessor :sample_renderer
   @sample_renderer = ->(lines) { tag.pre lines.join.strip_heredoc }
 
@@ -16,3 +16,5 @@ module Showcase
     end.uniq
   end
 end
+
+require "showcase/engine" if defined?(Rails::Engine)
