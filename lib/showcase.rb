@@ -17,4 +17,4 @@ module Showcase
   end
 end
 
-require "showcase/engine" if defined?(Rails)
+require "showcase/engine" if defined?(Rails::Engine)
