@@ -5,7 +5,7 @@ class Showcase::Path
     end
     delegate :<<, to: :children
 
-    cached_partial_path = "showcase/path/tree"
+    cached_partial_path = "showcase/engine/path/tree"
     define_method(:to_partial_path) { cached_partial_path }
 
     def name
@@ -58,7 +58,7 @@ class Showcase::Path
     @segments = File.dirname(@id).split("/")
   end
 
-  cached_partial_path = "showcase/path/path"
+  cached_partial_path = "showcase/engine/path/path"
   define_method(:to_partial_path) { cached_partial_path }
 
   def preview_for(view_context)
