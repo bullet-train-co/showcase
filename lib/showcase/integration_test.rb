@@ -3,7 +3,7 @@ class Showcase::IntegrationTest < ActionDispatch::IntegrationTest
     super
 
     tree = Showcase::Path.tree
-    tree.flat_map(&:ordered_children).each do |path|
+    tree.flat_map(&:ordered_paths).each do |path|
       test_class.test "Showcase: GET showcase/pages/#{path.id} renders successfully" do
         get showcase.page_path(path.id)
 
