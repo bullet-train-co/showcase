@@ -31,9 +31,9 @@ Which will then render the following:
 
 ## Automatic smokescreen testing
 
-Run `bin/rails showcase:install:integration_test` to automatic testing installed in `test/integration/showcase_test.rb`.
+Showcase automatically runs integration tests for all your Showcases by rendering them and asserting they respond with `200 OK`. As long as `gem "showcase-rails"` is in the `:test` group you're set.
 
-This will render every Showcase you've defined and assert they respond with `200 OK`. You can add custom assertions by overriding `assert_showcase_preview`.
+If you want to tweak this, run `bin/rails showcase:install:integration_test` and open `test/integration/showcase_test.rb`. You can then add your own `setup` and `teardown` hooks, as well as override the provided `assert_showcase_preview` to add custom assertions.
 
 ## View examples
 
@@ -86,16 +86,9 @@ partials, make sure to include `"showcase"` in your list of assets.
 
 ## Installation
 
-Add this line to your application's Gemfile. If you're utilizing the
-[Showcase::IntegrationTest](lib/showcase/integration_test.rb) class, make sure
-that the `showcase-rails` gems is available to your test environment:
-
+Add this line to your application's Gemfile. To get the automatic integration testing make sure the `showcase-rails` gem is available to your test environment:
 
 ```ruby
-# nested in the default group
-gem "showcase-rails"
-
-# or nested in the :development and :test groups
 group :development, :test do
   gem "showcase-rails"
 end
@@ -108,7 +101,7 @@ $ bundle
 
 Or install it yourself as:
 ```bash
-$ gem install showcase
+$ gem install showcase-rails
 ```
 
 ## Contributing
