@@ -1,8 +1,4 @@
 class Showcase::PreviewsController < Showcase::EngineController
-  def local_prefixes
-    ["showcase/engine"]
-  end
-
   def index
   end
 
