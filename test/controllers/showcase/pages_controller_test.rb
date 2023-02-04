@@ -50,10 +50,10 @@ class Showcase::PagesControllerTest < Showcase::InternalIntegrationTest
     end
   end
 
-  test "#show reads samples from partials in app/views/showcase/samples/" do
+  test "#show reads samples from partials in app/views/showcase/previews/" do
     name = SecureRandom.uuid
 
-    template_file "showcase/samples/_test_local_sample.html.erb", <<~HTML
+    template_file "showcase/previews/_test_local_sample.html.erb", <<~HTML
       <% showcase.sample "#{name}" do %>
         A new sample: #{name}
       <% end %>
@@ -70,7 +70,7 @@ class Showcase::PagesControllerTest < Showcase::InternalIntegrationTest
   end
 
   test "#show samples can access URL helpers for the main_app" do
-    template_file "showcase/samples/_link.html.erb", <<~HTML
+    template_file "showcase/previews/_link.html.erb", <<~HTML
       <% showcase.sample "root" do %>
         <%= link_to "root", main_app_root_path %>
       <% end %>

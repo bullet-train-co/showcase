@@ -46,7 +46,7 @@ class Showcase::Path
   end
 
   def self.tree
-    paths = Showcase.templates.map { new _1 }.sort_by!(&:id)
+    paths = Showcase.previews.map { new _1 }.sort_by!(&:id)
     Tree.index(paths, &:segments)
   end
 
@@ -61,7 +61,7 @@ class Showcase::Path
   cached_partial_path = "showcase/path/path"
   define_method(:to_partial_path) { cached_partial_path }
 
-  def page_for(view_context)
-    Showcase::Page.new(view_context, id: id, title: basename.titleize).tap(&:render_associated_partial)
+  def preview_for(view_context)
+    Showcase::Preview.new(view_context, id: id, title: basename.titleize).tap(&:render_associated_partial)
   end
 end

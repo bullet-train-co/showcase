@@ -1,4 +1,4 @@
-class Showcase::Page
+class Showcase::Preview
   attr_reader :id, :badges, :samples
 
   def initialize(view_context, id:, title: nil)
@@ -8,7 +8,7 @@ class Showcase::Page
   end
 
   # Set a custom title for the Page. By default, it's automatically inferred from the sidebar title,
-  # e.g. showcase/samples/_button.html.erb will have Button as the title.
+  # e.g. showcase/previews/_button.html.erb will have Button as the title.
   def title(content = nil)
     @title = content if content
     @title
@@ -66,7 +66,7 @@ class Showcase::Page
   #   - the `sample.events` what JavaScript `events` to listen for on the element
   #   - any other custom options are available in `sample.details`.
   def sample(name, **options, &block)
-    @samples << Sample.new(@view_context, name, **options).tap { _1.collect(&block) }
+    @samples << Showcase::Sample.new(@view_context, name, **options).tap { _1.collect(&block) }
   end
 
   # Yields an Options object to help define the configuration table for a Page.
@@ -84,11 +84,11 @@ class Showcase::Page
   # Showcase outputs the columns with this order [:name, :required, :type, :default, :description], any other passed column is
   # automatically rendered after those.
   def options
-    @options ||= Options.new(@view_context).tap { yield _1 if block_given? }
+    @options ||= Showcase::Options.new(@view_context).tap { yield _1 if block_given? }
   end
 
   def render_associated_partial
-    @view_context.render "#{Showcase.templates_path}/#{id}", showcase: self
+    @view_context.render "#{Showcase.previews_path}/#{id}", showcase: self
     nil
   end
 end

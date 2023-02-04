@@ -41,7 +41,7 @@ module Showcase::Pages
     end
 
     def showcase_sample(name = "sample name", **options, &block)
-      page = Showcase::Page.new(view, id: "showcase_test")
+      page = Showcase::Preview.new(view, id: "showcase_test")
       page.sample(name, **options, &block).first
     end
   end
