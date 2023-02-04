@@ -82,7 +82,7 @@ class Showcase::PreviewsControllerTest < Showcase::InternalIntegrationTest
   end
 
   test "#show renders Custom sample partials" do
-    template_file "showcase/engine/previews/_sample.html.erb", <<~HTML
+    template_file "showcase/engine/_sample.html.erb", <<~HTML
       <turbo-frame id="<%= sample.id %>_frame">
         <%= sample.name %>
       </turbo-frame>

@@ -7,7 +7,7 @@ module Showcase::Previews
         partial.description { "A description" }
       end
 
-      render "showcase/engine/previews/sample", sample: sample
+      render "showcase/engine/sample", sample: sample
 
       assert_region "A sample" do |section|
         section.assert_element "showcase-sample" do |showcase_sample|
@@ -20,7 +20,7 @@ module Showcase::Previews
     test "showcase/previews/sample renders a preview and its source" do
       sample = showcase_sample { "<pre>ERB</pre>" }
 
-      render "showcase/engine/previews/sample", sample: sample
+      render "showcase/engine/sample", sample: sample
 
       assert_element "showcase-sample" do |showcase_sample|
         showcase_sample.assert_text "ERB"
@@ -31,7 +31,7 @@ module Showcase::Previews
     test "showcase/previews/sample renders a region to capture JavaScript events" do
       sample = showcase_sample("with events", events: "click") { "<pre>ERB</pre>" }
 
-      render "showcase/engine/previews/sample", sample: sample
+      render "showcase/engine/sample", sample: sample
 
       assert_element "showcase-sample", events: ["click"] do |showcase_sample|
         showcase_sample.assert_region "JavaScript Events" do |section|

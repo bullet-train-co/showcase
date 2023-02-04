@@ -61,9 +61,9 @@ So for `Showcase::EngineController#index` we render:
 And for `Showcase::PreviewsController#show` we render:
 
 - [showcase/engine/show.html.erb](app/views/showcase/engine/show.html.erb)
-  - [showcase/engine/previews/_preview.html.erb](app/views/showcase/engine/previews/_preview.html.erb)
-    - [showcase/engine/previews/_sample.html.erb](app/views/showcase/engine/previews/_sample.html.erb)
-    - [showcase/engine/previews/_options.html.erb](app/views/showcase/engine/previews/_options.html.erb)
+  - [showcase/engine/_preview.html.erb](app/views/showcase/engine/_preview.html.erb)
+    - [showcase/engine/_sample.html.erb](app/views/showcase/engine/_sample.html.erb)
+    - [showcase/engine/_options.html.erb](app/views/showcase/engine/_options.html.erb)
 
 If you want to override any specific rendering, e.g. how a `Showcase::Preview` is rendered,
 copy the file from our repo `app/views` directory into your `app/views` directory.
