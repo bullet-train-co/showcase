@@ -20,6 +20,10 @@ class Showcase::Path
       children.partition { !_1.is_a?(Tree) }.flatten
     end
 
+    def ordered_paths
+      children.reject { _1.is_a?(Tree) }.flatten
+    end
+
     def self.index(...)
       new(:discardable_root).tap { _1.index(...) }.ordered_children
     end

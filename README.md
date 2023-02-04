@@ -86,10 +86,19 @@ partials, make sure to include `"showcase"` in your list of assets.
 
 ## Installation
 
-Add this line to your application's Gemfile:
+Add this line to your application's Gemfile. If you're utilizing the
+[Showcase::IntegrationTest](lib/showcase/integration_test.rb) class, make sure
+that the `showcase-rails` gems is available to your test environment:
+
 
 ```ruby
-gem "showcase"
+# nested in the default group
+gem "showcase-rails"
+
+# or nested in the :development and :test groups
+group :development, :test do
+  gem "showcase-rails"
+end
 ```
 
 And then execute:
