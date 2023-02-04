@@ -31,7 +31,9 @@ Which will then render the following:
 
 ## Automatic smokescreen testing for Showcase samples
 
-Run `bin/rails showcase:install:smokescreen_test` to have a smokescreen test installed, which will automatically render every Showcase you've defined and assert they respond with `200 OK`.
+Run `bin/rails showcase:install:integration_test` to have a smokescreen test installed in `test/integration/showcase_test.rb`.
+
+This will automatically render every Showcase you've defined and assert they respond with `200 OK`. You can add custom assertions by overriding `assert_showcase_preview`.
 
 ## View examples
 
