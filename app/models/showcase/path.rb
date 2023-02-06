@@ -21,7 +21,7 @@ class Showcase::Path
     end
 
     def ordered_paths
-      children.reject { _1.is_a?(Tree) }.flatten
+      children.flat_map { _1.is_a?(Tree) ? _1.ordered_paths : _1 }
     end
 
     def self.index(...)
