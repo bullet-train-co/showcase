@@ -41,8 +41,13 @@ class Showcase::Path
 
     private
 
-    def find(id)   = children.find { _1.id == id }
-    def insert(id) = self.class.new(id).tap { self << _1 }
+    def find(id)
+      children.find { _1.id == id }
+    end
+
+    def insert(id)
+      self.class.new(id).tap { self << _1 }
+    end
   end
 
   def self.tree
