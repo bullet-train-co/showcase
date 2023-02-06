@@ -4,6 +4,8 @@ ENV["RAILS_ENV"] = "test"
 require_relative "../test/dummy/config/environment"
 ActiveRecord::Migrator.migrations_paths = [File.expand_path("../test/dummy/db/migrate", __dir__)]
 require "rails/test_help"
+require "capybara_extensions"
+require "template_helpers"
 
 # Load fixtures from the engine
 if ActiveSupport::TestCase.respond_to?(:fixture_path=)
@@ -13,7 +15,11 @@ if ActiveSupport::TestCase.respond_to?(:fixture_path=)
   ActiveSupport::TestCase.fixtures :all
 end
 
-class Showcase::IntegrationTest < ActionDispatch::IntegrationTest
+class ActiveSupport::TestCase
+  include TemplateHelpers
+end
+
+class Showcase::InternalIntegrationTest < ActionDispatch::IntegrationTest
   include Showcase::Engine.routes.url_helpers
   setup { @routes = Showcase::Engine.routes }
 end

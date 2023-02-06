@@ -1,0 +1,29 @@
+<section class="sc-w-full sc-overflow-x-auto">
+  <h2 class="sc-text-xl sc-font-semibold sc-mb-2">Options</h2>
+
+  <table class="sc-table sc-border-collapse sc-border sc-border-gray-200">
+    <thead>
+      <tr class="sc-bg-slate-50">
+        <% options.headers.each do |header| %>
+          <th class="sc-px-4 sc-py-2"><%= header.to_s.humanize %></th>
+        <% end %>
+      </tr>
+    </thead>
+
+    <tbody>
+      <% options.each do |option| %>
+        <tr class="sc-border-t sc-border-gray-200">
+          <% option.each do |key, value| %>
+            <% if key == :required %>
+              <td class="sc-p-4">
+                <%= tag.input type: :checkbox, checked: value, disabled: true if value%>
+              </td>
+            <% else %>
+              <td class="sc-p-4"><%= tag.pre value %></td>
+            <% end %>
+          <% end %>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+</section>

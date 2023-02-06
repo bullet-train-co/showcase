@@ -2,12 +2,12 @@
 
 Showcase lets you build previews for your partials, components, view helpers, Stimulus controllers and more.
 
-Add a template to `app/views/showcase/pages/templates` and it'll show up in Showcase's menu.
+Add a template to `app/views/showcase/previews` and it'll show up in Showcase's menu.
 
 Here's how to showcase a standard button component:
 
 ```erb
-<%# app/views/showcase/pages/templates/button.html.erb %>
+<%# app/views/showcase/previews/_button.html.erb %>
 <% showcase.title "Button" %> <%# `title` is optional and inferred from the filename, by default. %>
 <% showcase.description "This button component handles what we click on" %>
 
@@ -29,42 +29,76 @@ Which will then render the following:
 
 ![](/readme/example.png?raw=true "Showcase showing a button component")
 
+## Automatic smokescreen testing
+
+Run `bin/rails showcase:install:integration_test` to automatic testing installed in `test/integration/showcase_test.rb`.
+
+This will render every Showcase you've defined and assert they respond with `200 OK`. You can add custom assertions by overriding `assert_showcase_preview`.
+
 ## View examples
 
 Clone the repository, run `bundle install`, then run `bin/rails server`, visit localhost:3000 in your browser.
 
 ## Overriding Showcase's default rendering
 
-Showcase's rendering happens through the [`Showcase::PagesController`](app/controllers/showcase/pages_controller.rb) with either the root url `index` or `show`.
+Showcase's rendering happens through two controllers:
+
+1. [`Showcase::EngineController`](app/controllers/showcase/engine_controller.rb)
+1. [`Showcase::PreviewsController`](app/controllers/showcase/previews_controller.rb)
 
 All paths shown here are assumed to be in `app/views`.
 
 The actions all use a `layout "showcase"`, which renders like this:
 
 - [layouts/showcase.html.erb](app/views/layouts/showcase.html.erb)
-  - [showcase/_root.html.erb](app/views/showcase/_root.html.erb)
-    - [showcase/path/_tree.html.erb](app/views/showcase/path/_tree.html.erb)
+  - [showcase/engine/_root.html.erb](app/views/showcase/engine/_root.html.erb)
+    - [showcase/engine/path/_tree.html.erb](app/views/showcase/engine/path/_tree.html.erb)
 
-So for `Showcase::PagesController#index` we render:
+So for `Showcase::EngineController#index` we render:
 
-- [showcase/pages/index.html.erb](app/views/showcase/pages/index.html.erb)
+- [showcase/engine/index.html.erb](app/views/showcase/engine/index.html.erb)
 
-And for `Showcase::PagesController#show` we render:
+And for `Showcase::PreviewsController#show` we render:
 
-- [showcase/pages/show.html.erb](app/views/showcase/pages/show.html.erb)
-  - [showcase/pages/_page.html.erb](app/views/showcase/pages/_page.html.erb)
-    - [showcase/pages/_sample.html.erb](app/views/showcase/pages/_sample.html.erb)
-    - [showcase/pages/_options.html.erb](app/views/showcase/pages/_options.html.erb)
+- [showcase/engine/show.html.erb](app/views/showcase/engine/show.html.erb)
+  - [showcase/engine/_preview.html.erb](app/views/showcase/engine/_preview.html.erb)
+    - [showcase/engine/_sample.html.erb](app/views/showcase/engine/_sample.html.erb)
+    - [showcase/engine/_options.html.erb](app/views/showcase/engine/_options.html.erb)
 
-If you want to override any specific rendering, e.g. how a `Showcase::Page` is rendered,
+If you want to override any specific rendering, e.g. how a `Showcase::Preview` is rendered,
 copy the file from our repo `app/views` directory into your `app/views` directory.
+
+### Loading your own assets
+
+Showcase bundles its own `showcase.js` and `showcase.css` asset files through
+Action View's [javascript_include_tag][] and [stylesheet_link_tag][].
+
+If your assets require more sophisticated loading techniques, declare your own
+versions of the [showcase/engine/_javascripts.html.erb][] and
+[showcase/engine/_stylesheets.html.erb][] partials. When customizing those
+partials, make sure to include `"showcase"` in your list of assets.
+
+
+[javascript_include_tag]: https://edgeapi.rubyonrails.org/classes/ActionView/Helpers/AssetTagHelper.html#method-i-javascript_include_tag
+[stylesheet_link_tag]: https://edgeapi.rubyonrails.org/classes/ActionView/Helpers/AssetTagHelper.html#method-i-stylesheet_link_tag
+[showcase/engine/_javascripts.html.erb]: ./showcase/engine/_javascripts.html.erb
+[showcase/engine/_stylesheets.html.erb]: ./showcase/engine/_stylesheets.html.erb
 
 ## Installation
 
-Add this line to your application's Gemfile:
+Add this line to your application's Gemfile. If you're utilizing the
+[Showcase::IntegrationTest](lib/showcase/integration_test.rb) class, make sure
+that the `showcase-rails` gems is available to your test environment:
+
 
 ```ruby
-gem "showcase"
+# nested in the default group
+gem "showcase-rails"
+
+# or nested in the :development and :test groups
+group :development, :test do
+  gem "showcase-rails"
+end
 ```
 
 And then execute:
