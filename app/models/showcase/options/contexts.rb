@@ -50,6 +50,10 @@ module Showcase::Options::Contexts
         option("data-#{@controller}-#{name}-class", ...)
       end
 
+      def outlet(name, ...)
+        option("data-#{@controller}-#{name}-outlet", ...)
+      end
+
       def action(name, ...)
         option(%(data-action="#{name}"), ...)
       end
