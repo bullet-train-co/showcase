@@ -9,6 +9,7 @@ jobs:
       fail-fast: false
       matrix:
         ruby-version:
+          - "2.7"
           - "3.2"
         rails-version:
           - "6.1"
