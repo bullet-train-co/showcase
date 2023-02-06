@@ -1,4 +1,4 @@
-class Showcase::Page::Sample
+class Showcase::Sample
   attr_reader :name, :id, :events, :details
   attr_reader :source
 

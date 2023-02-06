@@ -765,12 +765,6 @@ select {
   align-items: center;
 }
 
-.sc-space-y-4 > :not([hidden]) ~ :not([hidden]) {
-  --tw-space-y-reverse: 0;
-  margin-top: calc(1rem * calc(1 - var(--tw-space-y-reverse)));
-  margin-bottom: calc(1rem * var(--tw-space-y-reverse));
-}
-
 .sc-space-y-8 > :not([hidden]) ~ :not([hidden]) {
   --tw-space-y-reverse: 0;
   margin-top: calc(2rem * calc(1 - var(--tw-space-y-reverse)));
@@ -781,6 +775,12 @@ select {
   --tw-space-x-reverse: 0;
   margin-right: calc(0.5rem * var(--tw-space-x-reverse));
   margin-left: calc(0.5rem * calc(1 - var(--tw-space-x-reverse)));
+}
+
+.sc-space-y-4 > :not([hidden]) ~ :not([hidden]) {
+  --tw-space-y-reverse: 0;
+  margin-top: calc(1rem * calc(1 - var(--tw-space-y-reverse)));
+  margin-bottom: calc(1rem * var(--tw-space-y-reverse));
 }
 
 .sc-overflow-scroll {
@@ -813,12 +813,12 @@ select {
   border-width: 0px;
 }
 
-.sc-border-r {
-  border-right-width: 1px;
-}
-
 .sc-border-t {
   border-top-width: 1px;
+}
+
+.sc-border-r {
+  border-right-width: 1px;
 }
 
 .sc-border-b {
@@ -844,17 +844,17 @@ select {
   background-color: rgb(238 242 255 / var(--tw-bg-opacity));
 }
 
-.sc-p-12 {
-  padding: 3rem;
-}
-
 .sc-p-4 {
   padding: 1rem;
 }
 
-.sc-py-5 {
-  padding-top: 1.25rem;
-  padding-bottom: 1.25rem;
+.sc-p-12 {
+  padding: 3rem;
+}
+
+.sc-px-4 {
+  padding-left: 1rem;
+  padding-right: 1rem;
 }
 
 .sc-py-2 {
@@ -862,9 +862,9 @@ select {
   padding-bottom: 0.5rem;
 }
 
-.sc-px-4 {
-  padding-left: 1rem;
-  padding-right: 1rem;
+.sc-py-5 {
+  padding-top: 1.25rem;
+  padding-bottom: 1.25rem;
 }
 
 .sc-px-8 {
@@ -880,16 +880,6 @@ select {
   padding-top: 1.75rem;
 }
 
-.sc-text-2xl {
-  font-size: 1.5rem;
-  line-height: 2rem;
-}
-
-.sc-text-base {
-  font-size: 1rem;
-  line-height: 1.5rem;
-}
-
 .sc-text-xl {
   font-size: 1.25rem;
   line-height: 1.75rem;
@@ -900,16 +890,26 @@ select {
   line-height: 2.25rem;
 }
 
-.sc-font-black {
-  font-weight: 900;
+.sc-text-base {
+  font-size: 1rem;
+  line-height: 1.5rem;
+}
+
+.sc-text-2xl {
+  font-size: 1.5rem;
+  line-height: 2rem;
+}
+
+.sc-font-semibold {
+  font-weight: 600;
 }
 
 .sc-font-normal {
   font-weight: 400;
 }
 
-.sc-font-semibold {
-  font-weight: 600;
+.sc-font-black {
+  font-weight: 900;
 }
 
 .sc-font-medium {

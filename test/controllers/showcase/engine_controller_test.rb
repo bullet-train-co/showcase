@@ -24,12 +24,12 @@ class Showcase::EngineControllerTest < Showcase::InternalIntegrationTest
     within :navigation do
       assert_link "Showcase", href: root_url
 
-      within :disclosure, "Templates", expanded: true do
-        assert_link "Button", href: page_path("button")
-        assert_link "Combobox", href: page_path("combobox")
+      within :disclosure, "Previews", expanded: true do
+        assert_link "Button", href: preview_path("button")
+        assert_link "Combobox", href: preview_path("combobox")
       end
       within :disclosure, "Stimulus Controllers", expanded: true do
-        assert_link "Welcome", href: page_path("stimulus_controllers/welcome")
+        assert_link "Welcome", href: preview_path("stimulus_controllers/welcome")
       end
     end
   end

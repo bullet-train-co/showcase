@@ -5,11 +5,11 @@ class Showcase::Path
     end
     delegate :<<, to: :children
 
-    cached_partial_path = "showcase/path/tree"
+    cached_partial_path = "showcase/engine/path/tree"
     define_method(:to_partial_path) { cached_partial_path }
 
     def name
-      root? ? "Templates" : id
+      root? ? "Previews" : id
     end
 
     def root?
@@ -21,7 +21,7 @@ class Showcase::Path
     end
 
     def ordered_paths
-      children.reject { _1.is_a?(Tree) }.flatten
+      children.flat_map { _1.is_a?(Tree) ? _1.ordered_paths : _1 }
     end
 
     def self.index(...)
@@ -46,7 +46,7 @@ class Showcase::Path
   end
 
   def self.tree
-    paths = Showcase.templates.map { new _1 }.sort_by!(&:id)
+    paths = Showcase.previews.map { new _1 }.sort_by!(&:id)
     Tree.index(paths, &:segments)
   end
 
@@ -58,10 +58,10 @@ class Showcase::Path
     @segments = File.dirname(@id).split("/")
   end
 
-  cached_partial_path = "showcase/path/path"
+  cached_partial_path = "showcase/engine/path/path"
   define_method(:to_partial_path) { cached_partial_path }
 
-  def page_for(view_context)
-    Showcase::Page.new(view_context, id: id, title: basename.titleize).tap(&:render_associated_partial)
+  def preview_for(view_context)
+    Showcase::Preview.new(view_context, id: id, title: basename.titleize).tap(&:render_associated_partial)
   end
 end

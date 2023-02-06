@@ -9,6 +9,10 @@ class ShowcaseTest < Showcase::IntegrationTest
     refute_empty self.class.runnable_methods.grep(/\Atest_Showcase/)
   end
 
+  test "defines tests for deeply nested previews" do
+    refute_empty self.class.runnable_methods.grep(%r{GET_showcase/previews/deeply/nested/partial})
+  end
+
   def assert_showcase_preview(path)
   end
 end
