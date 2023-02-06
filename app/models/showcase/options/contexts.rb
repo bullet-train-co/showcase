@@ -9,13 +9,12 @@ module Showcase::Options::Contexts
 
   # showcase.options.context :stimulus, controller: :welcome
   def context(key, **options, &block)
-    self.class.contexts[key].new(@view_context, @options, **options).tap do
-      yield _1 if block_given?
-    end
+    context = self.class.contexts.fetch(key)
+    context.new(@view_context, @options, **options).tap { yield _1 if block_given? }
   end
 
   module ClassMethods
-    #   Showcase.options.context :stimulus do
+    #   Showcase.options.define :stimulus do
     #     def value(name, ...)
     #       option("data-#{@controller}-#{name}-value", ...)
     #     end
@@ -24,20 +23,18 @@ module Showcase::Options::Contexts
     #   showcase.options.stimulus controller: :welcome do |o|
     #     o.value :greeting, default: "Hello"
     #   end
-    def context(key, *accessors, &block)
-      contexts[key] ||= Class.new(Context)
-      contexts[key].class_eval(&block) # Lets users reopen an already defined context class.
-    end
+    attr_reader :contexts
 
-    def contexts
-      @contexts ||= {}
+    def define(key, &block)
+      contexts[key].class_eval(&block) # Lets users reopen an already defined context class.
     end
   end
 
   def self.included(klass)
     klass.extend ClassMethods
+    klass.instance_variable_set :@contexts, Hash.new { |h,k| h[k] = Class.new Context }
 
-    klass.context :stimulus do
+    klass.define :stimulus do
       def target(name, ...)
         option(%(data-#{@controller}-target="#{name}"), ...)
       end
@@ -59,7 +56,7 @@ module Showcase::Options::Contexts
       end
     end
 
-    klass.context :nice_partials do
+    klass.define :nice_partials do
       def content_block(*arguments, **options, &block)
         option(*arguments, **options, type: "Content Block", &block)
       end
