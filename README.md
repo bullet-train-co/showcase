@@ -2,12 +2,12 @@
 
 Showcase lets you build previews for your partials, components, view helpers, Stimulus controllers and more.
 
-Add a template to `app/views/showcase/samples` and it'll show up in Showcase's menu.
+Add a template to `app/views/showcase/previews` and it'll show up in Showcase's menu.
 
 Here's how to showcase a standard button component:
 
 ```erb
-<%# app/views/showcase/samples/_button.html.erb %>
+<%# app/views/showcase/previews/_button.html.erb %>
 <% showcase.title "Button" %> <%# `title` is optional and inferred from the filename, by default. %>
 <% showcase.description "This button component handles what we click on" %>
 
@@ -44,28 +44,28 @@ Clone the repository, run `bundle install`, then run `bin/rails server`, visit l
 Showcase's rendering happens through two controllers:
 
 1. [`Showcase::EngineController`](app/controllers/showcase/engine_controller.rb)
-1. [`Showcase::PagesController`](app/controllers/showcase/pages_controller.rb)
+1. [`Showcase::PreviewsController`](app/controllers/showcase/previews_controller.rb)
 
 All paths shown here are assumed to be in `app/views`.
 
 The actions all use a `layout "showcase"`, which renders like this:
 
 - [layouts/showcase.html.erb](app/views/layouts/showcase.html.erb)
-  - [showcase/_root.html.erb](app/views/showcase/_root.html.erb)
-    - [showcase/path/_tree.html.erb](app/views/showcase/path/_tree.html.erb)
+  - [showcase/engine/_root.html.erb](app/views/showcase/engine/_root.html.erb)
+    - [showcase/engine/path/_tree.html.erb](app/views/showcase/engine/path/_tree.html.erb)
 
 So for `Showcase::EngineController#index` we render:
 
 - [showcase/engine/index.html.erb](app/views/showcase/engine/index.html.erb)
 
-And for `Showcase::PagesController#show` we render:
+And for `Showcase::PreviewsController#show` we render:
 
-- [showcase/pages/show.html.erb](app/views/showcase/pages/show.html.erb)
-  - [showcase/pages/_page.html.erb](app/views/showcase/pages/_page.html.erb)
-    - [showcase/pages/_sample.html.erb](app/views/showcase/pages/_sample.html.erb)
-    - [showcase/pages/_options.html.erb](app/views/showcase/pages/_options.html.erb)
+- [showcase/engine/show.html.erb](app/views/showcase/engine/show.html.erb)
+  - [showcase/engine/_preview.html.erb](app/views/showcase/engine/_preview.html.erb)
+    - [showcase/engine/_sample.html.erb](app/views/showcase/engine/_sample.html.erb)
+    - [showcase/engine/_options.html.erb](app/views/showcase/engine/_options.html.erb)
 
-If you want to override any specific rendering, e.g. how a `Showcase::Page` is rendered,
+If you want to override any specific rendering, e.g. how a `Showcase::Preview` is rendered,
 copy the file from our repo `app/views` directory into your `app/views` directory.
 
 ### Loading your own assets

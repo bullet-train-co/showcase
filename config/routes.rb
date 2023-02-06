@@ -1,4 +1,4 @@
 Showcase::Engine.routes.draw do
-  get "pages/*id", to: "pages#show", as: :page
+  get "previews/*id", to: "previews#show", as: :preview
   root to: "engine#index"
 end

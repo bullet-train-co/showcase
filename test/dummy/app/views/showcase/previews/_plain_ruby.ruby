@@ -1,7 +1,7 @@
 showcase.description simple_format <<~end_of_string
   This shows how to use Showcase with Plain Ruby. Action View expects the file to end in .ruby instead of .rb.
 
-  Find me in app/views/showcase/samples/_plain_ruby.html.ruby
+  Find me in app/views/showcase/previews/_plain_ruby.html.ruby
 end_of_string
 
 showcase.sample "Upcase" do
