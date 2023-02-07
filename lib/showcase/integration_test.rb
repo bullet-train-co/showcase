@@ -21,7 +21,8 @@ class Showcase::IntegrationTest < ActionDispatch::IntegrationTest
         preview.samples.each do |sample|
           assert_element "showcase-sample", id: sample.id do
             assert_showcase_sample(sample.id)
-            test = sample.test and instance_eval(&test)
+            instance_eval(&sample.test) if sample.test
+            true
           end
         end
       end
