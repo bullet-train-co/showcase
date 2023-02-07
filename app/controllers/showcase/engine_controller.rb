@@ -1,8 +1,6 @@
 class Showcase::EngineController < ActionController::Base
   layout "showcase"
 
-  after_action { $view_context = view_context }
-
   helper Showcase::RouteHelper
 
   if defined?(::ApplicationController)

@@ -17,7 +17,7 @@ class Showcase::IntegrationTest < ActionDispatch::IntegrationTest
         assert_response :ok
         assert_showcase_preview(path.id)
 
-        preview = path.preview_for($view_context)
+        preview = path.preview_for(Showcase::PreviewsController.view_context)
         preview.samples.each do |sample|
           assert_element "showcase-sample", id: sample.id do
             assert_showcase_sample(sample.id)
