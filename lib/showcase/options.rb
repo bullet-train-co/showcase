@@ -1,5 +1,5 @@
 class Showcase::Options
-  include Enumerable, Contexts
+  include Enumerable
 
   def initialize(view_context)
     @view_context = view_context
@@ -7,6 +7,26 @@ class Showcase::Options
     @order = [:name, :required, :type, :default, :description]
   end
   delegate :empty?, to: :@options
+
+  #   Showcase.options.define :stimulus do
+  #     def value(name, ...)
+  #       option("data-#{@controller}-#{name}-value", ...)
+  #     end
+  #   end
+  singleton_class.attr_reader :contexts
+  @contexts = Hash.new { |h,k| h[k] = Class.new Context }
+
+  def self.define(key, &block)
+    contexts[key].class_eval(&block) # Lets users reopen an already defined context class.
+  end
+
+  #   showcase.options.stimulus controller: :welcome do |o|
+  #     o.value :greeting, default: "Hello"
+  #   end
+  def context(key, **options, &block)
+    context = self.class.contexts.fetch(key)
+    context.new(@view_context, @options, **options).tap { yield _1 if block_given? }
+  end
 
   def required(*arguments, **keywords, &block)
     if arguments.none?
@@ -46,6 +66,14 @@ class Showcase::Options
   end
 
   private
+
+  class Context < Showcase::Options
+    def initialize(view_context, options, **kwargs)
+      super(view_context)
+      @options = options
+      kwargs.each { instance_variable_set(:"@#{_1}", _2) }
+    end
+  end
 
   def type_from_default(default)
     case default
