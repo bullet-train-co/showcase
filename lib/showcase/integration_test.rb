@@ -22,7 +22,7 @@ class Showcase::IntegrationTest < ActionDispatch::IntegrationTest
           assert_element "showcase-sample", id: sample.id do
             assert_showcase_sample(sample.id)
             instance_exec(&sample.test) if sample.test
-            true
+            pass # Needed to make `assert_element` pass, unreached if previous assertions fail & thus raise.
           end
         end
       end
