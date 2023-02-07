@@ -14,6 +14,11 @@ class Showcase::Sample
     @description
   end
 
+  def test(&block)
+    @test = block if block_given?
+    @test
+  end
+
   def collect(&block)
     if block.arity.zero?
       preview(&block)

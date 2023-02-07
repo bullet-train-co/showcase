@@ -16,6 +16,14 @@ class Showcase::IntegrationTest < ActionDispatch::IntegrationTest
 
         assert_response :ok
         assert_showcase_preview(path.id)
+
+        preview = path.preview_for($view_context)
+        preview.samples.each do |sample|
+          assert_element "showcase-sample", id: sample.id do
+            assert_showcase_sample(sample.id)
+            test = sample.test and instance_eval(&test)
+          end
+        end
       end
     end
 
@@ -26,5 +34,9 @@ class Showcase::IntegrationTest < ActionDispatch::IntegrationTest
 
   # Override `assert_showcase_preview` to add custom assertions.
   def assert_showcase_preview(id)
+  end
+
+  # Override `assert_showcase_sample` to add custom assertions.
+  def assert_showcase_sample(id)
   end
 end
