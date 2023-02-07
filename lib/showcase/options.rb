@@ -1,3 +1,5 @@
+require "active_support/option_merger"
+
 class Showcase::Options
   include Enumerable
 
@@ -30,7 +32,7 @@ class Showcase::Options
 
   def required(*arguments, **keywords, &block)
     if arguments.none?
-      with_options required: true
+      ActiveSupport::OptionMerger.new(self, required: true)
     else
       option(*arguments, **keywords, required: true, &block)
     end
@@ -38,7 +40,7 @@ class Showcase::Options
 
   def optional(*arguments, **keywords, &block)
     if arguments.none?
-      with_options required: false
+      ActiveSupport::OptionMerger.new(self, required: false)
     else
       option(*arguments, **keywords, required: false, &block)
     end
