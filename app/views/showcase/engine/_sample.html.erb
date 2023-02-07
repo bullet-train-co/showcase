@@ -24,8 +24,10 @@
       </details>
     <% end %>
 
-    <%= sample.instrumented.duration.round(1) %>ms
-    <%= sample.instrumented.allocations %>allocs
+    <% if sample.instrumented %>
+      <%= sample.instrumented.duration.round(1) %>ms
+      <%= sample.instrumented.allocations %>allocs
+    <% end %>
 
     <% if sample.events.any? %>
       <section class="sc-px-4 sc-py-2 sc-font-small sc-bg-slate-50" aria-labelledby="showcase_<%= sample.id %>_javascript_events_title">
