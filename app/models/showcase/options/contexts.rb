@@ -43,7 +43,7 @@ module Showcase::Options::Contexts
         option("data-#{@controller}-#{name}-value", ...)
       end
 
-      def class(name, ...)
+      def klass(name, ...)
         option("data-#{@controller}-#{name}-class", ...)
       end
 

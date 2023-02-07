@@ -102,9 +102,14 @@ class Showcase::PreviewsControllerTest < Showcase::InternalIntegrationTest
 
     within :section, "Options" do
       assert_table with_rows: [
-        {"Name" => "data-welcome-target", "Required" => "", "Type" => "String", "Default" => "", "Description" => "If the id of the target element must be printed"},
-        {"Name" => "data-welcome-yell-value", "Required" => "", "Type" => "Boolean", "Default" => "false", "Description" => "Whether the hello is to be YELLED"}
+        {"Name" => %(data-welcome-target="greeter"), "Required" => "", "Type" => "String", "Default" => "", "Description" => "If the id of the target element must be printed"},
+        {"Name" => "data-welcome-yell-value", "Required" => "", "Type" => "Boolean", "Default" => "false", "Description" => "Whether the hello is to be YELLED"},
+        {"Name" => "data-welcome-success-class", "Required" => "", "Type" => "String", "Default" => "", "Description" => "The success class to append after greeting"},
+        {"Name" => "data-welcome-list-outlet", "Required" => "", "Type" => "String", "Default" => "", "Description" => "An outlet to append each yelled greeter to"},
+        {"Name" => %(data-action="greet"), "Required" => "", "Type" => "String", "Default" => "", "Description" => "An action to repeat the greeting, if need be"}
       ]
+
+      assert_element "input", count: 3
     end
   end
 end
