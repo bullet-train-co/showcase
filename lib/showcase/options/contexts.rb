@@ -33,33 +33,5 @@ module Showcase::Options::Contexts
   def self.included(klass)
     klass.extend ClassMethods
     klass.instance_variable_set :@contexts, Hash.new { |h,k| h[k] = Class.new Context }
-
-    klass.define :stimulus do
-      def target(name, ...)
-        option(%(data-#{@controller}-target="#{name}"), ...)
-      end
-
-      def value(name, ...)
-        option("data-#{@controller}-#{name}-value", ...)
-      end
-
-      def klass(name, ...)
-        option("data-#{@controller}-#{name}-class", ...)
-      end
-
-      def outlet(name, ...)
-        option("data-#{@controller}-#{name}-outlet", ...)
-      end
-
-      def action(name, ...)
-        option(%(data-action="#{name}"), ...)
-      end
-    end
-
-    klass.define :nice_partials do
-      def content_block(*arguments, **options, &block)
-        option(*arguments, **options, type: "Content Block", &block)
-      end
-    end
   end
 end

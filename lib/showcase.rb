@@ -19,6 +19,34 @@ module Showcase
   def self.options
     Options
   end
+
+  options.define :stimulus do
+    def target(name, ...)
+      option(%(data-#{@controller}-target="#{name}"), ...)
+    end
+
+    def value(name, ...)
+      option("data-#{@controller}-#{name}-value", ...)
+    end
+
+    def klass(name, ...)
+      option("data-#{@controller}-#{name}-class", ...)
+    end
+
+    def outlet(name, ...)
+      option("data-#{@controller}-#{name}-outlet", ...)
+    end
+
+    def action(name, ...)
+      option(%(data-action="#{name}"), ...)
+    end
+  end
+
+  options.define :nice_partials do
+    def content_block(*arguments, **options, &block)
+      option(*arguments, **options, type: "Content Block", &block)
+    end
+  end
 end
 
 require "showcase/engine" if defined?(Rails::Engine)
