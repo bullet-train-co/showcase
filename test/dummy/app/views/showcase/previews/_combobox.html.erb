@@ -1,11 +1,9 @@
 <% showcase.description "Comboboxes is our implementation of the combobox spec." %>
 
-<% showcase.sample "Basic", description: "A box for a whole combo of features" do |sample| %>
-  <% sample.preview do %>
-    This is totally a combobox, for sure.
-  <% end %>
+<% tests = -> do
+  assert_text "This is totally a combobox, for sure."
+end %>
 
-  <% sample.test do %>
-    <% assert_region "This is totally a combobox, for sure." %>
-  <% end %>
+<% showcase.sample "Basic", description: "A box for a whole combo of features", test: tests do %>
+  This is totally a combobox, for sure.
 <% end %>
