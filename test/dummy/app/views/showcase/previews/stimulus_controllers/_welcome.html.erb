@@ -15,9 +15,9 @@
 <% end %>
 
 <% showcase.options.context :stimulus, controller: :welcome do |o| %>
-  <% o.optional.target :greeter, "If the id of the target element must be printed" %>
-  <% o.required.value :yell, "Whether the hello is to be YELLED", default: false %>
-  <% o.required.klass :success, "The success class to append after greeting" %>
+  <% o.optional.targets :greeter, "If the id of the target element must be printed" %>
+  <% o.required.values :yell, "Whether the hello is to be YELLED", default: false %>
+  <% o.required.classes :success, "The success class to append after greeting" %>
   <% o.required.outlet :list, "An outlet to append each yelled greeter to" %>
   <% o.optional.action :greet, "An action to repeat the greeting, if need be" %>
 <% end %>

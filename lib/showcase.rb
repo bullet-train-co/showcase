@@ -21,15 +21,15 @@ module Showcase
   end
 
   options.define :stimulus do
-    def target(name, ...)
+    def targets(name, ...)
       option(%(data-#{@controller}-target="#{name}"), ...)
     end
 
-    def value(name, ...)
+    def values(name, ...)
       option("data-#{@controller}-#{name}-value", ...)
     end
 
-    def klass(name, ...)
+    def classes(name, ...)
       option("data-#{@controller}-#{name}-class", ...)
     end
 
