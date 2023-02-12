@@ -10,9 +10,16 @@ class ShowcaseTest < Showcase::IntegrationTest
   end
 
   test "defines tests for deeply nested previews" do
-    refute_empty self.class.runnable_methods.grep(%r{GET_showcase/previews/deeply/nested/partial})
+    refute_empty self.class.runnable_methods.grep(%r{renders_showcase/previews/deeply/nested/partial})
   end
 
-  def assert_showcase_preview(path)
+  test showcase: "combobox" do
+    assert_element id: "basic" do
+      assert_text "This is totally a combobox, for sure."
+    end
+  end
+
+  test showcase: "combobox", id: "basic" do
+    assert_text "This is totally a combobox, for sure."
   end
 end

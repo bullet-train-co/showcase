@@ -1,4 +1,4 @@
-class Showcase::IntegrationTest < ActionDispatch::IntegrationTest
+class Showcase::IntegrationTest < ActionView::TestCase
   def self.inherited(test_class)
     super
     test_class.prepare
@@ -11,20 +11,9 @@ class Showcase::IntegrationTest < ActionDispatch::IntegrationTest
   def self.prepare
     tree = Showcase::Path.tree
     tree.flat_map(&:ordered_paths).each do |path|
-      test "Showcase: GET showcase/previews/#{path.id} renders successfully" do
-        get showcase.preview_path(path.id)
-
-        assert_response :ok
+      test "Showcase: automatically renders showcase/previews/#{path.id}" do
+        render "showcase/engine/preview", preview: path.preview_for(view)
         assert_showcase_preview(path.id)
-
-        preview = path.preview_for(Showcase::PreviewsController.view_context)
-        preview.samples.each do |sample|
-          assert_element "showcase-sample", id: sample.id do
-            assert_showcase_sample(sample.id)
-            instance_exec(&sample.test) if sample.test
-            pass # Needed to make `assert_element` pass, unreached if previous assertions fail & thus raise.
-          end
-        end
       end
     end
 
@@ -33,11 +22,22 @@ class Showcase::IntegrationTest < ActionDispatch::IntegrationTest
     end
   end
 
-  # Override `assert_showcase_preview` to add custom assertions.
-  def assert_showcase_preview(id)
+  def self.test(name = nil, showcase: nil, id: nil, &block)
+    case
+    when name then super(name, &block)
+    when id && showcase.nil? then raise ArgumentError, "can't test a sample without a showcase"
+    else
+      super "Showcase: showcase/previews/#{showcase} #{"sample #{id}" if id}".squish do
+        path = Showcase::Path.new(showcase)
+        render "showcase/engine/preview", preview: path.preview_for(view)
+
+        assert_showcase_preview(path.id)
+        assert_element(id: id || path.id) { instance_eval(&block) }
+      end
+    end
   end
 
-  # Override `assert_showcase_sample` to add custom assertions.
-  def assert_showcase_sample(id)
+  # Override `assert_showcase_preview` to add custom assertions.
+  def assert_showcase_preview(id)
   end
 end
