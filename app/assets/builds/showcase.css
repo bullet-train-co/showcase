@@ -1,5 +1,5 @@
 /*
-! tailwindcss v3.2.4 | MIT License | https://tailwindcss.com
+! tailwindcss v3.2.6 | MIT License | https://tailwindcss.com
 */
 
 /*
@@ -765,12 +765,6 @@ select {
   align-items: center;
 }
 
-.sc-space-y-8 > :not([hidden]) ~ :not([hidden]) {
-  --tw-space-y-reverse: 0;
-  margin-top: calc(2rem * calc(1 - var(--tw-space-y-reverse)));
-  margin-bottom: calc(2rem * var(--tw-space-y-reverse));
-}
-
 .sc-space-x-2 > :not([hidden]) ~ :not([hidden]) {
   --tw-space-x-reverse: 0;
   margin-right: calc(0.5rem * var(--tw-space-x-reverse));
@@ -781,6 +775,12 @@ select {
   --tw-space-y-reverse: 0;
   margin-top: calc(1rem * calc(1 - var(--tw-space-y-reverse)));
   margin-bottom: calc(1rem * var(--tw-space-y-reverse));
+}
+
+.sc-space-y-8 > :not([hidden]) ~ :not([hidden]) {
+  --tw-space-y-reverse: 0;
+  margin-top: calc(2rem * calc(1 - var(--tw-space-y-reverse)));
+  margin-bottom: calc(2rem * var(--tw-space-y-reverse));
 }
 
 .sc-overflow-scroll {
@@ -813,16 +813,16 @@ select {
   border-width: 0px;
 }
 
-.sc-border-t {
-  border-top-width: 1px;
+.sc-border-b {
+  border-bottom-width: 1px;
 }
 
 .sc-border-r {
   border-right-width: 1px;
 }
 
-.sc-border-b {
-  border-bottom-width: 1px;
+.sc-border-t {
+  border-top-width: 1px;
 }
 
 .sc-border-gray-200 {
@@ -830,31 +830,36 @@ select {
   border-color: rgb(229 231 235 / var(--tw-border-opacity));
 }
 
-.sc-bg-slate-50 {
+.sc-bg-indigo-50 {
   --tw-bg-opacity: 1;
-  background-color: rgb(248 250 252 / var(--tw-bg-opacity));
+  background-color: rgb(238 242 255 / var(--tw-bg-opacity));
 }
 
 .sc-bg-slate-100\/50 {
   background-color: rgb(241 245 249 / 0.5);
 }
 
-.sc-bg-indigo-50 {
+.sc-bg-slate-50 {
   --tw-bg-opacity: 1;
-  background-color: rgb(238 242 255 / var(--tw-bg-opacity));
-}
-
-.sc-p-4 {
-  padding: 1rem;
+  background-color: rgb(248 250 252 / var(--tw-bg-opacity));
 }
 
 .sc-p-12 {
   padding: 3rem;
 }
 
+.sc-p-4 {
+  padding: 1rem;
+}
+
 .sc-px-4 {
   padding-left: 1rem;
   padding-right: 1rem;
+}
+
+.sc-px-8 {
+  padding-left: 2rem;
+  padding-right: 2rem;
 }
 
 .sc-py-2 {
@@ -867,11 +872,6 @@ select {
   padding-bottom: 1.25rem;
 }
 
-.sc-px-8 {
-  padding-left: 2rem;
-  padding-right: 2rem;
-}
-
 .sc-pl-4 {
   padding-left: 1rem;
 }
@@ -880,9 +880,9 @@ select {
   padding-top: 1.75rem;
 }
 
-.sc-text-xl {
-  font-size: 1.25rem;
-  line-height: 1.75rem;
+.sc-text-2xl {
+  font-size: 1.5rem;
+  line-height: 2rem;
 }
 
 .sc-text-3xl {
@@ -895,17 +895,9 @@ select {
   line-height: 1.5rem;
 }
 
-.sc-text-2xl {
-  font-size: 1.5rem;
-  line-height: 2rem;
-}
-
-.sc-font-semibold {
-  font-weight: 600;
-}
-
-.sc-font-normal {
-  font-weight: 400;
+.sc-text-xl {
+  font-size: 1.25rem;
+  line-height: 1.75rem;
 }
 
 .sc-font-black {
@@ -914,6 +906,14 @@ select {
 
 .sc-font-medium {
   font-weight: 500;
+}
+
+.sc-font-normal {
+  font-weight: 400;
+}
+
+.sc-font-semibold {
+  font-weight: 600;
 }
 
 .sc-italic {
@@ -948,11 +948,11 @@ select {
 }
 
 @media (min-width: 1280px) {
-  .xl\:sc-col-span-2 {
-    grid-column: span 2 / span 2;
-  }
-
   .xl\:sc-col-span-10 {
     grid-column: span 10 / span 10;
+  }
+
+  .xl\:sc-col-span-2 {
+    grid-column: span 2 / span 2;
   }
 }
