@@ -26,8 +26,8 @@ class Showcase::Sample
   def preview(&block)
     return @preview unless block_given?
 
-    # TODO: Replace with `-> { @instrumented = _1 }` when Rails 6.1 support is dropped.
-    assigns = ->(*args) { @instrumented = ActiveSupport::Notifications::Event.new(*args) }
+    # TODO: Remove `is_a?` check when Rails 6.1 support is dropped.
+    assigns = -> { @instrumented = _1 if _1.is_a?(ActiveSupport::Notifications::Event) }
     ActiveSupport::Notifications.subscribed(assigns, "render_partial.action_view") do
       @preview = @view_context.capture(&block)
     end
