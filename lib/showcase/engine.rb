@@ -9,5 +9,9 @@ module Showcase
     initializer "showcase.integration_test.autorun" do
       Showcase::IntegrationTest.autorun if Rails.env.test?
     end
+
+    server do
+      Process.detach spawn("bin/tailwindcss", "--watch", chdir: "../..") if Rails.env.development?
+    end
   end
 end
