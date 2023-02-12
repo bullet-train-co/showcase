@@ -110,7 +110,7 @@ class Showcase::PreviewsControllerTest < Showcase::InternalIntegrationTest
         {"Name" => "body", "Required" => "", "Type" => "Content Block", "Default" => "", "Description" => "An optional content block to set the body" }
       ]
 
-      assert_element "input", count: 3
+      assert_checked_field type: "checkbox", disabled: true, count: 3
     end
   end
 end
