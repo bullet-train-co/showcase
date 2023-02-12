@@ -4,7 +4,9 @@
       <div class="sc-flex sc-items-center sc-space-x-2 sc-mb-2">
         <h2 class="sc-font-semibold sc-text-3xl"><%= preview.title %></h2>
 
-        <%# TODO: Insert default badge support here. %>
+        <% preview.badges.each do |badge| %>
+          <span class="sc-border-2 sc-border-indigo-300 sc-rounded-full sc-px-2 sc-mt-1"><%= badge.to_s.titleize %></span>
+        <% end %>
       </div>
     <% end %>
 
