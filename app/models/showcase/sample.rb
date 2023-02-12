@@ -27,7 +27,7 @@ class Showcase::Sample
     return @preview unless block_given?
 
     # TODO: Remove `is_a?` check when Rails 6.1 support is dropped.
-    assigns = -> { @instrumented = _1 if _1.is_a?(ActiveSupport::Notifications::Event) }
+    assigns = proc { @instrumented = _1 if _1.is_a?(ActiveSupport::Notifications::Event) }
     ActiveSupport::Notifications.subscribed(assigns, "render_partial.action_view") do
       @preview = @view_context.capture(&block)
     end
