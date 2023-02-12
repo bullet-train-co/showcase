@@ -1,7 +1,16 @@
 <section class="sc-mb-4 sc-border sc-border-gray-200 sc-rounded-md" aria-labelledby="showcase_<%= sample.id %>_title">
   <showcase-sample id="<%= sample.id %>" events="<%= sample.events %>">
     <header class="sc-bg-slate-100/50">
-      <h3 id="showcase_<%= sample.id %>_title" class="sc-px-4 sc-py-2 sc-font-medium sc-text-base md:sc-text-lg sc-leading-snug sc-truncate"><%= link_to sample.name, "##{sample.id}" %></h3>
+      <div class="sc-flex sc-justify-between">
+        <h3 id="showcase_<%= sample.id %>_title" class="sc-px-4 sc-py-2 sc-font-medium sc-text-base md:sc-text-lg sc-leading-snug sc-truncate"><%= link_to sample.name, "##{sample.id}" %></h3>
+
+        <% if event = sample.instrumented %>
+          <div class="sc-text-xs sc-grid sc-gap-x-2 sc-m-2 sc-italic sc-text-slate-500">
+            <span><%= event.duration.round(1) %>ms</span>
+            <span><%= event.allocations %> allocs</span>
+          </div>
+        <% end %>
+      </div>
 
       <% if sample.description %>
         <p class="sc-px-4 sc-py-2 sc-text-base"><%= sample.description %></p>
@@ -22,11 +31,6 @@
           <%= sample.source %>
         </section>
       </details>
-    <% end %>
-
-    <% if sample.instrumented %>
-      <%= sample.instrumented.duration.round(1) %>ms
-      <%= sample.instrumented.allocations %>allocs
     <% end %>
 
     <% if sample.events.any? %>
