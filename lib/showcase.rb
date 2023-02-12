@@ -1,9 +1,9 @@
-require "zeitwerk"
-loader = Zeitwerk::Loader.for_gem
-loader.ignore("#{__dir__}/showcase-rails.rb")
-loader.setup
+require_relative "showcase/version"
 
 module Showcase
+  autoload :IntegrationTest, "showcase/integration_test"
+  autoload :RouteHelper,     "showcase/route_helper"
+
   singleton_class.attr_accessor :sample_renderer
   @sample_renderer = ->(lines) { tag.pre lines.join.strip_heredoc }
 
