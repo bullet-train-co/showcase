@@ -21,3 +21,7 @@
   <% o.required.outlet :list, "An outlet to append each yelled greeter to" %>
   <% o.optional.action :greet, "An action to repeat the greeting, if need be" %>
 <% end %>
+
+<% showcase.options.context :nice_partials do |o| %>
+  <% o.content_block :body, "An optional content block to set the body" %>
+<% end %>

@@ -106,7 +106,8 @@ class Showcase::PreviewsControllerTest < Showcase::InternalIntegrationTest
         {"Name" => "data-welcome-yell-value", "Required" => "", "Type" => "Boolean", "Default" => "false", "Description" => "Whether the hello is to be YELLED"},
         {"Name" => "data-welcome-success-class", "Required" => "", "Type" => "String", "Default" => "", "Description" => "The success class to append after greeting"},
         {"Name" => "data-welcome-list-outlet", "Required" => "", "Type" => "String", "Default" => "", "Description" => "An outlet to append each yelled greeter to"},
-        {"Name" => %(data-action="greet"), "Required" => "", "Type" => "String", "Default" => "", "Description" => "An action to repeat the greeting, if need be"}
+        {"Name" => %(data-action="greet"), "Required" => "", "Type" => "String", "Default" => "", "Description" => "An action to repeat the greeting, if need be"},
+        {"Name" => "body", "Required" => "", "Type" => "Content Block", "Default" => "", "Description" => "An optional content block to set the body" }
       ]
 
       assert_element "input", count: 3
