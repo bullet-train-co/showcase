@@ -9,6 +9,8 @@ class Showcase::IntegrationTest < ActionView::TestCase
   end
 
   def self.prepare
+    TestController.helper Showcase::EngineController._helpers
+
     tree = Showcase::Path.tree
     tree.flat_map(&:ordered_paths).each do |path|
       test "Showcase: automatically renders showcase/previews/#{path.id}" do
