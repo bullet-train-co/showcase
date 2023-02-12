@@ -1,6 +1,6 @@
 class Showcase::Sample
   attr_reader :name, :id, :events, :details
-  attr_reader :source
+  attr_reader :source, :instrumented
 
   def initialize(view_context, name, description: nil, id: name.parameterize, events: nil, **details)
     @view_context = view_context
@@ -24,7 +24,13 @@ class Showcase::Sample
   end
 
   def preview(&block)
-    block_given? ? @preview = @view_context.capture(&block) : @preview
+    return @preview unless block_given?
+
+    # TODO: Remove `is_a?` check when Rails 6.1 support is dropped.
+    assigns = proc { @instrumented = _1 if _1.is_a?(ActiveSupport::Notifications::Event) }
+    ActiveSupport::Notifications.subscribed(assigns, "render_partial.action_view") do
+      @preview = @view_context.capture(&block)
+    end
   end
 
   def extract(&block)

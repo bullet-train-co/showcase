@@ -691,6 +691,10 @@ select {
   grid-column: span 9 / span 9;
 }
 
+.sc-m-2 {
+  margin: 0.5rem;
+}
+
 .sc-mb-2 {
   margin-bottom: 0.5rem;
 }
@@ -763,6 +767,15 @@ select {
 
 .sc-items-center {
   align-items: center;
+}
+
+.sc-justify-between {
+  justify-content: space-between;
+}
+
+.sc-gap-x-2 {
+  -moz-column-gap: 0.5rem;
+       column-gap: 0.5rem;
 }
 
 .sc-space-x-2 > :not([hidden]) ~ :not([hidden]) {
@@ -900,6 +913,11 @@ select {
   line-height: 1.75rem;
 }
 
+.sc-text-xs {
+  font-size: 0.75rem;
+  line-height: 1rem;
+}
+
 .sc-font-black {
   font-weight: 900;
 }
@@ -927,6 +945,11 @@ select {
 .sc-text-black {
   --tw-text-opacity: 1;
   color: rgb(0 0 0 / var(--tw-text-opacity));
+}
+
+.sc-text-slate-500 {
+  --tw-text-opacity: 1;
+  color: rgb(100 116 139 / var(--tw-text-opacity));
 }
 
 .hover\:sc-select-all:hover {
