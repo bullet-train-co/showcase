@@ -1,19 +1,16 @@
 class Showcase::Path
-  class Tree < Struct.new(:id, :children)
+  class Tree < Struct.new(:id, :children, :root)
     def initialize(id, children = [])
-      super
+      super(id, children, false)
     end
+    alias_method :root?, :root
     delegate :<<, to: :children
 
     cached_partial_path = "showcase/engine/path/tree"
     define_method(:to_partial_path) { cached_partial_path }
 
     def name
-      root? ? "Previews" : id
-    end
-
-    def root?
-      id == "."
+      id == "." ? "Previews" : id
     end
 
     def ordered_children
@@ -24,15 +21,10 @@ class Showcase::Path
       children.flat_map { _1.is_a?(Tree) ? _1.ordered_paths : _1 }
     end
 
-    def self.index(...)
-      new(:discardable_root).tap { _1.index(...) }.ordered_children
-    end
-
-    def index(paths)
-      paths.each do |path|
-        ids = yield path
-        ids.inject(self, :edge_for) << path
-      end
+    def self.index(paths)
+      paths.each_with_object new(:discardable_root) do |path, root|
+        yield(path).reduce(root, :edge_for) << path
+      end.children.sort_by(&:id).each { _1.root = true }
     end
 
     def edge_for(id)
