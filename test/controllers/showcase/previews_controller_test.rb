@@ -6,8 +6,8 @@ class Showcase::PreviewsControllerTest < Showcase::InternalIntegrationTest
 
     assert_response :ok
     within :section, "Samples" do
-      assert_button "Button content", class: %w[text-xs]
-      assert_button "Button content", class: %w[text-xl]
+      assert_button "Button content", class: %w[sc-text-xs]
+      assert_button "Button content", class: %w[sc-text-xl]
     end
 
     within :section, "Options" do
