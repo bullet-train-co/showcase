@@ -54,7 +54,7 @@ if defined?(Showcase)
 end
 ```
 
-## Automatic smokescreen testing
+## Automatic integration testing
 
 Showcase automatically runs integration tests for all your Showcases by rendering them and asserting they respond with `200 OK`. As long as `gem "showcase-rails"` is in the `:test` group you're set.
 
