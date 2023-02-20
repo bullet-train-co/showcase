@@ -1,0 +1,112 @@
+.sc-highlight table td { padding: 5px; }
+.sc-highlight table pre { margin: 0; }
+.sc-highlight, .sc-highlight .w {
+  color: #24292f;
+  background-color: #f6f8fa;
+}
+.sc-highlight .k, .sc-highlight .kd, .sc-highlight .kn, .sc-highlight .kp, .sc-highlight .kr, .sc-highlight .kt, .sc-highlight .kv {
+  color: #cf222e;
+}
+.sc-highlight .gr {
+  color: #f6f8fa;
+}
+.sc-highlight .gd {
+  color: #82071e;
+  background-color: #ffebe9;
+}
+.sc-highlight .nb {
+  color: #953800;
+}
+.sc-highlight .nc {
+  color: #953800;
+}
+.sc-highlight .no {
+  color: #953800;
+}
+.sc-highlight .nn {
+  color: #953800;
+}
+.sc-highlight .sr {
+  color: #116329;
+}
+.sc-highlight .na {
+  color: #116329;
+}
+.sc-highlight .nt {
+  color: #116329;
+}
+.sc-highlight .gi {
+  color: #116329;
+  background-color: #dafbe1;
+}
+.sc-highlight .kc {
+  color: #0550ae;
+}
+.sc-highlight .l, .sc-highlight .ld, .sc-highlight .m, .sc-highlight .mb, .sc-highlight .mf, .sc-highlight .mh, .sc-highlight .mi, .sc-highlight .il, .sc-highlight .mo, .sc-highlight .mx {
+  color: #0550ae;
+}
+.sc-highlight .sb {
+  color: #0550ae;
+}
+.sc-highlight .bp {
+  color: #0550ae;
+}
+.sc-highlight .ne {
+  color: #0550ae;
+}
+.sc-highlight .nl {
+  color: #0550ae;
+}
+.sc-highlight .py {
+  color: #0550ae;
+}
+.sc-highlight .nv, .sc-highlight .vc, .sc-highlight .vg, .sc-highlight .vi, .sc-highlight .vm {
+  color: #0550ae;
+}
+.sc-highlight .o, .sc-highlight .ow {
+  color: #0550ae;
+}
+.sc-highlight .gh {
+  color: #0550ae;
+  font-weight: bold;
+}
+.sc-highlight .gu {
+  color: #0550ae;
+  font-weight: bold;
+}
+.sc-highlight .s, .sc-highlight .sa, .sc-highlight .sc, .sc-highlight .dl, .sc-highlight .sd, .sc-highlight .s2, .sc-highlight .se, .sc-highlight .sh, .sc-highlight .sx, .sc-highlight .s1, .sc-highlight .ss {
+  color: #0a3069;
+}
+.sc-highlight .nd {
+  color: #8250df;
+}
+.sc-highlight .nf, .sc-highlight .fm {
+  color: #8250df;
+}
+.sc-highlight .err {
+  color: #f6f8fa;
+  background-color: #82071e;
+}
+.sc-highlight .c, .sc-highlight .ch, .sc-highlight .cd, .sc-highlight .cm, .sc-highlight .cp, .sc-highlight .cpf, .sc-highlight .c1, .sc-highlight .cs {
+  color: #6e7781;
+}
+.sc-highlight .gl {
+  color: #6e7781;
+}
+.sc-highlight .gt {
+  color: #6e7781;
+}
+.sc-highlight .ni {
+  color: #24292f;
+}
+.sc-highlight .si {
+  color: #24292f;
+}
+.sc-highlight .ge {
+  color: #24292f;
+  font-style: italic;
+}
+.sc-highlight .gs {
+  color: #24292f;
+  font-weight: bold;
+}

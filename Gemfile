@@ -22,6 +22,8 @@ gem "sprockets-rails"
 
 gem "puma", "~> 5.6"
 
+gem "rouge"
+
 group :test do
   gem "action_dispatch-testing-integration-capybara",
     github: "thoughtbot/action_dispatch-testing-integration-capybara", tag: "v0.1.1",

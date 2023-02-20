@@ -35,7 +35,7 @@ class Showcase::Sample
 
   def extract(&block)
     lines = extract_block_lines_via_matched_indentation_from(*block.source_location)
-    @source = @view_context.instance_exec(lines, &Showcase.sample_renderer)
+    @source = @view_context.instance_exec(lines.join.strip_heredoc, "erb", &Showcase.sample_renderer)
   end
 
   private
