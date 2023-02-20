@@ -34,13 +34,13 @@ class Showcase::Sample
   end
 
   def extract(&block)
-    lines = extract_block_lines_via_matched_indentation_from(*block.source_location)
-    @source = @view_context.instance_exec(lines.join.strip_heredoc, @syntax, &Showcase.sample_renderer)
+    source = extract_source_block_via_matched_indentation_from(*block.source_location)
+    @source = @view_context.instance_exec(source, @syntax, &Showcase.sample_renderer)
   end
 
   private
 
-  def extract_block_lines_via_matched_indentation_from(file, starting_index)
+  def extract_source_block_via_matched_indentation_from(file, starting_index)
     first_line, *lines = File.readlines(file).from(starting_index - 1)
 
     indentation = first_line.match(/^\s+(?=\b)/).to_s
@@ -48,6 +48,6 @@ class Showcase::Sample
 
     index = lines.index { _1.match?(matcher) }
     lines.slice!(index..) if index
-    lines
+    lines.join.strip_heredoc
   end
 end
