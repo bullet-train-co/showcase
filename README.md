@@ -77,7 +77,7 @@ class ShowcaseTest < Showcase::PreviewsTest
     assert_button class: ["text-xs"]
   end
 
-  test "someone non-Showcase test" do
+  test "some non-Showcase test" do
     # You can still use the regular Rails `test` method too.
   end
 end
