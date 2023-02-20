@@ -1,6 +1,6 @@
+<% self.class.include TestController._helpers %>
+
 <% showcase.sample "Basic" do %>
-  <% p _helpers.ancestors %>
-  <% p _helpers.instance_methods %>
   <% p controller: TestController._helpers.ancestors %>
   <% p controller: TestController._helpers.instance_methods %>
   <%= upcase_string "hello" %>
