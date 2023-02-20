@@ -29,6 +29,31 @@ Which will then render the following:
 
 ![](/readme/example.png?raw=true "Showcase showing a button component")
 
+## Using options contexts
+
+Showcase also supports custom options contexts. They're useful for cases where the options have a very specific format and it would be nice to keep them standardized.
+
+By default, Showcase ships Nice Partials and Stimulus contexts out of the box. Here's a sample of the Stimulus one:
+
+```erb
+<% showcase.options.stimulus controller: :welcome do |o| %>
+  <% o.optional.targets :greeter, "If the id of the target element must be printed" %>
+<% end %>
+```
+
+In case Showcase didn't ship with a Stimulus context, here's how you could add it:
+
+```ruby
+# config/initializers/showcase.rb
+if defined?(Showcase)
+  Showcase.options.define :stimulus do
+    def targets(name, ...)
+      option(%(data-#{@controller}-target="#{name}"), ...)
+    end
+  end
+end
+```
+
 ## Automatic integration testing
 
 Showcase automatically runs integration tests for all your Showcases by rendering them and asserting they respond with `200 OK`. As long as `gem "showcase-rails"` is in the `:test` group you're set.
