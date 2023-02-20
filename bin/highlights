@@ -6,4 +6,4 @@ require "bundler/setup" if File.exist?(ENV["BUNDLE_GEMFILE"])
 require "rouge"
 
 File.write "app/assets/builds/showcase.highlights.css",
-  Rouge::Theme.find("github").render(scope: ".sc-highlight")
+  Rouge::Theme.find("github").render(scope: ".sc-highlight") + "\n"
