@@ -2,9 +2,9 @@ class Showcase::Sample
   attr_reader :name, :id, :events, :details
   attr_reader :source, :instrumented
 
-  def initialize(view_context, name, description: nil, id: name.parameterize, events: nil, **details)
+  def initialize(view_context, name, description: nil, id: name.parameterize, syntax: :erb, events: nil, **details)
     @view_context = view_context
-    @name, @id, @details = name, id, details
+    @name, @id, @syntax, @details = name, id, syntax, details
     @events = Array(events)
     description description if description
   end
@@ -35,7 +35,7 @@ class Showcase::Sample
 
   def extract(&block)
     lines = extract_block_lines_via_matched_indentation_from(*block.source_location)
-    @source = @view_context.instance_exec(lines.join.strip_heredoc, "erb", &Showcase.sample_renderer)
+    @source = @view_context.instance_exec(lines.join.strip_heredoc, @syntax, &Showcase.sample_renderer)
   end
 
   private
