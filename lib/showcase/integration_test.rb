@@ -9,7 +9,7 @@ class Showcase::IntegrationTest < ActionView::TestCase
   end
 
   def self.prepare
-    TestController.helper Showcase::EngineController._helpers
+    tests Showcase::EngineController._helpers
 
     tree = Showcase::Path.tree
     tree.flat_map(&:ordered_paths).each do |path|
