@@ -9,8 +9,7 @@ class Showcase::IntegrationTest < ActionView::TestCase
   end
 
   def self.prepare
-    p Showcase::EngineController._helpers.ancestors
-    p Showcase::EngineController._helpers.instance_methods
+    p Rails.root.join("../../Gemfile.lock").read
     TestController.helper Showcase::EngineController._helpers
 
     tree = Showcase::Path.tree
