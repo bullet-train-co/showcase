@@ -118,7 +118,7 @@ copy the file from our repo `app/views` directory into your `app/views` director
 
 ### Loading your own assets
 
-Showcase bundles its own `showcase.js` and `showcase.css` asset files through
+Showcase bundles its own `showcase.js`, `showcase.css` and `showcase.highlights.css` asset files through
 Action View's [javascript_include_tag][] and [stylesheet_link_tag][].
 
 If your assets require more sophisticated loading techniques, declare your own
@@ -126,11 +126,23 @@ versions of the [showcase/engine/_javascripts.html.erb][] and
 [showcase/engine/_stylesheets.html.erb][] partials. When customizing those
 partials, make sure to include `"showcase"` in your list of assets.
 
-
 [javascript_include_tag]: https://edgeapi.rubyonrails.org/classes/ActionView/Helpers/AssetTagHelper.html#method-i-javascript_include_tag
 [stylesheet_link_tag]: https://edgeapi.rubyonrails.org/classes/ActionView/Helpers/AssetTagHelper.html#method-i-stylesheet_link_tag
 [showcase/engine/_javascripts.html.erb]: ./showcase/engine/_javascripts.html.erb
 [showcase/engine/_stylesheets.html.erb]: ./showcase/engine/_stylesheets.html.erb
+
+#### Loading your own syntax highlighting theme
+
+By default, Showcase's syntax highlighting runs on Rouge's "github" theme.
+
+To use a different theme, override [showcase/engine/_stylesheets.html.erb][] with the following, replacing `:magritte` with a [valid theme](rouge-themes):
+
+```erb
+<%= stylesheet_link_tag "application", "showcase" %> # We've removed the default showcase.highlights file here.
+<%= tag.style Rouge::Theme.find(:magritte).render(scope: ".sc-highlight") %>
+```
+
+[rouge-themes]: https://github.com/rouge-ruby/rouge/tree/master/lib/rouge/themes
 
 ## Installation
 
