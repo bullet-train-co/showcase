@@ -1,6 +1,6 @@
 require "test_helper"
 
-class Showcase::PreviewsControllerTest < Showcase::InternalIntegrationTest
+class Showcase::PreviewsControllerTest < Showcase::IntegrationTest
   test "#show renders samples and options" do
     get preview_path("button")
 

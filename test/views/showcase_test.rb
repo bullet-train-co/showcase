@@ -1,6 +1,6 @@
 require "test_helper"
 
-class ShowcaseTest < Showcase::IntegrationTest
+class ShowcaseTest < Showcase::PreviewsTest
   test "it has a version number" do
     assert Showcase::VERSION
   end

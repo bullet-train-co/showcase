@@ -1,4 +1,4 @@
-class Showcase::IntegrationTest < ActionView::TestCase
+class Showcase::PreviewsTest < ActionView::TestCase
   def self.inherited(test_class)
     super
     test_class.prepare
