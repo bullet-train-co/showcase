@@ -9,7 +9,6 @@ class Showcase::IntegrationTest < ActionView::TestCase
   end
 
   def self.prepare
-    p Rails.root.join("../../Gemfile.lock").read
     TestController.helper Showcase::EngineController._helpers
 
     tree = Showcase::Path.tree
