@@ -2,9 +2,13 @@ class Showcase::Sample
   attr_reader :name, :id, :events, :details
   attr_reader :source, :instrumented
 
-  def initialize(view_context, name, description: nil, id: name.parameterize, syntax: :erb, events: nil, **details)
+  def initialize(view_context, name, description: nil, id: name.parameterize, syntax: nil, events: nil, **details)
     @view_context = view_context
-    @name, @id, @syntax, @details = name, id, syntax, details
+
+    @@handlers ||= ActionView::Template::Handlers.extensions.index_by { ActionView::Template.registered_template_handler _1 }
+    @syntax = syntax || @@handlers[@view_context.instance_variable_get(:@current_template)&.handler] || :erb
+
+    @name, @id, @details = name, id, details
     @events = Array(events)
     description description if description
   end
