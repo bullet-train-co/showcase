@@ -14,7 +14,14 @@
   <div data-controller="welcome" data-welcome-yell-value="true">
 <% end %>
 
-<% showcase.options do |o| %>
-  <% o.optional "data-welcome-target", "If the id of the target element must be printed" %>
-  <% o.optional "data-welcome-yell-value", "Whether the hello is to be YELLED", default: false %>
+<% showcase.options.context :stimulus, controller: :welcome do |o| %>
+  <% o.optional.targets :greeter, "If the id of the target element must be printed" %>
+  <% o.required.values :yell, "Whether the hello is to be YELLED", default: false %>
+  <% o.required.classes :success, "The success class to append after greeting" %>
+  <% o.required.outlet :list, "An outlet to append each yelled greeter to" %>
+  <% o.optional.action :greet, "An action to repeat the greeting, if need be" %>
+<% end %>
+
+<% showcase.options.context :nice_partials do |o| %>
+  <% o.content_block :body, "An optional content block to set the body" %>
 <% end %>
