@@ -985,6 +985,14 @@ select {
   background-color: rgb(238 242 255 / var(--tw-bg-opacity));
 }
 
+.hover\:sc-text-inherit:hover {
+  color: inherit;
+}
+
+.hover\:sc-no-underline:hover {
+  text-decoration-line: none;
+}
+
 @media (min-width: 768px) {
   .md\:sc-text-lg {
     font-size: 1.125rem;
