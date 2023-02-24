@@ -54,11 +54,34 @@ if defined?(Showcase)
 end
 ```
 
-## Automatic integration testing
+## Automatic previews testing
 
-Showcase automatically runs integration tests for all your Showcases by rendering them and asserting they respond with `200 OK`. As long as `gem "showcase-rails"` is in the `:test` group you're set.
+Showcase automatically runs tests for all your Showcases by rendering them. As long as `gem "showcase-rails"` is in the `:test` group you're set.
 
-If you want to tweak this, run `bin/rails showcase:install:integration_test` and open `test/integration/showcase_test.rb`. You can then add your own `setup` and `teardown` hooks, as well as override the provided `assert_showcase_preview` to add custom assertions.
+If you want to tweak this, run `bin/rails showcase:install:previews_test` and open `test/views/showcase_test.rb`. You can then add your own `setup` and `teardown` hooks, as well as override the provided `assert_showcase_preview` to add custom assertions.
+
+If you need custom assertions for specific previews and their samples, you can use the `test` helper:
+
+```ruby
+# test/views/showcase_test.rb
+require "test_helper"
+
+class ShowcaseTest < Showcase::PreviewsTest
+  test showcase: "combobox" do
+    # This test block runs within the #combobox container element.
+    assert_text "This is a combobox, for sure."
+  end
+
+  test showcase: "button", id: "basic" do
+    # This test block runs within the #button container element's #basic sample.
+    assert_button class: ["text-xs"]
+  end
+
+  test "some non-Showcase test" do
+    # You can still use the regular Rails `test` method too.
+  end
+end
+```
 
 ## View examples
 

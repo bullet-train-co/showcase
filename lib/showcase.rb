@@ -1,9 +1,9 @@
 require_relative "showcase/version"
 
 module Showcase
-  autoload :IntegrationTest, "showcase/integration_test"
-  autoload :RouteHelper,     "showcase/route_helper"
-  autoload :Options,         "showcase/options"
+  autoload :PreviewsTest, "showcase/previews_test"
+  autoload :RouteHelper,  "showcase/route_helper"
+  autoload :Options,      "showcase/options"
 
   singleton_class.attr_accessor :sample_renderer
   @sample_renderer = ->(lines) { tag.pre lines.join.strip_heredoc }

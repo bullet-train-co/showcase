@@ -1,14 +1,14 @@
 namespace :showcase do
   namespace :install do
-    INTEGRATION_TEST_PATH = "test/integration/showcase_test.rb"
+    PREVIEWS_TEST_PATH = "test/views/showcase_test.rb"
 
-    desc "Install Showcase integration testing in #{INTEGRATION_TEST_PATH}"
-    task :integration_test do
-      mkdir_p File.dirname(INTEGRATION_TEST_PATH)
-      File.write INTEGRATION_TEST_PATH, <<~RUBY
+    desc "Install Showcase previews testing in #{PREVIEWS_TEST_PATH}"
+    task :previews_test do
+      mkdir_p File.dirname(PREVIEWS_TEST_PATH)
+      File.write PREVIEWS_TEST_PATH, <<~RUBY
         require "test_helper"
 
-        class ShowcaseTest < Showcase::IntegrationTest
+        class ShowcaseTest < Showcase::PreviewsTest
           def assert_showcase_preview(id)
             # Add any custom preview response body assertions here.
           end

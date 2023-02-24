@@ -6,8 +6,8 @@ module Showcase
       config.assets.precompile += %w[showcase_manifest]
     end
 
-    initializer "showcase.integration_test.autorun" do
-      Showcase::IntegrationTest.autorun if Rails.env.test?
+    initializer "showcase.previews_test.autorun" do
+      Showcase::PreviewsTest.autorun if Rails.env.test?
     end
   end
 end
