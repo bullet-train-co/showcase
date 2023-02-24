@@ -37,6 +37,9 @@ jobs:
       - name: Build Styles with tailwindcss-rails
         run: bin/rails runner 'require "tailwindcss-rails"; `bin/tailwindcss`'
 
+      - name: Build Highlight Styles with rouge
+        run: bin/rails runner 'return if ENV["ROUGE_BUNDLED"] == "false"; require "rouge"; `bin/highlight`"
+
       - name: Execute Test Suite
         run: bin/rails test test/**/*_test.rb
 
