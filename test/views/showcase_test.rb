@@ -6,11 +6,11 @@ class ShowcaseTest < Showcase::PreviewsTest
   end
 
   test "defines tests reflectively" do
-    refute_empty self.class.runnable_methods.grep(/\Atest_Showcase/)
+    assert_method /\Atest_Showcase/
   end
 
   test "defines tests for deeply nested previews" do
-    refute_empty self.class.runnable_methods.grep(%r{renders_showcase/previews/deeply/nested/partial})
+    assert_method %r{renders_showcase/previews/deeply/nested/partial}
   end
 
   test showcase: "combobox" do
@@ -21,5 +21,20 @@ class ShowcaseTest < Showcase::PreviewsTest
 
   test showcase: "combobox", id: "basic" do
     assert_text "This is totally a combobox, for sure."
+  end
+
+  test "showcase generated a combobox test" do
+    assert_method "test_Showcase:_showcase/previews/combobox"
+  end
+
+  test "showcase generated a combobox basic sample test" do
+    assert_method "test_Showcase:_showcase/previews/combobox_sample_basic"
+  end
+
+  private
+
+  def assert_method(name)
+    refute_empty self.class.runnable_methods.grep(name),
+      "Found no generated test in: \n#{self.class.runnable_methods.join("\n")}"
   end
 end
