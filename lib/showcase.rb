@@ -1,12 +1,28 @@
 require_relative "showcase/version"
 
+# Activate the app-bundled Rouge gem to setup default syntax highlighting.
+begin
+  gem "rouge"
+  require "rouge"
+rescue LoadError
+end
+
 module Showcase
   autoload :PreviewsTest, "showcase/previews_test"
   autoload :RouteHelper,  "showcase/route_helper"
   autoload :Options,      "showcase/options"
 
   singleton_class.attr_accessor :sample_renderer
-  @sample_renderer = ->(lines) { tag.pre lines.join.strip_heredoc }
+  @sample_renderer = proc { _1 }
+
+  if defined?(Rouge)
+    Formatter = Rouge::Formatters::HTML.new
+
+    @sample_renderer = ->(source, syntax) do
+      lexed = Rouge::Lexer.find(syntax).lex(source)
+      Showcase::Formatter.format(lexed).html_safe
+    end
+  end
 
   singleton_class.attr_reader :previews_path
   @previews_path = "showcase/previews"

@@ -15,11 +15,15 @@ jobs:
           - "6.1"
           - "7.0"
           - "main"
+        rouge-bundled:
+          - "true"
+          - "false"
 
     env:
       RAILS_VERSION: ${{ matrix.rails-version }}
+      ROUGE_BUNDLED: ${{ matrix.rouge-bundled }}
 
-    name: ${{ format('Tests (Ruby {0}, Rails {1})', matrix.ruby-version, matrix.rails-version) }}
+    name: ${{ format('Tests (Ruby {0}, Rails {1}, Rouge {2})', matrix.ruby-version, matrix.rails-version, matrix.rouge) }}
     runs-on: "ubuntu-latest"
 
     steps:
@@ -32,6 +36,9 @@ jobs:
 
       - name: Build Styles with tailwindcss-rails
         run: bin/rails runner 'require "tailwindcss-rails"; `bin/tailwindcss`'
+
+      - name: Build Highlight Styles with rouge
+        run: bin/rails runner 'return if ENV["ROUGE_BUNDLED"] == "false"; require "rouge"; `bin/highlight`"
 
       - name: Execute Test Suite
         run: bin/rails test test/**/*_test.rb

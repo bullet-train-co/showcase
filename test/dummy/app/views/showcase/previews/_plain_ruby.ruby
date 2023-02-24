@@ -4,11 +4,11 @@ showcase.description simple_format <<~end_of_string
   Find me in app/views/showcase/previews/_plain_ruby.html.ruby
 end_of_string
 
-showcase.sample "Upcase" do
+showcase.sample "Upcase", syntax: :ruby do
   "hello".upcase
 end
 
-showcase.sample "+ Reverse" do |sample|
+showcase.sample "+ Reverse", syntax: :ruby do |sample|
   sample.preview do
     concat "hello".upcase
     concat "\n"
