@@ -2,6 +2,9 @@ window.customElements.define("showcase-isolated-context", class extends HTMLElem
   constructor() {
     super()
     this.attachShadow({ mode: "open" })
+  }
+
+  connectedCallback() {
     requestAnimationFrame(() => this.shadowRoot.appendChild(this.#shadowRootContents))
   }
 
