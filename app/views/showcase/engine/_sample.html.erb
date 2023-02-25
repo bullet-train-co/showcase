@@ -18,9 +18,14 @@
     </header>
 
     <% if sample.preview %>
-      <section class="sc-px-4 sc-py-2 sc-border sc-border-gray-200 sc-border-0 sc-border-b">
-        <%= sample.preview %>
-      </section>
+      <div class="sc-px-4 sc-py-2 sc-border sc-border-gray-200 sc-border-0 sc-border-b">
+        <showcase-isolated-context>
+          <template data-shadowroot shadowrootmode="open">
+            <%= render "showcase/engine/stylesheets" %>
+            <%= sample.preview %>
+          </template>
+        </showcase-isolated-context>
+      </div>
     <% end %>
 
     <% if sample.source %>

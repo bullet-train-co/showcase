@@ -1,3 +1,14 @@
+window.customElements.define("showcase-isolated-context", class extends HTMLElement {
+  constructor() {
+    super()
+    this.attachShadow({ mode: "open" }).appendChild(this.#shadowRootContents)
+  }
+
+  get #shadowRootContents() {
+    return this.querySelector("[data-shadowroot]").content.cloneNode(true)
+  }
+})
+
 window.customElements.define("showcase-sample", class extends HTMLElement {
   connectedCallback() {
     this.events.forEach((name) => this.addEventListener(name, this.emit))
