@@ -23,7 +23,9 @@ module Showcase::Previews
       render "showcase/engine/sample", sample: sample
 
       assert_element "showcase-sample" do |showcase_sample|
-        showcase_sample.assert_text "ERB"
+        showcase_sample.find_css "[data-shadowroot]" do
+          showcase_sample.assert_text "ERB"
+        end
         showcase_sample.assert_disclosure "View Source", expanded: false
       end
     end

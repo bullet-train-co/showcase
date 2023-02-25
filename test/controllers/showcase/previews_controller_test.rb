@@ -5,9 +5,11 @@ class Showcase::PreviewsControllerTest < Showcase::IntegrationTest
     get preview_path("button")
 
     assert_response :ok
-    within :section, "Samples" do
-      assert_button "Button content", class: %w[sc-text-xs]
-      assert_button "Button content", class: %w[sc-text-xl]
+    within :section, "Samples" do |section|
+      section.find_css("[data-shadowroot]") do
+        assert_button "Button content", class: %w[sc-text-xs]
+        assert_button "Button content", class: %w[sc-text-xl]
+      end
     end
 
     within :section, "Options" do
@@ -36,16 +38,18 @@ class Showcase::PreviewsControllerTest < Showcase::IntegrationTest
   test "#show renders samples" do
     get preview_path("stimulus_controllers/welcome")
 
-    within :section, "Samples" do
-      assert_region "Basic", text: "I've just said welcome!"
-      within :region, "With greeter" do
-        within :element, data: {controller: "welcome"} do
-          assert_element text: "Somebody", data: {welcome_target: "greeter"}
+    within :section, "Samples" do |section|
+      section.find_css "[data-shadowroot]" do
+        assert_region "Basic", text: "I've just said welcome!"
+        within :region, "With greeter" do
+          within :element, data: {controller: "welcome"} do
+            assert_element text: "Somebody", data: {welcome_target: "greeter"}
+          end
         end
-      end
-
-      within :region, "Yelling!!!" do
-        assert_element data: {controller: "welcome", welcome_yell_value: "true"}
+  
+        within :region, "Yelling!!!" do
+          assert_element data: {controller: "welcome", welcome_yell_value: "true"}
+        end
       end
     end
   end
@@ -78,7 +82,11 @@ class Showcase::PreviewsControllerTest < Showcase::IntegrationTest
 
     get preview_path("link")
 
-    assert_link "root", href: "/main_app_root"
+    within :section, "Samples" do |section|
+      section.find_css "[data-shadowroot]" do
+        assert_link "root", href: "/main_app_root"
+      end
+    end
   end
 
   test "#show renders Custom sample partials" do
