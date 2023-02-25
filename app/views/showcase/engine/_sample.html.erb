@@ -19,12 +19,12 @@
 
     <% if sample.preview %>
       <section class="sc-px-4 sc-py-2 sc-border sc-border-gray-200 sc-border-0 sc-border-b">
-        <template data-shadowroot>
-          <%= render "showcase/engine/stylesheets" %>
-          <%= sample.preview %>
-        </template>
-
-        <showcase-isolated-context></showcase-isolated-context>
+        <showcase-isolated-context>
+          <template data-shadowroot>
+            <%= render "showcase/engine/stylesheets" %>
+            <%= sample.preview %>
+          </template>
+        </showcase-isolated-context>
       </section>
     <% end %>
 
