@@ -164,6 +164,12 @@ Or install it yourself as:
 $ gem install showcase-rails
 ```
 
+Then add the following in your `config/routes.rb` within the block passed to `Rails.application.routes.draw`:
+
+```ruby
+mount Showcase::Engine, at: "docs/showcase"
+```
+
 ## Contributing
 Contribution directions go here.
 
