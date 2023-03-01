@@ -56,9 +56,9 @@ end
 
 ## Automatic previews testing
 
-Showcase automatically runs tests for all your Showcases by rendering them. As long as `gem "showcase-rails"` is in the `:test` group you're set.
+Showcase can automatically generate tests for all your Showcases to have it executed in your CI setup, run `bin/rails showcase:install:previews_test` to set this up.
 
-If you want to tweak this, run `bin/rails showcase:install:previews_test` and open `test/views/showcase_test.rb`. You can then add your own `setup` and `teardown` hooks, as well as override the provided `assert_showcase_preview` to add custom assertions.
+ You can then open `test/views/showcase_test.rb` and add your own `setup` and `teardown` hooks, as well as override the provided `assert_showcase_preview` to add custom assertions.
 
 If you need custom assertions for specific previews and their samples, you can use the `test` helper:
 
