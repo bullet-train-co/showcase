@@ -4,10 +4,6 @@ class Showcase::PreviewsTest < ActionView::TestCase
     test_class.prepare
   end
 
-  def self.autorun
-    at_exit { prepare unless subclasses.any? }
-  end
-
   def self.prepare
     tests Showcase::EngineController._helpers
 
