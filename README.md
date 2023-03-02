@@ -61,7 +61,7 @@ Showcase also supports custom options contexts. They're useful for cases where t
 By default, Showcase ships Nice Partials and Stimulus contexts out of the box. Here's a sample of the Stimulus one:
 
 ```erb
-<% showcase.options.stimulus controller: :welcome do |o| %>
+<% showcase.options.context :stimulus, controller: :welcome do |o| %>
   <% o.optional.targets :greeter, "If the id of the target element must be printed" %>
 <% end %>
 ```
