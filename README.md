@@ -83,6 +83,14 @@ class ShowcaseTest < Showcase::PreviewsTest
 end
 ```
 
+## Full Rails engine support
+
+Any Rails engines in your app that ships previews in their `app/views/showcase/previews` directory will automatically be surfaced in your app. Here's an example from the [bullet_train-themes-light Rails engine](https://github.com/bullet-train-co/bullet_train-core/tree/main/bullet_train-themes-light/app/views/showcase/previews).
+
+Showcase respects the Rails views rendering order, allowing you to override a specific preview. So if an engine ships an `app/views/showcase/previews/partials/_alert.html.erb` preview, you can copy that to the same path in your app and tailor it to suit your app's documentation needs. Showcase will then show your override instead of the engine's original.
+
+_📖 How does this work? 📖_ Internally, Showcase leverages Rails controllers' ordered set of `view_paths` — which each engine automatically prepends their app/views directory to by calling something like [`ActionController::Base.prepend_view_path`](https://github.com/rails/rails/blob/e78ed07e008676752b2ed2cff97e74b31ffacaf5/railties/lib/rails/engine.rb#L606) when initializing.
+
 ## View examples
 
 Clone the repository, run `bundle install`, then run `bin/rails server`, visit localhost:3000 in your browser.
