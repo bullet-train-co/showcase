@@ -25,8 +25,14 @@ class Showcase::EngineControllerTest < Showcase::IntegrationTest
       assert_link "Showcase", href: root_url
 
       within :disclosure, "Previews", expanded: true do
-        assert_link "Button", href: preview_path("button")
-        assert_link "Combobox", href: preview_path("combobox")
+        assert_link "Plain Ruby", href: preview_path("plain_ruby")
+      end
+      within :disclosure, "Components", expanded: true do
+        assert_link "Button",   href: preview_path("components/button")
+        assert_link "Combobox", href: preview_path("components/combobox")
+      end
+      within :disclosure, "Helpers", expanded: true do
+        assert_link "Upcase Helper", href: preview_path("helpers/upcase_helper")
       end
       within :disclosure, "Stimulus Controllers", expanded: true do
         assert_link "Welcome", href: preview_path("stimulus_controllers/welcome")

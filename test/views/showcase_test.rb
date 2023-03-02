@@ -13,22 +13,22 @@ class ShowcaseTest < Showcase::PreviewsTest
     assert_method %r{renders_showcase/previews/deeply/nested/partial}
   end
 
-  test showcase: "combobox" do
+  test showcase: "components/combobox" do
     assert_element id: "basic" do
       assert_text "This is totally a combobox, for sure."
     end
   end
 
-  test showcase: "combobox", id: "basic" do
+  test showcase: "components/combobox", id: "basic" do
     assert_text "This is totally a combobox, for sure."
   end
 
-  test "showcase generated a combobox test" do
-    assert_method "test_Showcase:_showcase/previews/combobox"
+  test "showcase generated a components/combobox test" do
+    assert_method "test_Showcase:_showcase/previews/components/combobox"
   end
 
-  test "showcase generated a combobox basic sample test" do
-    assert_method "test_Showcase:_showcase/previews/combobox_sample_basic"
+  test "showcase generated a components/combobox basic sample test" do
+    assert_method "test_Showcase:_showcase/previews/components/combobox_sample_basic"
   end
 
   private

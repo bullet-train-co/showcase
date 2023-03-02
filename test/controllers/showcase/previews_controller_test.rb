@@ -2,7 +2,7 @@ require "test_helper"
 
 class Showcase::PreviewsControllerTest < Showcase::IntegrationTest
   test "#show renders samples and options" do
-    get preview_path("button")
+    get preview_path("components/button")
 
     assert_response :ok
     within :section, "Samples" do
@@ -19,7 +19,7 @@ class Showcase::PreviewsControllerTest < Showcase::IntegrationTest
   end
 
   test "#show does not render a <table>" do
-    get preview_path("combobox")
+    get preview_path("components/combobox")
 
     assert_response :ok
     assert_no_section "Options"
