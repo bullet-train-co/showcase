@@ -29,6 +29,30 @@ Which will then render the following:
 
 ![](/readme/example.png?raw=true "Showcase showing a button component")
 
+## Syntax Highlighting
+
+To have out of the box syntax highlighting, add `gem "rouge"` to your Gemfile and Showcase will set it up. Any denoted syntaxes in your samples are then highlighted, e.g.
+
+```erb
+# app/views/showcase/previews/_plain_ruby.ruby
+<% showcase.sample "Basic", syntax: :ruby do %>
+  concat "hello".upcase
+<% end %>
+```
+
+To change the default theme, look at [Loading your own syntax highlighting theme](#loading-your-own-syntax-highlighting-theme).
+
+To use a different syntax highlighter, you can assign your own Proc to `sample_renderer` like this:
+
+```ruby
+# config/initializers/showcase.rb
+if defined?(Showcase)
+  Showcase.sample_renderer = ->(source, syntax) do
+    # Return a String of lexed and formatted code.
+  end
+end
+```
+
 ## Using options contexts
 
 Showcase also supports custom options contexts. They're useful for cases where the options have a very specific format and it would be nice to keep them standardized.
@@ -139,7 +163,7 @@ partials, make sure to include `"showcase"` in your list of assets.
 [showcase/engine/_javascripts.html.erb]: ./showcase/engine/_javascripts.html.erb
 [showcase/engine/_stylesheets.html.erb]: ./showcase/engine/_stylesheets.html.erb
 
-#### Loading your own syntax highlighting theme
+### Loading your own syntax highlighting theme
 
 By default, Showcase's syntax highlighting runs on Rouge's "github" theme.
 
@@ -154,7 +178,7 @@ To use a different theme, override [showcase/engine/_stylesheets.html.erb][] wit
 
 ## Installation
 
-Add this line to your application's Gemfile. To get the automatic integration testing make sure the `showcase-rails` gem is available to your test environment:
+Add this line to your application's Gemfile. To get the previews testing make sure the `showcase-rails` gem is available to your test environment:
 
 ```ruby
 group :development, :test do
