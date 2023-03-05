@@ -26,7 +26,9 @@ Add a partial to `app/views/showcase/previews` and it'll show up in Showcase's m
 
 Which will then render the following:
 
-![](/readme/example.png?raw=true "Showcase showing a button component")
+| Light Mode | Dark Mode |
+| --- | --- |
+| ![](/readme/example-light.png?raw=true "Showcase showing a button component") | ![](/readme/example-dark.png?raw=true "Showcase showing a button component") |
 
 Each sample shows the render time in milliseconds and the allocation count so it's easier to spot if there's something different happening between your samples.
 
