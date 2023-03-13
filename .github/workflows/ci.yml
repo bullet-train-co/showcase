@@ -16,8 +16,8 @@ jobs:
           - "7.0"
           - "main"
         rouge-bundled:
-          - "true"
-          - "false"
+          - true
+          - false
 
     env:
       RAILS_VERSION: ${{ matrix.rails-version }}
@@ -38,7 +38,7 @@ jobs:
         run: bin/rails runner 'require "tailwindcss-rails"; `bin/tailwindcss`'
 
       - name: Build Highlight Styles with rouge
-        run: bin/rails runner 'return if ENV["ROUGE_BUNDLED"] == "false"; require "rouge"; `bin/highlight`"
+        run: bin/rails runner 'if ENV["ROUGE_BUNDLED"] == "true"; require "rouge"; `bin/highlights`; end'
 
       - name: Execute Test Suite
         run: bin/rails test test/**/*_test.rb
