@@ -826,6 +826,11 @@ select {
   border-radius: 0.375rem;
 }
 
+.sc-rounded-b {
+  border-bottom-right-radius: 0.25rem;
+  border-bottom-left-radius: 0.25rem;
+}
+
 .sc-rounded-t-md {
   border-top-left-radius: 0.375rem;
   border-top-right-radius: 0.375rem;
