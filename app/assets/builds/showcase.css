@@ -727,10 +727,6 @@ select {
   height: 100%;
 }
 
-.sc-max-h-20 {
-  max-height: 5rem;
-}
-
 .sc-min-h-screen {
   min-height: 100vh;
 }
@@ -824,6 +820,11 @@ select {
 
 .sc-rounded-md {
   border-radius: 0.375rem;
+}
+
+.sc-rounded-b-md {
+  border-bottom-right-radius: 0.375rem;
+  border-bottom-left-radius: 0.375rem;
 }
 
 .sc-rounded-t-md {
