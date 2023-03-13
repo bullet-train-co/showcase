@@ -177,7 +177,7 @@ By default, Showcase's syntax highlighting runs on Rouge's "github" theme.
 To use a different theme, override [showcase/engine/_stylesheets.html.erb][] with the following, replacing `:magritte` with a [valid theme](rouge-themes):
 
 ```erb
-<%= stylesheet_link_tag "application", "showcase" %> # We've removed the default showcase.highlights file here.
+<%= stylesheet_link_tag "showcase" %> # We've removed the default showcase.highlights file here.
 <%= tag.style Rouge::Theme.find(:magritte).render(scope: ".sc-highlight") %>
 ```
 
