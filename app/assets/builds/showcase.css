@@ -727,6 +727,10 @@ select {
   height: 100%;
 }
 
+.sc-max-h-48 {
+  max-height: 12rem;
+}
+
 .sc-min-h-screen {
   min-height: 100vh;
 }
