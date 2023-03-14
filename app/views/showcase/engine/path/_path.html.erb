@@ -1,3 +1,3 @@
 <article class="hover:sc-bg-indigo-50 dark:hover:sc-bg-neutral-700/50 <%= "sc-bg-indigo-50 dark:sc-bg-neutral-700/50" if path.id == params[:id] %>">
-  <%= link_to path.basename.titleize, preview_path(path.id), class: "sc-inline-block sc-py-2 sc-px-8 sc-w-full hover:sc-text-inherit hover:sc-no-underline" %>
+  <%= link_to path.basename.titleize, preview_path(path.id), class: "sc-inline-block sc-py-2 sc-px-8 sc-w-full sc-text-inherit sc-no-underline" %>
 </article>
