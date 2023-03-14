@@ -2,7 +2,9 @@
   <showcase-sample id="<%= sample.id %>" events="<%= sample.events %>">
     <header class="sc-bg-slate-100/50 dark:sc-bg-neutral-700/50 sc-rounded-t-md">
       <div class="sc-flex sc-justify-between">
-        <h3 id="showcase_<%= sample.id %>_title" class="sc-px-4 sc-py-2 sc-font-medium sc-text-base md:sc-text-lg sc-leading-snug sc-truncate"><%= link_to sample.name, "##{sample.id}" %></h3>
+        <h3 id="showcase_<%= sample.id %>_title" class="sc-px-4 sc-py-2 sc-font-medium sc-text-base md:sc-text-lg sc-leading-snug sc-truncate">
+          <%= link_to sample.name, "##{sample.id}", class: "!sc-text-inherit" %>
+        </h3>
 
         <% if event = sample.instrumented %>
           <div class="sc-text-xs sc-grid sc-gap-x-2 sc-m-2 sc-italic sc-text-slate-500 dark:sc-text-inherit">
