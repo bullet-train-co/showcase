@@ -800,6 +800,10 @@ select {
   margin-bottom: calc(2rem * var(--tw-space-y-reverse));
 }
 
+.sc-overflow-clip {
+  overflow: clip;
+}
+
 .sc-overflow-scroll {
   overflow: scroll;
 }
@@ -831,25 +835,12 @@ select {
   border-bottom-left-radius: 0.375rem;
 }
 
-.sc-rounded-t-md {
-  border-top-left-radius: 0.375rem;
-  border-top-right-radius: 0.375rem;
-}
-
 .sc-border {
   border-width: 1px;
 }
 
-.sc-border-0 {
-  border-width: 0px;
-}
-
 .sc-border-2 {
   border-width: 2px;
-}
-
-.sc-border-b {
-  border-bottom-width: 1px;
 }
 
 .sc-border-r {
