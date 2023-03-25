@@ -5,5 +5,12 @@ require "bundler/setup" if File.exist?(ENV["BUNDLE_GEMFILE"])
 
 require "rouge"
 
-File.write "app/assets/builds/showcase.highlights.css",
-  Rouge::Theme.find("github").render(scope: ".sc-highlight") + "\n"
+theme = Rouge::Theme.find("github")
+
+File.open "app/assets/builds/showcase.highlights.css", "w" do |file|
+  file.puts theme.tap(&:light!).render(scope: ".sc-highlight")
+  file.puts
+  file.puts "@media (prefers-color-scheme: dark) {"
+  file.puts theme.tap(&:dark!).render(scope: ".sc-highlight").gsub(/^/, "  ")
+  file.puts "}"
+end
