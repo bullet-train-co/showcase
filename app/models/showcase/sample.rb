@@ -1,6 +1,6 @@
 class Showcase::Sample
   attr_reader :name, :id, :events, :details
-  attr_reader :source, :instrumented
+  attr_reader :rendered, :source, :instrumented
 
   def initialize(view_context, name, description: nil, id: name.parameterize, syntax: :erb, events: nil, **details)
     @view_context = view_context
@@ -14,26 +14,28 @@ class Showcase::Sample
     @description
   end
 
-  def collect(&block)
+  def evaluate(&block)
     if block.arity.zero?
-      preview(&block)
-      extract(&block)
+      consume(&block)
     else
       @view_context.capture(self, &block)
     end
   end
 
-  def preview(&block)
-    return @preview unless block_given?
+  def consume(&block)
+    render(&block)
+    extract_source(&block)
+  end
 
+  def render(&block)
     # TODO: Remove `is_a?` check when Rails 6.1 support is dropped.
     assigns = proc { @instrumented = _1 if _1.is_a?(ActiveSupport::Notifications::Event) }
     ActiveSupport::Notifications.subscribed(assigns, "render_partial.action_view") do
-      @preview = @view_context.capture(&block)
+      @rendered = @view_context.capture(&block)
     end
   end
 
-  def extract(&block)
+  def extract_source(&block)
     source = extract_source_block_via_matched_indentation_from(*block.source_location)
     @source = @view_context.instance_exec(source, @syntax, &Showcase.sample_renderer)
   end

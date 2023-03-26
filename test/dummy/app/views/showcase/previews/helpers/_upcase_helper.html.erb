@@ -3,11 +3,11 @@
 <% end %>
 
 <% showcase.sample "With extract" do |sample| %>
-  <% sample.preview do %>
+  <% sample.render do %>
     EXTRACT
   <% end %>
 
-  <% sample.extract do %>
+  <% sample.extract_source do %>
     <%= upcase_string "extract" %>
   <% end %>
 <% end %>

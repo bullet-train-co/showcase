@@ -9,13 +9,13 @@ showcase.sample "Upcase", syntax: :ruby do
 end
 
 showcase.sample "+ Reverse", syntax: :ruby do |sample|
-  sample.preview do
+  sample.render do
     concat "hello".upcase
     concat "\n"
     concat "hello".reverse
   end
 
-  sample.extract do
+  sample.extract_source do
     "hello".upcase
     "hello".reverse
   end
