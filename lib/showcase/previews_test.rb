@@ -1,12 +1,12 @@
 class Showcase::PreviewsTest < ActionView::TestCase
   def self.inherited(test_class)
     super
+
+    test_class.tests Showcase::EngineController._helpers
     test_class.prepare
   end
 
   def self.prepare
-    tests Showcase::EngineController._helpers
-
     tree = Showcase::Path.tree
     tree.flat_map(&:ordered_paths).each do |path|
       test "Showcase: automatically renders showcase/previews/#{path.id}" do
@@ -20,17 +20,16 @@ class Showcase::PreviewsTest < ActionView::TestCase
     end
   end
 
-  def self.test(name = nil, showcase: nil, id: nil, &block)
-    case
-    when name then super(name, &block)
-    when id && showcase.nil? then raise ArgumentError, "can't test a sample without a showcase"
+  def self.test(name = nil, showcase: nil, &block)
+    if name
+      super(name, &block)
     else
-      super "Showcase: showcase/previews/#{showcase} #{"sample #{id}" if id}".squish do
+      super "Showcase: showcase/previews/#{showcase}" do
         path = Showcase::Path.new(showcase)
         render "showcase/engine/preview", preview: path.preview_for(view)
 
         assert_showcase_preview(path.id)
-        assert_element(id: id || path.id) { instance_eval(&block) }
+        instance_eval(&block)
       end
     end
   end
