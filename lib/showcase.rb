@@ -24,12 +24,9 @@ module Showcase
     end
   end
 
-  singleton_class.attr_reader :previews_path
-  @previews_path = "showcase/previews"
-
   def self.previews
     Showcase::EngineController.view_paths.map(&:path).flat_map do |root|
-      Dir.glob("**/*.*", base: File.join(root, previews_path))
+      Dir.glob("**/*.*", base: File.join(root, "showcase/previews"))
     end.uniq
   end
 
