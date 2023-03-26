@@ -19,16 +19,8 @@ class ShowcaseTest < Showcase::PreviewsTest
     end
   end
 
-  test showcase: "components/combobox", id: "basic" do
-    assert_text "This is totally a combobox, for sure."
-  end
-
   test "showcase generated a components/combobox test" do
     assert_method "test_Showcase:_showcase/previews/components/combobox"
-  end
-
-  test "showcase generated a components/combobox basic sample test" do
-    assert_method "test_Showcase:_showcase/previews/components/combobox_sample_basic"
   end
 
   test showcase: "helpers/upcase_helper" do

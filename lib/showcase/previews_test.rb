@@ -20,17 +20,16 @@ class Showcase::PreviewsTest < ActionView::TestCase
     end
   end
 
-  def self.test(name = nil, showcase: nil, id: nil, &block)
-    case
-    when name then super(name, &block)
-    when id && showcase.nil? then raise ArgumentError, "can't test a sample without a showcase"
+  def self.test(name = nil, showcase: nil, &block)
+    if name
+      super(name, &block)
     else
-      super "Showcase: showcase/previews/#{showcase} #{"sample #{id}" if id}".squish do
+      super "Showcase: showcase/previews/#{showcase}" do
         path = Showcase::Path.new(showcase)
         render "showcase/engine/preview", preview: path.preview_for(view)
 
         assert_showcase_preview(path.id)
-        assert_element(id: id || path.id) { instance_eval(&block) }
+        instance_eval(&block)
       end
     end
   end
