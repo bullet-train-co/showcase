@@ -88,7 +88,7 @@ class Showcase::Preview
   end
 
   def render_associated_partial
-    @view_context.render "#{Showcase.previews_path}/#{id}", showcase: self
+    @view_context.render "showcase/previews/#{id}", showcase: self
     nil
   end
 end
