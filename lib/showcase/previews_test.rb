@@ -1,12 +1,12 @@
 class Showcase::PreviewsTest < ActionView::TestCase
   def self.inherited(test_class)
     super
+
+    test_class.tests Showcase::EngineController._helpers
     test_class.prepare
   end
 
   def self.prepare
-    tests Showcase::EngineController._helpers
-
     tree = Showcase::Path.tree
     tree.flat_map(&:ordered_paths).each do |path|
       test "Showcase: automatically renders showcase/previews/#{path.id}" do
