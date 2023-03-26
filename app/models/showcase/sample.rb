@@ -43,7 +43,7 @@ class Showcase::Sample
   def extract_source_block_via_matched_indentation_from(file, starting_index)
     starting_line, *lines = File.readlines(file).slice(starting_index.pred..)
 
-    indentation = starting_line.match(/^\s+(?=\b)/).to_s
+    indentation = starting_line.match(/^\s+/).to_s
     matcher = /^#{indentation}\S/
 
     index = lines.index { _1.match?(matcher) }
