@@ -20,6 +20,7 @@ jobs:
           - false
 
     env:
+      RAILS_ENV: test
       RAILS_VERSION: ${{ matrix.rails-version }}
       ROUGE_BUNDLED: ${{ matrix.rouge-bundled }}
 
