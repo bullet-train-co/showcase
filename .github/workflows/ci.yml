@@ -8,29 +8,30 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        ruby-version:
-          - "2.7"
-          - "3.2"
         rails-version:
-          - "6.1"
           - "7.0"
+          - "6.1"
           - "main"
+        ruby-version:
+          - "3.2"
+          - "2.7"
         rouge-bundled:
-          - true
           - false
+          - true
 
     env:
+      RAILS_ENV: test
       RAILS_VERSION: ${{ matrix.rails-version }}
       ROUGE_BUNDLED: ${{ matrix.rouge-bundled }}
 
-    name: ${{ format('Tests (Ruby {0}, Rails {1}, Rouge {2})', matrix.ruby-version, matrix.rails-version, matrix.rouge) }}
+    name: ${{ format('Tests rails@{0} ruby@{1} rouge:{2}', matrix.rails-version, matrix.ruby-version, matrix.rouge-bundled) }}
     runs-on: "ubuntu-latest"
 
     steps:
       - uses: "actions/checkout@v3"
       - uses: "ruby/setup-ruby@v1"
         with:
-          rubygems: 3.4.7
+          rubygems: latest
           ruby-version: ${{ matrix.ruby-version }}
           bundler-cache: true
 
@@ -41,7 +42,7 @@ jobs:
         run: bin/rails runner 'if ENV["ROUGE_BUNDLED"] == "true"; require "rouge"; `bin/highlights`; end'
 
       - name: Execute Test Suite
-        run: bin/rails test test/**/*_test.rb
+        run: bin/rails test test/
 
       - name: Fail when generated changes are not checked-in
         run: git update-index --refresh && git diff-index --quiet HEAD --
