@@ -8,23 +8,23 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        ruby-version:
-          - "2.7"
-          - "3.2"
         rails-version:
-          - "6.1"
           - "7.0"
+          - "6.1"
           - "main"
+        ruby-version:
+          - "3.2"
+          - "2.7"
         rouge-bundled:
-          - true
           - false
+          - true
 
     env:
       RAILS_ENV: test
       RAILS_VERSION: ${{ matrix.rails-version }}
       ROUGE_BUNDLED: ${{ matrix.rouge-bundled }}
 
-    name: ${{ format('Tests {0}@{1} Rouge {2}', matrix.ruby-version, matrix.rails-version, matrix.rouge-bundled) }}
+    name: ${{ format('Tests rails@{0} ruby@{1} rouge:{2}', matrix.rails-version, matrix.ruby-version, matrix.rouge-bundled) }}
     runs-on: "ubuntu-latest"
 
     steps:
