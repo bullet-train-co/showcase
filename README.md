@@ -99,9 +99,10 @@ class ShowcaseTest < Showcase::PreviewsTest
     assert_text "This is a combobox, for sure."
   end
 
-  test showcase: "button", id: "basic" do
-    # This test block runs within the #button container element's #basic sample.
-    assert_button class: ["text-xs"]
+  test showcase: "button" do
+    assert_selector id: "basic" do
+      assert_button class: ["text-xs"]
+    end
   end
 
   test "some non-Showcase test" do
