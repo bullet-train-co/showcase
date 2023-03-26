@@ -31,7 +31,7 @@ jobs:
       - uses: "actions/checkout@v3"
       - uses: "ruby/setup-ruby@v1"
         with:
-          rubygems: 3.4.7
+          rubygems: latest
           ruby-version: ${{ matrix.ruby-version }}
           bundler-cache: true
 
