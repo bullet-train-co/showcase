@@ -31,6 +31,12 @@ class ShowcaseTest < Showcase::PreviewsTest
     assert_method "test_Showcase:_showcase/previews/components/combobox_sample_basic"
   end
 
+  test showcase: "helpers/upcase_helper" do
+    assert_element id: "with-extract" do
+      assert_text /<%= upcase_string "extract" %>\Z/, normalize_ws: true
+    end
+  end
+
   private
 
   def assert_method(name)

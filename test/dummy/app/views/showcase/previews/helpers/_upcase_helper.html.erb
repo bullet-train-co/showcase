@@ -1,3 +1,13 @@
 <% showcase.sample "Basic" do %>
   <%= upcase_string "hello" %>
 <% end %>
+
+<% showcase.sample "With extract" do |sample| %>
+  <% sample.preview do %>
+    EXTRACT
+  <% end %>
+
+  <% sample.extract do %>
+    <%= upcase_string "extract" %>
+  <% end %>
+<% end %>
