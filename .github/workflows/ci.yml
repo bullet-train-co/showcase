@@ -24,7 +24,7 @@ jobs:
       RAILS_VERSION: ${{ matrix.rails-version }}
       ROUGE_BUNDLED: ${{ matrix.rouge-bundled }}
 
-    name: ${{ format('Tests (Ruby {0}, Rails {1}, Rouge {2})', matrix.ruby-version, matrix.rails-version, matrix.rouge) }}
+    name: ${{ format('Tests (Ruby {0}, Rails {1}, Rouge {2})', matrix.ruby-version, matrix.rails-version, matrix.rouge-bundled) }}
     runs-on: "ubuntu-latest"
 
     steps:
