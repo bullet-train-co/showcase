@@ -14,7 +14,7 @@ class Showcase::Sample
     @description
   end
 
-  def collect(&block)
+  def evaluate(&block)
     if block.arity.zero?
       render(&block)
       extract_source(&block)

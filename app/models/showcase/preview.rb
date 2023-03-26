@@ -66,7 +66,7 @@ class Showcase::Preview
   #   - the `sample.events` what JavaScript `events` to listen for on the element
   #   - any other custom options are available in `sample.details`.
   def sample(name, **options, &block)
-    @samples << Showcase::Sample.new(@view_context, name, **options).tap { _1.collect(&block) }
+    @samples << Showcase::Sample.new(@view_context, name, **options).tap { _1.evaluate(&block) }
   end
 
   # Yields an Options object to help define the configuration table for a Preview.
