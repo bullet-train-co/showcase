@@ -40,8 +40,9 @@ class Showcase::Sample
 
   private
 
-  def extract_source_block_via_matched_indentation_from(file, starting_index)
-    starting_line, *lines = File.readlines(file).slice(starting_index.pred..)
+  def extract_source_block_via_matched_indentation_from(file, source_location_index)
+    # `Array`s are zero-indexed, but `source_location` indexes are not, hence `pred`.
+    starting_line, *lines = File.readlines(file).slice(source_location_index.pred..)
 
     indentation = starting_line.match(/^\s+/).to_s
     matcher = /^#{indentation}\S/
