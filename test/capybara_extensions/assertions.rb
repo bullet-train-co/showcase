@@ -13,6 +13,7 @@ module CapybaraExtensions::Assertions
 end
 
 Capybara::Node::Matchers.include CapybaraExtensions::Assertions
+Capybara::Node::Simple.include CapybaraExtensions::Assertions if RUBY_VERSION < "3.0"
 
 ActiveSupport.on_load :action_dispatch_integration_test do
   include CapybaraExtensions::Assertions
