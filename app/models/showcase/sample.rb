@@ -16,11 +16,15 @@ class Showcase::Sample
 
   def evaluate(&block)
     if block.arity.zero?
-      render(&block)
-      extract_source(&block)
+      consume(&block)
     else
       @view_context.capture(self, &block)
     end
+  end
+
+  def consume(&block)
+    render(&block)
+    extract_source(&block)
   end
 
   def render(&block)
