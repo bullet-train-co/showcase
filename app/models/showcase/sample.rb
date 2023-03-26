@@ -17,7 +17,7 @@ class Showcase::Sample
   def collect(&block)
     if block.arity.zero?
       render(&block)
-      extract(&block)
+      extract_source(&block)
     else
       @view_context.capture(self, &block)
     end
@@ -31,7 +31,7 @@ class Showcase::Sample
     end
   end
 
-  def extract(&block)
+  def extract_source(&block)
     source = extract_source_block_via_matched_indentation_from(*block.source_location)
     @source = @view_context.instance_exec(source, @syntax, &Showcase.sample_renderer)
   end

@@ -15,7 +15,7 @@ showcase.sample "+ Reverse", syntax: :ruby do |sample|
     concat "hello".reverse
   end
 
-  sample.extract do
+  sample.extract_source do
     "hello".upcase
     "hello".reverse
   end
