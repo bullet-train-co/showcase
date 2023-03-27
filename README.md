@@ -32,6 +32,140 @@ Which will then render the following:
 
 Each sample shows the render time in milliseconds and the allocation count so it's easier to spot if there's something different happening between your samples.
 
+## Rendering other types
+
+### Components with ViewComponent
+
+If we take the `MessageComponent` as seen on [https://viewcomponent.org]():
+
+```ruby
+# app/components/message_component.rb
+class MessageComponent < ViewComponent::Base
+  def initialize(name:)
+    @name = name
+  end
+end
+```
+
+```erb
+<%# app/components/message_component.html.erb %>
+<h1>Hello, <%= @name %>!</h1>
+```
+
+We can showcase it just by rendering it:
+
+```erb
+<%# app/views/showcase/previews/components/_message_component.html.erb %>
+<% showcase.sample "Basic" do %>
+  <%= render MessageComponent.new(name: "World") %>
+<% end %>
+
+<% showcase.options do |o| %>
+  <% o.required :name, "The name to say hello to" %>
+<% end %>
+```
+
+### Components with Phlex
+
+Given this [phlex-rails](https://www.phlex.fun/rails/) component:
+
+```ruby
+# app/views/components/article.rb
+class Components::Article < Phlex::HTML
+  def initialize(article) = @article = article
+
+  def template
+    h1 { @article.title }
+  end
+end
+```
+
+We can use Rails' `render` method to showcase it:
+
+```erb
+<%# app/views/showcase/previews/components/_article.html.erb %>
+<% showcase.sample "Basic" do %>
+  <%= render Components::Article.new(Article.first) %>
+<% end %>
+```
+
+### View helpers
+
+Any application helpers defined in `app/helpers` are automatically available in Showcase's engine, so given a helper like this:
+
+```ruby
+# app/helpers/upcase_helper.rb
+module UpcaseHelper
+  def upcase_string(string)
+    string.upcase
+  end
+end
+```
+
+You can showcase it like this:
+
+```erb
+<%# app/views/showcase/previews/helpers/_upcase_helper.html.erb %>
+<% showcase.sample "Basic" do %>
+  <%= upcase_string "hello" %>
+<% end %>
+```
+
+### JavaScript with Stimulus controllers
+
+Assuming we have a Stimulus controller like this:
+
+```javascript
+// app/assets/javascripts/controllers/welcome_controller.js
+import { Controller } from "@hotwired/stimulus"
+
+export default class extends Controller {
+  static targets = [ "greeter" ]
+  static values = { yell: Boolean }
+
+  connect() {
+    let greeting = this.hasGreeterTarget ? `Welcome, ${this.greeterTarget.textContent}!` : "Welcome!"
+    if (this.yellValue) greeting = greeting.toUpperCase()
+
+    console.log(greeting)
+    this.dispatch("greeting", { detail: { greeting } })
+  }
+})
+```
+
+We can then render it to showcase it:
+
+```erb
+<% showcase.description "The welcome controller says hello when it enters the screen" %>
+
+<% showcase.sample "Basic", events: "welcome:greeting" do %>
+  <div data-controller="welcome">I've just said welcome!</div>
+<% end %>
+
+<% showcase.sample "With greeter", events: "welcome:greeting" do %>
+  <div data-controller="welcome">
+    <div data-welcome-target="greeter">Somebody</div>
+  </div>
+<% end %>
+
+<% showcase.sample "Yelling!!!", events: "welcome:greeting" do %>
+  <div data-controller="welcome" data-welcome-yell-value="true">
+<% end %>
+
+<%# We're using the built-in Stimulus context here to output `data-` attributes correctly, and save some typing. %>
+<% showcase.options.context :stimulus, controller: :welcome do |o| %>
+  <% o.optional.targets :greeter, "If the id of the target element must be printed" %>
+  <% o.required.values :yell, "Whether the hello is to be YELLED", default: false %>
+
+  <%# We support the other Stimulus declarations too: %>
+  <% o.required.classes :success, "The success class to append after greeting" %>
+  <% o.required.outlet :list, "An outlet to append each yelled greeter to" %>
+  <% o.optional.action :greet, "An action to repeat the greeting, if need be" %>
+<% end %>
+```
+
+Note that by adding `events: "welcome:greeting"` we're listening for any time that event is dispatched. Events are logged with `console.log`, but also output alongside the sample in the browser.
+
 ## Syntax Highlighting
 
 To have out of the box syntax highlighting, add `gem "rouge"` to your Gemfile and Showcase will set it up. Any denoted syntaxes in your samples are then highlighted, e.g.
