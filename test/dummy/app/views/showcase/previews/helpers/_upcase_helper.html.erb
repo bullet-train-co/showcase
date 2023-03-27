@@ -1,5 +1,5 @@
 <% showcase.description do %>
-  Be sure to check out <%= link_to "plain_ruby", preview_path("plain_ruby") %>.
+  Be sure to check out <%= showcase.link_to "components/button", id: "large" %>, <%= showcase.link_to "stimulus_controllers/welcome" %> and <%= showcase.link_to "plain_ruby" %> too.
 <% end %>
 
 <% showcase.sample "Basic" do %>
@@ -7,6 +7,10 @@
 <% end %>
 
 <% showcase.sample "With extract" do |sample| %>
+  <% sample.description do %>
+    This is a different sample from <%= showcase.link_to id: "basic" %>
+  <% end %>
+
   <% sample.render do %>
     EXTRACT
   <% end %>

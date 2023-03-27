@@ -32,6 +32,22 @@ class Showcase::Preview
     @badges.concat badges
   end
 
+  # Allows linking out to other Showcases
+  #
+  #   <%= showcase.link_to "components/button", id: "extra-large" %>
+  #   # => <a href="components/button#extra-large"><showcase components/button#extra-large></a>
+  #
+  # Can link to other samples on the current showcase too:
+  #
+  #   # If we're within app/views/showcase/previews/components/_button.html.erb
+  #   <%= showcase.link_to id: "extra-large" %>
+  #   # => <a href="components/button#extra-large"><showcase components/button#extra-large></a>
+  def link_to(preview_id = id, id: nil)
+    @view_context.link_to @view_context.preview_path(preview_id, anchor: id), class: "sc-font-mono sc-text-sm" do
+      "<showcase #{[preview_id, id].compact.join("#").squish}>"
+    end
+  end
+
   # Adds a named sample to demonstrate with the Showcase can do.
   #
   # By default, sample takes a block that'll automatically have its source extracted, like this:
