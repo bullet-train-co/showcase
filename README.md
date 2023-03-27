@@ -2,7 +2,19 @@
 
 Showcase lets you build previews for your partials, components, view helpers, Stimulus controllers and more — Rails engines included!
 
-Add a partial to `app/views/showcase/previews` and it'll show up in Showcase's menu. Here's how to showcase a standard button component written with standard Rails partials:
+Add a partial to `app/views/showcase/previews` and it'll show up in Showcase's menu.
+
+| Light Mode | Dark Mode |
+| --- | --- |
+| ![](/readme/example-light.png?raw=true "Showcase showing a button component") | ![](/readme/example-dark.png?raw=true "Showcase showing a button component") |
+
+Each sample shows the render time in milliseconds and the allocation count so it's easier to spot if there's something different happening between your samples.
+
+## What can I showcase?
+
+### Rails partials
+
+Here's how to showcase a standard button component written with standard Rails partials:
 
 ```erb
 <%# app/views/showcase/previews/components/_button.html.erb %>
@@ -23,16 +35,6 @@ Add a partial to `app/views/showcase/previews` and it'll show up in Showcase's m
   <% o.optional :mode, "We support three modes", default: :small, options: %i[ small medium large ] %>
 <% end %>
 ```
-
-Which will then render the following:
-
-| Light Mode | Dark Mode |
-| --- | --- |
-| ![](/readme/example-light.png?raw=true "Showcase showing a button component") | ![](/readme/example-dark.png?raw=true "Showcase showing a button component") |
-
-Each sample shows the render time in milliseconds and the allocation count so it's easier to spot if there's something different happening between your samples.
-
-## Rendering other types
 
 ### Components with ViewComponent
 
