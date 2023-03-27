@@ -9,6 +9,7 @@ end
 
 module Showcase
   autoload :PreviewsTest, "showcase/previews_test"
+  autoload :LinkHelper,   "showcase/link_helper"
   autoload :RouteHelper,  "showcase/route_helper"
   autoload :Options,      "showcase/options"
 

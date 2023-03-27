@@ -4,6 +4,7 @@ module.exports = {
   prefix: 'sc-',
   content: [
     './public/*.html',
+    './lib/showcase/**/*.rb',
     './app/helpers/**/*.rb',
     './app/javascript/**/*.js',
     './app/views/**/*.{erb,haml,html,slim}'

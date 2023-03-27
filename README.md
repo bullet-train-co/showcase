@@ -111,6 +111,36 @@ class ShowcaseTest < Showcase::PreviewsTest
 end
 ```
 
+## Linking to previews
+
+Showcase provides a view helper to generate links to other showcases.
+
+So to link to `app/views/showcase/previews/stimulus_controllers/_welcome.html.erb`, the relative path is passed:
+
+```erb
+<%= link_to_showcase "stimulus_controllers/welcome" %>
+```
+
+Additionally, to target a specific sample pass the id:
+
+```erb
+<%= link_to_showcase "components/button", id: "extra-large" %>
+```
+
+We connect the sample with the `parameterize`d name passed to `sample`, or an explicitly passed `id:`.
+
+```erb
+<%# app/views/showcase/previews/components/_button.html.erb %>
+<% showcase.sample "Basic", id: "basic" do %>
+  …
+<% end %>
+
+<%# The link targets this sample, since the id is generated with `parameterize` %>
+<% showcase.sample "Extra Large" do %>
+  …
+<% end %>
+```
+
 ## Full Rails engine support
 
 Any Rails engines in your app that ships previews in their `app/views/showcase/previews` directory will automatically be surfaced in your app. Here's an example from the [bullet_train-themes-light Rails engine](https://github.com/bullet-train-co/bullet_train-core/tree/main/bullet_train-themes-light/app/views/showcase/previews).

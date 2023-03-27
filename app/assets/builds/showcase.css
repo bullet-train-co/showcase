@@ -916,6 +916,10 @@ select {
   padding-top: 1.75rem;
 }
 
+.sc-font-mono {
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+}
+
 .sc-text-2xl {
   font-size: 1.5rem;
   line-height: 2rem;
@@ -929,6 +933,11 @@ select {
 .sc-text-base {
   font-size: 1rem;
   line-height: 1.5rem;
+}
+
+.sc-text-sm {
+  font-size: 0.875rem;
+  line-height: 1.25rem;
 }
 
 .sc-text-xl {
