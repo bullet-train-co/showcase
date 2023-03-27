@@ -113,32 +113,14 @@ end
 
 ## Linking to previews
 
-Showcase provides a view helper to generate links to other showcases.
-
-So to link to `app/views/showcase/previews/stimulus_controllers/_welcome.html.erb`, the relative path is passed:
+Call `showcase.link_to` with the URL path to the other Showcase:
 
 ```erb
-<%= link_to_showcase "stimulus_controllers/welcome" %>
-```
+<%= showcase.link_to "stimulus_controllers/welcome" %>
+<%= showcase.link_to "components/button", id: "extra-large" %> <%# Pass an id to link to a specific sample %>
 
-Additionally, to target a specific sample pass the id:
-
-```erb
-<%= link_to_showcase "components/button", id: "extra-large" %>
-```
-
-We connect the sample with the `parameterize`d name passed to `sample`, or an explicitly passed `id:`.
-
-```erb
-<%# app/views/showcase/previews/components/_button.html.erb %>
-<% showcase.sample "Basic", id: "basic" do %>
-  …
-<% end %>
-
-<%# The link targets this sample, since the id is generated with `parameterize` %>
-<% showcase.sample "Extra Large" do %>
-  …
-<% end %>
+<%# You can also pass just an id: to target a sample on the current showcase %>
+<%= showcase.link_to id: "extra-large" %>
 ```
 
 ## Full Rails engine support
