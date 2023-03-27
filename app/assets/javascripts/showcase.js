@@ -4,7 +4,7 @@ window.customElements.define("showcase-sample", class extends HTMLElement {
   }
 
   disconnectedCallback() {
-    this.events.forEach(this.removeEventListener)
+    this.events.forEach((name) => this.removeEventListener(name, this.emit))
   }
 
   emit(event) {
