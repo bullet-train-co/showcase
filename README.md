@@ -2,20 +2,20 @@
 
 Showcase lets you build previews for your partials, components, view helpers, Stimulus controllers and more — Rails engines included!
 
-Add a partial to `app/views/showcase/previews` and it'll show up in Showcase's menu. Here's how to showcase a standard button component:
+Add a partial to `app/views/showcase/previews` and it'll show up in Showcase's menu. Here's how to showcase a standard button component written with standard Rails partials:
 
-```html
+```erb
 <%# app/views/showcase/previews/components/_button.html.erb %>
 <% showcase.title "Button" %> <%# `title` is optional and inferred from the filename, by default. %>
 <% showcase.badge :partial, :component %> <%# Optional badges you can add to further clarify the type of the showcase. %>
 <% showcase.description "This button component handles what we click on" %>
 
 <% showcase.sample "Basic" do %>
-  <%= render "component/button", content: "Button content", mode: :small %>
+  <%= render "components/button", content: "Button content", mode: :small %>
 <% end %>
 
 <% showcase.sample "Large", description: "This is our larger button" do %>
-  <%= render "component/button", content: "Button content", mode: :large %>
+  <%= render "components/button", content: "Button content", mode: :large %>
 <% end %>
 
 <% showcase.options do |o| %>
