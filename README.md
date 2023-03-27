@@ -192,6 +192,19 @@ if defined?(Showcase)
 end
 ```
 
+### Loading your own syntax highlighting theme
+
+By default, Showcase's syntax highlighting runs on Rouge's "github" theme.
+
+To use a different theme, override [showcase/engine/_stylesheets.html.erb][] with the following, replacing `:magritte` with a [valid theme](rouge-themes):
+
+```erb
+<%= stylesheet_link_tag "showcase" %> # We've removed the default showcase.highlights file here.
+<%= tag.style Rouge::Theme.find(:magritte).render(scope: ".sc-highlight") %>
+```
+
+[rouge-themes]: https://github.com/rouge-ruby/rouge/tree/master/lib/rouge/themes
+
 ## Using options contexts
 
 Showcase also supports custom options contexts. They're useful for cases where the options have a very specific format and it would be nice to keep them standardized.
@@ -321,19 +334,6 @@ partials, make sure to include `"showcase"` in your list of assets.
 [showcase/engine/_javascripts.html.erb]: ./showcase/engine/_javascripts.html.erb
 [showcase/engine/_stylesheets.html.erb]: ./showcase/engine/_stylesheets.html.erb
 
-### Loading your own syntax highlighting theme
-
-By default, Showcase's syntax highlighting runs on Rouge's "github" theme.
-
-To use a different theme, override [showcase/engine/_stylesheets.html.erb][] with the following, replacing `:magritte` with a [valid theme](rouge-themes):
-
-```erb
-<%= stylesheet_link_tag "showcase" %> # We've removed the default showcase.highlights file here.
-<%= tag.style Rouge::Theme.find(:magritte).render(scope: ".sc-highlight") %>
-```
-
-[rouge-themes]: https://github.com/rouge-ruby/rouge/tree/master/lib/rouge/themes
-
 ## Installation
 
 Add this line to your application's Gemfile. To get the previews testing make sure the `showcase-rails` gem is available to your test environment:
@@ -341,6 +341,7 @@ Add this line to your application's Gemfile. To get the previews testing make su
 ```ruby
 group :development, :test do
   gem "showcase-rails"
+  gem "rouge" # For syntax highlighting in Showcase.
 end
 ```
 
