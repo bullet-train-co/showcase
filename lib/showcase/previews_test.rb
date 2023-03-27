@@ -1,8 +1,9 @@
 class Showcase::PreviewsTest < ActionView::TestCase
+  extensions = [ Showcase::EngineController._helpers, Showcase::Engine.routes.url_helpers ]
+  setup { view.extend *extensions }
+
   def self.inherited(test_class)
     super
-
-    test_class.tests Showcase::EngineController._helpers
     test_class.prepare
   end
 
