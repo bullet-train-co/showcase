@@ -194,25 +194,27 @@ end
 
 Showcase also supports custom options contexts. They're useful for cases where the options have a very specific format and it would be nice to keep them standardized.
 
-By default, Showcase ships Nice Partials and Stimulus contexts out of the box. Here's a sample of the Stimulus one:
+By default, Showcase ships Nice Partials and Stimulus contexts out of the box. See [lib/showcase.rb][] for how they're defined.
 
-```erb
-<% showcase.options.context :stimulus, controller: :welcome do |o| %>
-  <% o.optional.targets :greeter, "If the id of the target element must be printed" %>
-<% end %>
-```
-
-In case Showcase didn't ship with a Stimulus context, here's how you could add it:
+To add a new context, you can do this:
 
 ```ruby
 # config/initializers/showcase.rb
-if defined?(Showcase)
-  Showcase.options.define :stimulus do
-    def targets(name, ...)
-      option(%(data-#{@controller}-target="#{name}"), ...)
-    end
+return unless defined?(Showcase)
+
+Showcase.options.define :some_context do
+  def targets(name, ...)
+    option("data-#{@prefix}-#{name}", ...)
   end
 end
+```
+
+And now we can use it, here passing in `prefix:` which becomes an instance variable available in the `define` block.
+
+```erb
+<% showcase.options.context :some_context, prefix: "super-" do |o| %>
+  <% o.required.targets :title %>
+<% end %>
 ```
 
 ## Automatic previews testing
