@@ -115,23 +115,6 @@ table {
 }
 
 /*
-1. Correct the inability to style clickable types in iOS and Safari.
-2. Remove default button styles.
-*/
-
-button,
-[type='button'],
-[type='reset'],
-[type='submit'] {
-  -webkit-appearance: button;
-  /* 1 */
-  background-color: transparent;
-  /* 2 */
-  background-image: none;
-  /* 2 */
-}
-
-/*
 Add the correct display in Chrome and Safari.
 */
 
@@ -174,4 +157,13 @@ Make sure disabled buttons don't get the pointer cursor.
 
 .sc-link:hover {
   text-decoration-line: underline;
+}
+
+.dummy-button {
+  color: inherit;
+  cursor: pointer;
+
+  -webkit-appearance: button;
+  background-color: transparent;
+  background-image: none;
 }
