@@ -120,6 +120,10 @@
   margin-top: 0.25rem
 }
 
+.sc-block {
+  display: block
+}
+
 .sc-inline-block {
   display: inline-block
 }
@@ -324,13 +328,16 @@
   padding-bottom: 0.5rem
 }
 
-.sc-py-5 {
-  padding-top: 1.25rem;
-  padding-bottom: 1.25rem
+.sc-pb-2 {
+  padding-bottom: 0.5rem
 }
 
 .sc-pl-4 {
   padding-left: 1rem
+}
+
+.sc-pt-5 {
+  padding-top: 1.25rem
 }
 
 .sc-pt-7 {
