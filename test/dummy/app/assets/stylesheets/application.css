@@ -116,24 +116,6 @@ h6 {
 }
 
 /*
-Reset links to optimize for opt-in styling instead of opt-out.
-*/
-
-a {
-  color: inherit;
-  text-decoration: inherit;
-}
-
-/*
-Add the correct font weight in Edge and Safari.
-*/
-
-b,
-strong {
-  font-weight: bolder;
-}
-
-/*
 1. Use the user's configured `mono` font family by default.
 2. Correct the odd `em` font sizing in all browsers.
 */
@@ -259,4 +241,13 @@ Make sure disabled buttons don't get the pointer cursor.
 
 :disabled {
   cursor: default;
+}
+
+.sc-link {
+  color: inherit !important; /* TODO: Replace inherit with CSS variable */
+  text-decoration-line: none;
+}
+
+.sc-link:hover {
+  text-decoration-line: underline;
 }

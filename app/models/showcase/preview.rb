@@ -43,7 +43,7 @@ class Showcase::Preview
   #   <%= showcase.link_to id: "extra-large" %>
   #   # => <a href="components/button#extra-large"><showcase components/button#extra-large></a>
   def link_to(preview_id = id, id: nil)
-    @view_context.link_to @view_context.preview_path(preview_id, anchor: id), class: "sc-font-mono sc-text-sm" do
+    @view_context.link_to @view_context.preview_path(preview_id, anchor: id), class: "sc-link sc-font-mono sc-text-sm" do
       "<showcase #{[preview_id, id].compact.join("#").squish}>"
     end
   end

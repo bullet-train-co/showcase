@@ -415,10 +415,6 @@
   background-color: rgb(238 242 255 / var(--tw-bg-opacity))
 }
 
-.hover\:sc-underline:hover {
-  text-decoration-line: underline
-}
-
 @media (prefers-color-scheme: dark) {
   .dark\:sc-bg-neutral-700\/50 {
     background-color: rgb(64 64 64 / 0.5)
