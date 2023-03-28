@@ -2,7 +2,7 @@
   <section>
     <% if preview.title %>
       <div class="sc-flex sc-items-center sc-space-x-2 sc-mb-2">
-        <h2 class="sc-font-semibold sc-text-3xl"><%= preview.title %></h2>
+        <h2 class="sc-font-semibold sc-text-3xl sc-m-0"><%= preview.title %></h2>
 
         <% preview.badges.each do |badge| %>
           <span class="sc-border-0 sc-border-2 sc-border-solid sc-border-indigo-300 sc-rounded-full sc-px-2 sc-mt-1"><%= badge.to_s.titleize %></span>
@@ -17,7 +17,7 @@
 
   <% if preview.samples.any? %>
     <section>
-      <h2 class="sc-font-semibold sc-text-xl sc-mb-2">Samples</h2>
+      <h2 class="sc-font-semibold sc-text-xl sc-m-0 sc-mb-2">Samples</h2>
       <%= render partial: "showcase/engine/sample", collection: preview.samples %>
     </section>
   <% end %>

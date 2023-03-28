@@ -104,6 +104,10 @@
   grid-column: span 9 / span 9
 }
 
+.sc-m-0 {
+  margin: 0px
+}
+
 .sc-m-2 {
   margin: 0.5rem
 }
