@@ -260,6 +260,10 @@
   border-width: 1px
 }
 
+.sc-border-0 {
+  border-width: 0px
+}
+
 .sc-border-2 {
   border-width: 2px
 }
@@ -270,6 +274,10 @@
 
 .sc-border-t {
   border-top-width: 1px
+}
+
+.sc-border-solid {
+  border-style: solid
 }
 
 .sc-border-gray-200 {
