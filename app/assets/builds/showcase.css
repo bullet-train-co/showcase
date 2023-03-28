@@ -136,6 +136,10 @@
   display: grid
 }
 
+.sc-list-item {
+  display: list-item
+}
+
 .sc-h-full {
   height: 100%
 }

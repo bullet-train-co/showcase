@@ -64,14 +64,6 @@ pre {
   font-size: 1em;
 }
 
-/*
-Add the correct display in Chrome and Safari.
-*/
-
-summary {
-  display: list-item;
-}
-
 .sc-link {
   color: inherit !important; /* TODO: Replace inherit with CSS variable */
   text-decoration-line: none;
