@@ -142,14 +142,6 @@ pre {
   margin: 0;
 }
 
-/*
-Make sure disabled buttons don't get the pointer cursor.
-*/
-
-:disabled {
-  cursor: default;
-}
-
 .sc-link {
   color: inherit !important; /* TODO: Replace inherit with CSS variable */
   text-decoration-line: none;
