@@ -43,7 +43,7 @@ pre {
 }
 
 .sc-link {
-  color: inherit !important; /* TODO: Replace inherit with CSS variable */
+  color: inherit !important;
   text-decoration-line: none;
 }
 
