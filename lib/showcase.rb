@@ -12,6 +12,19 @@ module Showcase
   autoload :RouteHelper,  "showcase/route_helper"
   autoload :Options,      "showcase/options"
 
+  class << self
+    attr_reader :tree_opener
+
+    def tree_opener=(opener)
+      @tree_opener = opener.respond_to?(:call) ? opener : proc { opener }
+    end
+  end
+  self.tree_opener = true
+
+  self.tree_opener = true  # All open
+  self.tree_opener = false # All closed by default
+  self.tree_opener = ->(tree) { tree.root? } # Just keep the root-level trees open.
+
   singleton_class.attr_accessor :sample_renderer
   @sample_renderer = proc { _1 }
 
