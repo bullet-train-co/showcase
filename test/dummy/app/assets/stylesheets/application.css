@@ -13,3 +13,12 @@
  *= require_tree .
  *= require_self
  */
+
+.dummy-button {
+  color: inherit;
+  cursor: pointer;
+
+  -webkit-appearance: button;
+  background-color: transparent;
+  background-image: none;
+}
