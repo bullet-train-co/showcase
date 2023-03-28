@@ -23,9 +23,7 @@
 2. Allow adding a border to an element by just adding a border-width. (https://github.com/tailwindcss/tailwindcss/pull/116)
 */
 
-*,
-::before,
-::after {
+* {
   box-sizing: border-box;
   /* 1 */
   border-width: 0;
@@ -34,11 +32,6 @@
   /* 2 */
   border-color: #e5e7eb;
   /* 2 */
-}
-
-::before,
-::after {
-  --tw-content: '';
 }
 
 /*
@@ -75,30 +68,6 @@ body {
   /* 1 */
   line-height: inherit;
   /* 2 */
-}
-
-/*
-1. Add the correct height in Firefox.
-2. Correct the inheritance of border color in Firefox. (https://bugzilla.mozilla.org/show_bug.cgi?id=190655)
-3. Ensure horizontal rules are visible by default.
-*/
-
-hr {
-  height: 0;
-  /* 1 */
-  color: inherit;
-  /* 2 */
-  border-top-width: 1px;
-  /* 3 */
-}
-
-/*
-Add the correct text decoration in Chrome, Edge, and Safari.
-*/
-
-abbr:where([title]) {
-  -webkit-text-decoration: underline dotted;
-          text-decoration: underline dotted;
 }
 
 /*
