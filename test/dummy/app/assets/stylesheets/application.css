@@ -53,21 +53,15 @@ h3,
 h4,
 h5,
 h6 {
+  margin: 0;
   font-size: inherit;
   font-weight: inherit;
 }
 
-/*
-1. Correct the odd `em` font sizing in all browsers.
-*/
-
-code,
-kbd,
-samp,
 pre {
+  margin: 0;
   font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
   font-size: 1em;
-  /* 1 */
 }
 
 /*
@@ -76,21 +70,6 @@ Add the correct display in Chrome and Safari.
 
 summary {
   display: list-item;
-}
-
-/*
-Removes the default spacing and border for appropriate elements.
-*/
-
-h1,
-h2,
-h3,
-h4,
-h5,
-h6,
-p,
-pre {
-  margin: 0;
 }
 
 .sc-link {
