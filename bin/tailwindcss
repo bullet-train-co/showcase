@@ -2,4 +2,4 @@
 
 executable="$(bundle show tailwindcss-rails)/exe/tailwindcss"
 
-exec $executable -o app/assets/builds/showcase.css -c config/tailwind.config.js "$@"
+exec $executable -i app/assets/stylesheets/showcase.tailwind.css -o app/assets/builds/showcase.css -c config/tailwind.config.js "$@"
