@@ -13,17 +13,15 @@ module Showcase
   autoload :Options,      "showcase/options"
 
   class << self
-    attr_reader :tree_opener
+    attr_reader :tree_opens
 
-    def tree_opener=(opener)
-      @tree_opener = opener.respond_to?(:call) ? opener : proc { opener }
+    def tree_opens=(opens)
+      @tree_opens = opens.respond_to?(:call) ? opens : proc { opens }
     end
   end
-  self.tree_opener = true
-
-  self.tree_opener = true  # All open
-  self.tree_opener = false # All closed by default
-  self.tree_opener = ->(tree) { tree.root? } # Just keep the root-level trees open.
+  self.tree_opens = true # All open by default
+  # self.tree_opens = false # All closed by default
+  # self.tree_opens = ->(tree) { tree.root? } # Just keep the root-level trees open.
 
   singleton_class.attr_accessor :sample_renderer
   @sample_renderer = proc { _1 }

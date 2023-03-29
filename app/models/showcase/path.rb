@@ -14,7 +14,7 @@ class Showcase::Path
     end
 
     def open?
-      Showcase.tree_opener.call(self)
+      Showcase.tree_opens.call(self)
     end
 
     def ordered_children
