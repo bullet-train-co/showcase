@@ -168,77 +168,41 @@ We can then render it to showcase it:
 
 Note that by adding `events: "welcome:greeting"` we're listening for any time that event is dispatched. Events are logged with `console.log`, but also output alongside the sample in the browser.
 
-## Syntax Highlighting
+## Installation
 
-To have out of the box syntax highlighting, add `gem "rouge"` to your Gemfile and Showcase will set it up. Any denoted syntaxes in your samples are then highlighted, e.g.
-
-```erb
-# app/views/showcase/previews/_plain_ruby.ruby
-<% showcase.sample "Basic", syntax: :ruby do %>
-  concat "hello".upcase
-<% end %>
-```
-
-To change the default theme, look at [Loading your own syntax highlighting theme](#loading-your-own-syntax-highlighting-theme).
-
-To use a different syntax highlighter, you can assign your own Proc to `sample_renderer` like this:
+Add these lines to your application's Gemfile. See next section for why Showcase is in the test group.
 
 ```ruby
-# config/initializers/showcase.rb
-if defined?(Showcase)
-  Showcase.sample_renderer = ->(source, syntax) do
-    # Return a String of lexed and formatted code.
-  end
+group :development, :test do
+  gem "showcase-rails"
+  gem "rouge" # Optional. For out-of-the-box syntax highlighting.
 end
 ```
 
-### Loading your own syntax highlighting theme
+And then execute:
 
-By default, Showcase's syntax highlighting runs on Rouge's "github" theme.
-
-To use a different theme, override [showcase/engine/_stylesheets.html.erb][] with the following, replacing `:magritte` with a [valid theme](rouge-themes):
-
-```erb
-<%= stylesheet_link_tag "showcase" %> # We've removed the default showcase.highlights file here.
-<%= tag.style Rouge::Theme.find(:magritte).render(scope: ".sc-highlight") %>
+```bash
+$ bundle
 ```
 
-[rouge-themes]: https://github.com/rouge-ruby/rouge/tree/master/lib/rouge/themes
+Or install it yourself as:
+```bash
+$ gem install showcase-rails
+```
 
-## Using options contexts
-
-Showcase also supports custom options contexts. They're useful for cases where the options have a very specific format and it would be nice to keep them standardized.
-
-By default, Showcase ships Nice Partials and Stimulus contexts out of the box. See [lib/showcase.rb][] for how they're defined.
-
-To add a new context, you can do this:
+Then add the following in your `config/routes.rb` within the block passed to `Rails.application.routes.draw`:
 
 ```ruby
-# config/initializers/showcase.rb
-return unless defined?(Showcase)
-
-Showcase.options.define :some_context do
-  def targets(name, ...)
-    option("data-#{@prefix}-#{name}", ...)
-  end
-end
+mount Showcase::Engine, at: "/docs/showcase" if defined?(Showcase::Engine)
 ```
 
-And now we can use it, here passing in `prefix:` which becomes an instance variable available in the `define` block.
+### Automatic previews testing
 
-```erb
-<% showcase.options.context :some_context, prefix: "super-" do |o| %>
-  <% o.required.targets :title %>
-<% end %>
-```
+To have Showcase generate tests to exercise all your previews on CI, run `bin/rails showcase:install:previews_test` to add `test/views/showcase_test.rb`.
 
-## Automatic previews testing
+ There you can add `setup` and `teardown` hooks, plus override the provided `assert_showcase_preview` to add custom assertions for any preview.
 
-Showcase can automatically generate tests for all your Showcases to have it executed in your CI setup, run `bin/rails showcase:install:previews_test` to set this up.
-
- You can then open `test/views/showcase_test.rb` and add your own `setup` and `teardown` hooks, as well as override the provided `assert_showcase_preview` to add custom assertions.
-
-If you need custom assertions for specific previews and their samples, you can use the `test` helper:
+If you need custom assertions for specific previews, you can use the `test` helper:
 
 ```ruby
 # test/views/showcase_test.rb
@@ -262,7 +226,78 @@ class ShowcaseTest < Showcase::PreviewsTest
 end
 ```
 
-## Linking to previews
+### Syntax Highlighting
+
+Add `gem "rouge"` to your Gemfile and Showcase will set syntax highlighting up for you. Any denoted syntaxes in your samples are then highlighted, e.g.:
+
+```erb
+# app/views/showcase/previews/_plain_ruby.ruby
+<% showcase.sample "Basic", syntax: :ruby do %>
+  concat "hello".upcase
+<% end %>
+```
+
+By default, `syntax: :erb` is used, so you don't need to mark the majority of your samples.
+
+#### Replacing the highlighter
+
+To use a different syntax highlighter, assign your own Proc to `sample_renderer` like this:
+
+```ruby
+# config/initializers/showcase.rb
+return unless defined?(Showcase)
+
+Showcase.sample_renderer = ->(source, syntax) do
+  # Return a String of lexed and formatted code.
+end
+```
+
+#### Replacing the theme
+
+By default, Showcase's syntax highlighting runs on Rouge's `"github"` theme.
+
+To use a different theme, override [showcase/engine/_stylesheets.html.erb]() with the following, replacing `:magritte` with a [valid theme](rouge-themes):
+
+```erb
+<%= stylesheet_link_tag "showcase" %> <%# We've removed the default showcase.highlights file here. %>
+<%= tag.style Rouge::Theme.find(:magritte).render(scope: ".sc-highlight") %>
+```
+
+[rouge-themes]: https://github.com/rouge-ruby/rouge/tree/master/lib/rouge/themes
+
+## Taking Showcase further
+
+### View examples
+
+Clone the repository, run `bundle install`, then run `bin/rails server`, and visit localhost:3000 in your browser. You'll see the examples from [test/dummy/app/views/showcase/previews]().
+
+### Configuring what trees to open
+
+Showcase's sidebar mirrors your `app/views/showcase/previews` directory with their paths, and then trees at each directory level.
+
+So a `showcase/previews` directory with `_top_level.html.erb`, `components/_button.html.erb`, `deeply/nested/_partial.html.erb`, will generate a sidebar like this:
+
+- Previews
+  - Top Level
+- Components
+  - Button
+- Deeply
+  - Nested
+    - Partial
+
+Internally, Showcase renders an open `details` element for each tree. You can control that with this:
+
+```ruby
+# config/initializers/showcase.rb
+return unless defined?(Showcase)
+
+Showcase.tree_opens = true  # All trees are open (the default).
+Showcase.tree_opens = false # All trees are closed.
+Showcase.tree_opens = ->(tree) { tree.root? } # Only open the root level trees (Previews, Components, Deeply but not Nested).
+Showcase.tree_opens = ->(tree) { tree.id.start_with? ".", "components" } # Just open the top-level tree and the components tree.
+```
+
+### Linking to previews
 
 Call `showcase.link_to` with the URL path to the other Showcase:
 
@@ -274,7 +309,34 @@ Call `showcase.link_to` with the URL path to the other Showcase:
 <%= showcase.link_to id: "extra-large" %>
 ```
 
-## Full Rails engine support
+### Adding options contexts
+
+Showcase also supports custom options contexts. They're useful for cases where the options have a very specific format and it would be nice to keep them standardized.
+
+By default, Showcase ships Nice Partials and Stimulus contexts out of the box. See [lib/showcase.rb]() for how they're defined.
+
+To add a new context, you can do this:
+
+```ruby
+# config/initializers/showcase.rb
+return unless defined?(Showcase)
+
+Showcase.options.define :some_context do
+  def targets(name, ...)
+    option("data-#{@prefix}-#{name}", ...)
+  end
+end
+```
+
+And now we can use it, here passing in `prefix:` which becomes an instance variable available in the `define` block.
+
+```erb
+<% showcase.options.context :some_context, prefix: "super-" do |o| %>
+  <% o.required.targets :title %>
+<% end %>
+```
+
+### Full Rails engine support
 
 Any Rails engines in your app that ships previews in their `app/views/showcase/previews` directory will automatically be surfaced in your app. Here's an example from the [bullet_train-themes-light Rails engine](https://github.com/bullet-train-co/bullet_train-core/tree/main/bullet_train-themes-light/app/views/showcase/previews).
 
@@ -282,11 +344,7 @@ Showcase respects the Rails views rendering order, allowing you to override a sp
 
 _📖 How does this work? 📖_ Internally, Showcase leverages Rails controllers' ordered set of `view_paths` — which each engine automatically prepends their app/views directory to by calling something like [`ActionController::Base.prepend_view_path`](https://github.com/rails/rails/blob/e78ed07e008676752b2ed2cff97e74b31ffacaf5/railties/lib/rails/engine.rb#L606) when initializing.
 
-## View examples
-
-Clone the repository, run `bundle install`, then run `bin/rails server`, visit localhost:3000 in your browser.
-
-## Overriding Showcase's default rendering
+### Overriding Showcase's default rendering
 
 Showcase's rendering happens through two controllers:
 
@@ -333,33 +391,6 @@ partials, make sure to include `"showcase"` in your list of assets.
 [showcase/engine/_head.html.erb]: ./showcase/engine/_head.html.erb
 [showcase/engine/_javascripts.html.erb]: ./showcase/engine/_javascripts.html.erb
 [showcase/engine/_stylesheets.html.erb]: ./showcase/engine/_stylesheets.html.erb
-
-## Installation
-
-Add this line to your application's Gemfile. To get the previews testing make sure the `showcase-rails` gem is available to your test environment:
-
-```ruby
-group :development, :test do
-  gem "showcase-rails"
-  gem "rouge" # For syntax highlighting in Showcase.
-end
-```
-
-And then execute:
-```bash
-$ bundle
-```
-
-Or install it yourself as:
-```bash
-$ gem install showcase-rails
-```
-
-Then add the following in your `config/routes.rb` within the block passed to `Rails.application.routes.draw`:
-
-```ruby
-mount Showcase::Engine, at: "/docs/showcase" if defined?(Showcase::Engine)
-```
 
 ## Contributing
 Contribution directions go here.
