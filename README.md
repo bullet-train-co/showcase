@@ -38,7 +38,7 @@ Here's how to showcase a standard button component written with standard Rails p
 
 ### Components with ViewComponent
 
-If we take the `MessageComponent` as seen on [https://viewcomponent.org]():
+If we take the `MessageComponent` as seen on [https://viewcomponent.org](https://viewcomponent.org):
 
 ```ruby
 # app/components/message_component.rb
@@ -256,7 +256,7 @@ end
 
 By default, Showcase's syntax highlighting runs on Rouge's `"github"` theme.
 
-To use a different theme, override [showcase/engine/_stylesheets.html.erb]() with the following, replacing `:magritte` with a [valid theme](rouge-themes):
+To use a different theme, override [showcase/engine/_stylesheets.html.erb](app/views/showcase/engine/_stylesheets.html.erb) with the following, replacing `:magritte` with a [valid theme](rouge-themes):
 
 ```erb
 <%= stylesheet_link_tag "showcase" %> <%# We've removed the default showcase.highlights file here. %>
@@ -269,7 +269,7 @@ To use a different theme, override [showcase/engine/_stylesheets.html.erb]() wit
 
 ### View examples
 
-Clone the repository, run `bundle install`, then run `bin/rails server`, and visit localhost:3000 in your browser. You'll see the examples from [test/dummy/app/views/showcase/previews]().
+Clone the repository, run `bundle install`, then run `bin/rails server`, and visit localhost:3000 in your browser. You'll see the examples from [test/dummy/app/views/showcase/previews](test/dummy/app/views/showcase/previews).
 
 ### Configuring what trees to open
 
@@ -313,7 +313,7 @@ Call `showcase.link_to` with the URL path to the other Showcase:
 
 Showcase also supports custom options contexts. They're useful for cases where the options have a very specific format and it would be nice to keep them standardized.
 
-By default, Showcase ships Nice Partials and Stimulus contexts out of the box. See [lib/showcase.rb]() for how they're defined.
+By default, Showcase ships Nice Partials and Stimulus contexts out of the box. See [lib/showcase.rb](lib/showcase.rb) for how they're defined.
 
 To add a new context, you can do this:
 
@@ -388,9 +388,9 @@ partials, make sure to include `"showcase"` in your list of assets.
 
 [javascript_include_tag]: https://edgeapi.rubyonrails.org/classes/ActionView/Helpers/AssetTagHelper.html#method-i-javascript_include_tag
 [stylesheet_link_tag]: https://edgeapi.rubyonrails.org/classes/ActionView/Helpers/AssetTagHelper.html#method-i-stylesheet_link_tag
-[showcase/engine/_head.html.erb]: ./showcase/engine/_head.html.erb
-[showcase/engine/_javascripts.html.erb]: ./showcase/engine/_javascripts.html.erb
-[showcase/engine/_stylesheets.html.erb]: ./showcase/engine/_stylesheets.html.erb
+[showcase/engine/_head.html.erb]: app/views/showcase/engine/_head.html.erb
+[showcase/engine/_javascripts.html.erb]: app/views/showcase/engine/_javascripts.html.erb
+[showcase/engine/_stylesheets.html.erb]: app/views/showcase/engine/_stylesheets.html.erb
 
 ## Contributing
 Contribution directions go here.
