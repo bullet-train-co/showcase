@@ -185,10 +185,10 @@ To use a different syntax highlighter, you can assign your own Proc to `sample_r
 
 ```ruby
 # config/initializers/showcase.rb
-if defined?(Showcase)
-  Showcase.sample_renderer = ->(source, syntax) do
-    # Return a String of lexed and formatted code.
-  end
+return unless defined?(Showcase)
+
+Showcase.sample_renderer = ->(source, syntax) do
+  # Return a String of lexed and formatted code.
 end
 ```
 
