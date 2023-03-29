@@ -256,7 +256,7 @@ end
 
 By default, Showcase's syntax highlighting runs on Rouge's `"github"` theme.
 
-To use a different theme, override [showcase/engine/_stylesheets.html.erb](showcase/engine/_stylesheets.html.erb) with the following, replacing `:magritte` with a [valid theme](rouge-themes):
+To use a different theme, override [showcase/engine/_stylesheets.html.erb](app/views/showcase/engine/_stylesheets.html.erb) with the following, replacing `:magritte` with a [valid theme](rouge-themes):
 
 ```erb
 <%= stylesheet_link_tag "showcase" %> <%# We've removed the default showcase.highlights file here. %>
@@ -388,9 +388,9 @@ partials, make sure to include `"showcase"` in your list of assets.
 
 [javascript_include_tag]: https://edgeapi.rubyonrails.org/classes/ActionView/Helpers/AssetTagHelper.html#method-i-javascript_include_tag
 [stylesheet_link_tag]: https://edgeapi.rubyonrails.org/classes/ActionView/Helpers/AssetTagHelper.html#method-i-stylesheet_link_tag
-[showcase/engine/_head.html.erb]: ./showcase/engine/_head.html.erb
-[showcase/engine/_javascripts.html.erb]: ./showcase/engine/_javascripts.html.erb
-[showcase/engine/_stylesheets.html.erb]: ./showcase/engine/_stylesheets.html.erb
+[showcase/engine/_head.html.erb]: app/views/showcase/engine/_head.html.erb
+[showcase/engine/_javascripts.html.erb]: app/views/showcase/engine/_javascripts.html.erb
+[showcase/engine/_stylesheets.html.erb]: app/views/showcase/engine/_stylesheets.html.erb
 
 ## Contributing
 Contribution directions go here.
