@@ -1,4 +1,4 @@
-<%= tag.details open: tree.open?, class: ["sc-flex sc-flex-col", "sc-pl-4" => tree.root?] %>
+<%= tag.details open: tree.open?, class: ["sc-flex sc-flex-col", "sc-pl-4" => !tree.root?] do %>
   <%= tag.summary tree.name.titleize, class: "sc-list-item hover:sc-bg-indigo-50 dark:hover:sc-bg-neutral-700/50 sc-font-medium sc-text-base sc-py-2 sc-pl-4 sc-cursor-pointer" %>
   <%= render tree.ordered_children %>
 <% end %>
