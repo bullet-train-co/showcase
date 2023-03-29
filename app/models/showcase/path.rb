@@ -13,6 +13,10 @@ class Showcase::Path
       id == "." ? "Previews" : id
     end
 
+    def open?
+      Showcase.tree_opens.call(self)
+    end
+
     def ordered_children
       children.partition { !_1.is_a?(Tree) }.flatten
     end
