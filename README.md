@@ -168,9 +168,67 @@ We can then render it to showcase it:
 
 Note that by adding `events: "welcome:greeting"` we're listening for any time that event is dispatched. Events are logged with `console.log`, but also output alongside the sample in the browser.
 
-## Syntax Highlighting
+## Installation
 
-To have out of the box syntax highlighting, add `gem "rouge"` to your Gemfile and Showcase will set it up. Any denoted syntaxes in your samples are then highlighted, e.g.
+Add these lines to your application's Gemfile. See next section for why Showcase is in the test group.
+
+```ruby
+group :development, :test do
+  gem "showcase-rails"
+  gem "rouge" # Optional. For out-of-the-box syntax highlighting.
+end
+```
+
+And then execute:
+
+```bash
+$ bundle
+```
+
+Or install it yourself as:
+```bash
+$ gem install showcase-rails
+```
+
+Then add the following in your `config/routes.rb` within the block passed to `Rails.application.routes.draw`:
+
+```ruby
+mount Showcase::Engine, at: "/docs/showcase" if defined?(Showcase::Engine)
+```
+
+### Automatic previews testing
+
+To have Showcase generate tests to exercise all your previews on CI, run `bin/rails showcase:install:previews_test` to add `test/views/showcase_test.rb`.
+
+ There you can add `setup` and `teardown` hooks, plus override the provided `assert_showcase_preview` to add custom assertions for any preview.
+
+If you need custom assertions for specific previews, you can use the `test` helper:
+
+```ruby
+# test/views/showcase_test.rb
+require "test_helper"
+
+class ShowcaseTest < Showcase::PreviewsTest
+  test showcase: "combobox" do
+    # This test block runs within the #combobox container element.
+    assert_text "This is a combobox, for sure."
+  end
+
+  test showcase: "button" do
+    assert_selector id: "basic" do
+      assert_button class: ["text-xs"]
+    end
+  end
+
+  test "some non-Showcase test" do
+    # You can still use the regular Rails `test` method too.
+  end
+end
+```
+
+### Syntax Highlighting
+
+Add `gem "rouge"` to your Gemfile and Showcase will set syntax highlighting up for you. Any denoted syntaxes in your samples are then highlighted, e.g.:
 
 ```erb
 # app/views/showcase/previews/_plain_ruby.ruby
@@ -179,9 +237,11 @@ To have out of the box syntax highlighting, add `gem "rouge"` to your Gemfile an
 <% end %>
 ```
 
-To change the default theme, look at [Loading your own syntax highlighting theme](#loading-your-own-syntax-highlighting-theme).
+By default, `syntax: :erb` is used, so you don't need to mark the majority of your samples.
 
-To use a different syntax highlighter, you can assign your own Proc to `sample_renderer` like this:
+#### Using a different highlighter
+
+To use a different syntax highlighter, assign your own Proc to `sample_renderer` like this:
 
 ```ruby
 # config/initializers/showcase.rb
@@ -192,20 +252,20 @@ Showcase.sample_renderer = ->(source, syntax) do
 end
 ```
 
-### Loading your own syntax highlighting theme
+#### Replacing the syntax highlighting theme
 
-By default, Showcase's syntax highlighting runs on Rouge's "github" theme.
+By default, Showcase's syntax highlighting runs on Rouge's `"github"` theme.
 
 To use a different theme, override [showcase/engine/_stylesheets.html.erb][] with the following, replacing `:magritte` with a [valid theme](rouge-themes):
 
 ```erb
-<%= stylesheet_link_tag "showcase" %> # We've removed the default showcase.highlights file here.
+<%= stylesheet_link_tag "showcase" %> <%# We've removed the default showcase.highlights file here. %>
 <%= tag.style Rouge::Theme.find(:magritte).render(scope: ".sc-highlight") %>
 ```
 
 [rouge-themes]: https://github.com/rouge-ruby/rouge/tree/master/lib/rouge/themes
 
-## Using options contexts
+## Adding options contexts
 
 Showcase also supports custom options contexts. They're useful for cases where the options have a very specific format and it would be nice to keep them standardized.
 
@@ -230,36 +290,6 @@ And now we can use it, here passing in `prefix:` which becomes an instance varia
 <% showcase.options.context :some_context, prefix: "super-" do |o| %>
   <% o.required.targets :title %>
 <% end %>
-```
-
-## Automatic previews testing
-
-Showcase can automatically generate tests for all your Showcases to have it executed in your CI setup, run `bin/rails showcase:install:previews_test` to set this up.
-
- You can then open `test/views/showcase_test.rb` and add your own `setup` and `teardown` hooks, as well as override the provided `assert_showcase_preview` to add custom assertions.
-
-If you need custom assertions for specific previews and their samples, you can use the `test` helper:
-
-```ruby
-# test/views/showcase_test.rb
-require "test_helper"
-
-class ShowcaseTest < Showcase::PreviewsTest
-  test showcase: "combobox" do
-    # This test block runs within the #combobox container element.
-    assert_text "This is a combobox, for sure."
-  end
-
-  test showcase: "button" do
-    assert_selector id: "basic" do
-      assert_button class: ["text-xs"]
-    end
-  end
-
-  test "some non-Showcase test" do
-    # You can still use the regular Rails `test` method too.
-  end
-end
 ```
 
 ## Linking to previews
@@ -333,33 +363,6 @@ partials, make sure to include `"showcase"` in your list of assets.
 [showcase/engine/_head.html.erb]: ./showcase/engine/_head.html.erb
 [showcase/engine/_javascripts.html.erb]: ./showcase/engine/_javascripts.html.erb
 [showcase/engine/_stylesheets.html.erb]: ./showcase/engine/_stylesheets.html.erb
-
-## Installation
-
-Add this line to your application's Gemfile. To get the previews testing make sure the `showcase-rails` gem is available to your test environment:
-
-```ruby
-group :development, :test do
-  gem "showcase-rails"
-  gem "rouge" # For syntax highlighting in Showcase.
-end
-```
-
-And then execute:
-```bash
-$ bundle
-```
-
-Or install it yourself as:
-```bash
-$ gem install showcase-rails
-```
-
-Then add the following in your `config/routes.rb` within the block passed to `Rails.application.routes.draw`:
-
-```ruby
-mount Showcase::Engine, at: "/docs/showcase" if defined?(Showcase::Engine)
-```
 
 ## Contributing
 Contribution directions go here.
