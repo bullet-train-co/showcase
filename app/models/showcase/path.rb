@@ -17,6 +17,10 @@ class Showcase::Path
       Showcase.tree_opens.call(self)
     end
 
+    def active?(id)
+      children.any? { _1.active?(id) }
+    end
+
     def ordered_children
       children.partition { !_1.is_a?(Tree) }.flatten
     end
@@ -61,6 +65,10 @@ class Showcase::Path
 
   cached_partial_path = "showcase/engine/path/path"
   define_method(:to_partial_path) { cached_partial_path }
+
+  def active?(id)
+    self.id == id
+  end
 
   def preview_for(view_context)
     Showcase::Preview.new(view_context, id: id, title: basename.titleize).tap(&:render_associated_partial)
