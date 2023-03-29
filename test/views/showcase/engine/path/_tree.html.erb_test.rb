@@ -2,6 +2,8 @@ require "test_helper"
 
 module Showcase::Engine::Path
   class TreePartialTest < ActionView::TestCase
+    setup { view.extend Showcase::Engine.routes.url_helpers }
+
     setup    { @old_opens = Showcase.tree_opens }
     teardown { Showcase.tree_opens = @old_opens }
 
@@ -32,6 +34,18 @@ module Showcase::Engine::Path
       assert_disclosure "Previews", expanded: false
       assert_disclosure "Deeply", expanded: true
       assert_disclosure "Nested", expanded: false
+    end
+
+    test "params overrides tree_opens" do
+      Showcase.tree_opens = false
+
+      tree = Showcase::Path::Tree.new("deeply")
+      tree.edge_for("nested") << Showcase::Path.new("deeply/nested/partial")
+
+      @controller.params = { id: "deeply/nested/partial" }
+      render "showcase/engine/path/tree", tree: tree
+      assert_disclosure "Deeply", expanded: true
+      assert_disclosure "Nested", expanded: true
     end
   end
 end
