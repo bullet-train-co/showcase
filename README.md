@@ -239,7 +239,7 @@ Add `gem "rouge"` to your Gemfile and Showcase will set syntax highlighting up f
 
 By default, `syntax: :erb` is used, so you don't need to mark the majority of your samples.
 
-#### Using a different highlighter
+#### Replacing the highlighter
 
 To use a different syntax highlighter, assign your own Proc to `sample_renderer` like this:
 
@@ -252,7 +252,7 @@ Showcase.sample_renderer = ->(source, syntax) do
 end
 ```
 
-#### Replacing the syntax highlighting theme
+#### Replacing the theme
 
 By default, Showcase's syntax highlighting runs on Rouge's `"github"` theme.
 
