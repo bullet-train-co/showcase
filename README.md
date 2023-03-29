@@ -265,7 +265,51 @@ To use a different theme, override [showcase/engine/_stylesheets.html.erb][] wit
 
 [rouge-themes]: https://github.com/rouge-ruby/rouge/tree/master/lib/rouge/themes
 
-## Adding options contexts
+## Taking Showcase further
+
+### View examples
+
+Clone the repository, run `bundle install`, then run `bin/rails server`, and visit localhost:3000 in your browser. You'll see the examples from [test/dummy/app/views/showcase/previews][].
+
+### Configuring what trees to open
+
+Showcase's sidebar mirrors your `app/views/showcase/previews` directory with their paths, and then trees at each directory level.
+
+So a `showcase/previews` directory with `_top_level.html.erb`, `components/_button.html.erb`, `deeply/nested/_partial.html.erb`, will generate a sidebar like this:
+
+- Previews
+  - Top Level
+- Components
+  - Button
+- Deeply
+  - Nested
+    - Partial
+
+Internally, Showcase renders an open `details` element for each tree. You can control that with this:
+
+```ruby
+# config/initializers/showcase.rb
+return unless defined?(Showcase)
+
+Showcase.tree_opens = true  # All trees are open (the default).
+Showcase.tree_opens = false # All trees are closed.
+Showcase.tree_opens = ->(tree) { tree.root? } # Only open the root level trees (Previews, Components, Deeply but not Nested).
+Showcase.tree_opens = ->(tree) { tree.id.start_with? ".", "components" } # Just open the top-level tree and the components tree.
+```
+
+### Linking to previews
+
+Call `showcase.link_to` with the URL path to the other Showcase:
+
+```erb
+<%= showcase.link_to "stimulus_controllers/welcome" %>
+<%= showcase.link_to "components/button", id: "extra-large" %> <%# Pass an id to link to a specific sample %>
+
+<%# You can also pass just an id: to target a sample on the current showcase %>
+<%= showcase.link_to id: "extra-large" %>
+```
+
+### Adding options contexts
 
 Showcase also supports custom options contexts. They're useful for cases where the options have a very specific format and it would be nice to keep them standardized.
 
@@ -292,19 +336,7 @@ And now we can use it, here passing in `prefix:` which becomes an instance varia
 <% end %>
 ```
 
-## Linking to previews
-
-Call `showcase.link_to` with the URL path to the other Showcase:
-
-```erb
-<%= showcase.link_to "stimulus_controllers/welcome" %>
-<%= showcase.link_to "components/button", id: "extra-large" %> <%# Pass an id to link to a specific sample %>
-
-<%# You can also pass just an id: to target a sample on the current showcase %>
-<%= showcase.link_to id: "extra-large" %>
-```
-
-## Full Rails engine support
+### Full Rails engine support
 
 Any Rails engines in your app that ships previews in their `app/views/showcase/previews` directory will automatically be surfaced in your app. Here's an example from the [bullet_train-themes-light Rails engine](https://github.com/bullet-train-co/bullet_train-core/tree/main/bullet_train-themes-light/app/views/showcase/previews).
 
@@ -312,11 +344,7 @@ Showcase respects the Rails views rendering order, allowing you to override a sp
 
 _📖 How does this work? 📖_ Internally, Showcase leverages Rails controllers' ordered set of `view_paths` — which each engine automatically prepends their app/views directory to by calling something like [`ActionController::Base.prepend_view_path`](https://github.com/rails/rails/blob/e78ed07e008676752b2ed2cff97e74b31ffacaf5/railties/lib/rails/engine.rb#L606) when initializing.
 
-## View examples
-
-Clone the repository, run `bundle install`, then run `bin/rails server`, visit localhost:3000 in your browser.
-
-## Overriding Showcase's default rendering
+### Overriding Showcase's default rendering
 
 Showcase's rendering happens through two controllers:
 
