@@ -38,7 +38,7 @@ Here's how to showcase a standard button component written with standard Rails p
 
 ### Components with ViewComponent
 
-If we take the `MessageComponent` as seen on [](https://viewcomponent.org):
+If we take the `MessageComponent` as seen on ![](https://viewcomponent.org):
 
 ```ruby
 # app/components/message_component.rb
@@ -256,7 +256,7 @@ end
 
 By default, Showcase's syntax highlighting runs on Rouge's `"github"` theme.
 
-To use a different theme, override [](showcase/engine/_stylesheets.html.erb) with the following, replacing `:magritte` with a [valid theme](rouge-themes):
+To use a different theme, override ![](showcase/engine/_stylesheets.html.erb) with the following, replacing `:magritte` with a [valid theme](rouge-themes):
 
 ```erb
 <%= stylesheet_link_tag "showcase" %> <%# We've removed the default showcase.highlights file here. %>
