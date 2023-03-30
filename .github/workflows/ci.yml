@@ -15,16 +15,12 @@ jobs:
         ruby-version:
           - "3.2"
           - "2.7"
-        rouge-bundled:
-          - false
-          - true
 
     env:
       RAILS_ENV: test
       RAILS_VERSION: ${{ matrix.rails-version }}
-      ROUGE_BUNDLED: ${{ matrix.rouge-bundled }}
 
-    name: ${{ format('Tests rails@{0} ruby@{1} rouge:{2}', matrix.rails-version, matrix.ruby-version, matrix.rouge-bundled) }}
+    name: ${{ format('Tests rails@{0} ruby@{1}', matrix.rails-version, matrix.ruby-version) }}
     runs-on: "ubuntu-latest"
 
     steps:
@@ -39,10 +35,13 @@ jobs:
         run: bin/rails runner 'require "tailwindcss-rails"; `bin/tailwindcss`'
 
       - name: Build Highlight Styles with rouge
-        run: bin/rails runner 'if ENV["ROUGE_BUNDLED"] == "true"; require "rouge"; `bin/highlights`; end'
+        run: bin/rails runner 'require "rouge"; `bin/highlights`; end'
 
-      - name: Execute Test Suite
+      - name: Run tests with Rouge
         run: bin/rails test test/
+
+      - name: Run tests without Rouge
+        run: ROUGE_ENABLED=false bin/rails test test/
 
       - name: Fail when generated changes are not checked-in
         run: git update-index --refresh && git diff-index --quiet HEAD --
