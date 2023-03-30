@@ -35,7 +35,7 @@ jobs:
         run: bin/rails runner 'require "tailwindcss-rails"; `bin/tailwindcss`'
 
       - name: Build Highlight Styles with rouge
-        run: bin/rails runner 'require "rouge"; `bin/highlights`; end'
+        run: bin/rails runner 'require "rouge"; `bin/highlights`'
 
       - name: Run tests with Rouge
         run: bin/rails test test/
