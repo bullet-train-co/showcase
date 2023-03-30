@@ -22,7 +22,7 @@ gem "sprockets-rails"
 
 gem "puma", "~> 5.6"
 
-gem "rouge" if ENV["ROUGE_BUNDLED"] != "false"
+gem "rouge"
 
 group :test do
   gem "action_dispatch-testing-integration-capybara",
