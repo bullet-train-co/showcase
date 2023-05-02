@@ -284,6 +284,10 @@ pre {
   white-space: nowrap;
 }
 
+.sc-whitespace-normal {
+  white-space: normal;
+}
+
 .sc-rounded-full {
   border-radius: 9999px;
 }
