@@ -8,5 +8,3 @@
 /test/dummy/log/*.log
 /test/dummy/storage/
 /test/dummy/tmp/
-
-Gemfile.lock
