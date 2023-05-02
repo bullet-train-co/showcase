@@ -19,7 +19,7 @@
                 <%= tag.input type: :checkbox, checked: value, disabled: true if value%>
               </td>
             <% else %>
-              <td class="sc-p-4"><%= tag.pre value %></td>
+              <td class="sc-p-4"><%= tag.pre value, class: 'whitespace-normal' %></td>
             <% end %>
           <% end %>
         </tr>
