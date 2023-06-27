@@ -175,7 +175,7 @@ Add these lines to your application's Gemfile. See next section for why Showcase
 ```ruby
 group :development, :test do
   gem "showcase-rails"
-  gem "rouge" # Optional. For out-of-the-box syntax highlighting.
+  gem "rouge", require: false # Syntax highlighting, `require: false` lets Showcase handle loading and saves boot time.
 end
 ```
 
@@ -228,7 +228,7 @@ end
 
 ### Syntax Highlighting
 
-Add `gem "rouge"` to your Gemfile and Showcase will set syntax highlighting up for you. Any denoted syntaxes in your samples are then highlighted, e.g.:
+Add `gem "rouge", require: false` to your Gemfile and Showcase will set syntax highlighting up for you. Any denoted syntaxes in your samples are then highlighted, e.g.:
 
 ```erb
 # app/views/showcase/previews/_plain_ruby.ruby
