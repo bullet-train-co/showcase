@@ -22,7 +22,7 @@ gem "sprockets-rails"
 
 gem "puma"
 
-gem "rouge"
+gem "rouge", require: false
 
 group :test do
   gem "action_dispatch-testing-integration-capybara",
