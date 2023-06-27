@@ -1,12 +1,5 @@
 require_relative "showcase/version"
 
-# Activate the app-bundled Rouge gem to setup default syntax highlighting.
-begin
-  gem "rouge"
-  require "rouge"
-rescue LoadError
-end
-
 module Showcase
   autoload :PreviewsTest, "showcase/previews_test"
   autoload :RouteHelper,  "showcase/route_helper"
@@ -19,16 +12,22 @@ module Showcase
   end
   self.tree_opens = true # All open by default
 
-  singleton_class.attr_accessor :sample_renderer
-  @sample_renderer = proc { _1 }
+  singleton_class.attr_writer :sample_renderer
 
-  if defined?(Rouge)
-    Formatter = Rouge::Formatters::HTML.new
+  def self.sample_renderer
+    @sample_renderer ||=
+      begin
+        gem "rouge" # Activate the app-bundled Rouge gem to setup default syntax highlighting.
+        require "rouge"
 
-    @sample_renderer = ->(source, syntax) do
-      lexed = Rouge::Lexer.find(syntax).lex(source)
-      Showcase::Formatter.format(lexed).html_safe
-    end
+        formatter = Rouge::Formatters::HTML.new
+        @sample_renderer = ->(source, syntax) do
+          lexed = Rouge::Lexer.find(syntax).lex(source)
+          formatter.format(lexed).html_safe
+        end
+      rescue LoadError
+        proc { _1 }
+      end
   end
 
   def self.previews
