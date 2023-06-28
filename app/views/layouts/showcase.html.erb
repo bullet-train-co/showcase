@@ -4,6 +4,23 @@
     <title>Showcase</title>
     <meta name="viewport" content="width=device-width,initial-scale=1">
 
+    <script>
+      // We're setting this directly here to help prevent Flash of Unstyled Content (FOUC).
+      class Scheme {
+        static start() {
+          const preference = window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light"
+          this.color = localStorage.colorScheme || preference
+        }
+
+        static set color(value) {
+          localStorage.colorScheme = value
+          document.documentElement.classList.toggle("sc-dark", value === "dark")
+        }
+      }
+
+      Scheme.start()
+    </script>
+
     <%= render "showcase/engine/head" %>
     <%= render "showcase/engine/stylesheets" %>
     <%= render "showcase/engine/javascripts" %>
