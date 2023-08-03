@@ -6,19 +6,19 @@
 
     <script>
       // We're setting this directly here to help prevent Flash of Unstyled Content (FOUC).
-      class Scheme {
+      class Showcase {
         static start() {
           const preference = window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light"
-          this.color = localStorage.colorScheme || preference
+          this.colorScheme = localStorage.colorScheme || preference
         }
 
-        static set color(value) {
+        static set colorScheme(value) {
           localStorage.colorScheme = value
           document.documentElement.classList.toggle("sc-dark", value === "dark")
         }
       }
 
-      Scheme.start()
+      Showcase.start()
     </script>
 
     <%= render "showcase/engine/head" %>
