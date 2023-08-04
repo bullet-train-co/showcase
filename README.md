@@ -2,7 +2,7 @@
 
 Showcase lets you build previews for your partials, components, view helpers, Stimulus controllers and more — Rails engines included!
 
-Add a partial to `app/views/showcase/previews` and it'll show up in Showcase's menu.
+You can see it in action on [https://bullettrain.co/docs/showcase]().
 
 | Light Mode | Dark Mode |
 | --- | --- |
@@ -11,6 +11,13 @@ Add a partial to `app/views/showcase/previews` and it'll show up in Showcase's m
 Each sample shows the render time in milliseconds and the allocation count so it's easier to spot if there's something different happening between your samples.
 
 ## What can I showcase?
+
+Add a partial in `app/views/showcase/previews` and it'll show up in Showcase's sidebar menu.
+
+So `app/views/showcase/previews/_button.html.erb` will add top-level Button page. Directories are respected so a `app/views/showcase/previews/deeply/nested/_partial.html.erb` file will create Deeply > Nested > Partial in the sidebar.
+
+Within each partial preview file, you get access to a `showcase` local variable.
+Here's some examples of using it, and what you can showcase in your app or engine.
 
 ### Rails partials
 
@@ -393,7 +400,7 @@ partials, make sure to include `"showcase"` in your list of assets.
 [showcase/engine/_stylesheets.html.erb]: app/views/showcase/engine/_stylesheets.html.erb
 
 ## Contributing
-Contribution directions go here.
+Please open issues and/or pull requests with any feedback, fixes, or potential features you'd like us to look at. Thank you!
 
 ## License
 The gem is available as open source under the terms of the [MIT License](https://opensource.org/licenses/MIT).
