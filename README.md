@@ -2,7 +2,7 @@
 
 Showcase lets you build previews for your partials, components, view helpers, Stimulus controllers and more — Rails engines included!
 
-You can see it in action on [https://bullettrain.co/docs/showcase]().
+You can see it in action on [](https://bullettrain.co/docs/showcase).
 
 | Light Mode | Dark Mode |
 | --- | --- |
