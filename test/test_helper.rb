@@ -7,6 +7,9 @@ require "rails/test_help"
 require "capybara_extensions"
 require "template_helpers"
 
+# Don't eager load, since that expects Action Mailbox tables to be present in database.
+Rails.configuration.eager_load = false
+
 Showcase.sample_renderer = proc { _1 } if ENV["ROUGE_ENABLED"] == "false"
 
 # Load fixtures from the engine
