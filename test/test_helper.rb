@@ -3,7 +3,10 @@ ENV["RAILS_ENV"] = "test"
 
 require_relative "../test/dummy/config/environment"
 ActiveRecord::Migrator.migrations_paths = [File.expand_path("../test/dummy/db/migrate", __dir__)]
+# Don't eager load, since that expects Action Mailbox tables to be present in database.
+Rails.configuration.eager_load = false
 require "rails/test_help"
+
 require "capybara_extensions"
 require "template_helpers"
 

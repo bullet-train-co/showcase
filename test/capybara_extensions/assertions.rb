@@ -24,6 +24,6 @@ ActiveSupport.on_load :action_view_test_case do
   include CapybaraExtensions::Assertions
 
   def page
-    @page ||= Capybara.string(rendered)
+    @page ||= Capybara.string(rendered.to_s)
   end
 end
