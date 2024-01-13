@@ -8,7 +8,7 @@
 
         \if event = sample.instrumented
           <div class="sc-text-xs sc-grid sc-gap-x-2 sc-m-2 sc-italic sc-text-slate-500 dark:sc-text-inherit">
-            <span>\p(event.duration.round 1) ms</span>
+            <span>\p(event.duration.round(1)) ms</span>
             <span>\p(event.allocations) allocs</span>
           </div>
         \end

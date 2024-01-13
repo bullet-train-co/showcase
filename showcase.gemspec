@@ -18,6 +18,6 @@ Gem::Specification.new do |spec|
   end
 
   spec.add_dependency "rails", ">= 6.1.0"
-  spec.add_dependency "brb-templates"
+  spec.add_dependency "brb-templates", ">= 0.1.1"
   spec.add_development_dependency "tailwindcss-rails"
 end
