@@ -1,21 +1,21 @@
-<% showcase.description do %>
-  Be sure to check out <%= showcase.link_to "components/button", id: "large" %>, <%= showcase.link_to "stimulus_controllers/welcome" %> and <%= showcase.link_to "plain_ruby" %> too.
-<% end %>
+\showcase.description do
+  Be sure to check out \p(showcase.link_to "components/button", id: "large"), \p(showcase.link_to "stimulus_controllers/welcome") and \p(showcase.link_to "plain_ruby") too.
+\end
 
-<% showcase.sample "Basic" do %>
-  <%= upcase_string "hello" %>
-<% end %>
+\showcase.sample "Basic" do
+  \= upcase_string "hello"
+\end
 
-<% showcase.sample "With extract" do |sample| %>
-  <% sample.description do %>
-    This is a different sample from <%= showcase.link_to id: "basic" %>
-  <% end %>
+\showcase.sample "With extract" do |sample|
+  \sample.description do
+    This is a different sample from \= showcase.link_to id: "basic"
+  \end
 
-  <% sample.render do %>
+  \sample.render do
     EXTRACT
-  <% end %>
+  \end
 
-  <% sample.extract_source do %>
-    <%= upcase_string "extract" %>
-  <% end %>
-<% end %>
+  \sample.extract_source do
+    \= upcase_string "extract"
+  \end
+\end

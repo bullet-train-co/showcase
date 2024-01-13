@@ -1,27 +1,27 @@
-<% showcase.description "The welcome controller says hello when it enters the screen" %>
+\showcase.description "The welcome controller says hello when it enters the screen"
 
-<% showcase.sample "Basic", events: "welcome:greeting" do %>
+\showcase.sample "Basic", events: "welcome:greeting" do
   <div data-controller="welcome">I've just said welcome!</div>
-<% end %>
+\end
 
-<% showcase.sample "With greeter", events: "welcome:greeting" do %>
+\showcase.sample "With greeter", events: "welcome:greeting" do
   <div data-controller="welcome">
     <div data-welcome-target="greeter">Somebody</div>
   </div>
-<% end %>
+\end
 
-<% showcase.sample "Yelling!!!", events: "welcome:greeting" do %>
+\showcase.sample "Yelling!!!", events: "welcome:greeting" do
   <div data-controller="welcome" data-welcome-yell-value="true">
-<% end %>
+\end
 
-<% showcase.options.context :stimulus, controller: :welcome do |o| %>
-  <% o.optional.targets :greeter, "If the id of the target element must be printed" %>
-  <% o.required.values :yell, "Whether the hello is to be YELLED", default: false %>
-  <% o.required.classes :success, "The success class to append after greeting" %>
-  <% o.required.outlet :list, "An outlet to append each yelled greeter to" %>
-  <% o.optional.action :greet, "An action to repeat the greeting, if need be" %>
-<% end %>
+\showcase.options.context :stimulus, controller: :welcome do |o|
+  \o.optional.targets :greeter, "If the id of the target element must be printed"
+  \o.required.values :yell, "Whether the hello is to be YELLED", default: false
+  \o.required.classes :success, "The success class to append after greeting"
+  \o.required.outlet :list, "An outlet to append each yelled greeter to"
+  \o.optional.action :greet, "An action to repeat the greeting, if need be"
+\end
 
-<% showcase.options.context :nice_partials do |o| %>
-  <% o.content_block :body, "An optional content block to set the body" %>
-<% end %>
+\showcase.options.context :nice_partials do |o|
+  \o.content_block :body, "An optional content block to set the body"
+\end

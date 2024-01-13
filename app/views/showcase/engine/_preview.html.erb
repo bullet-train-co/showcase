@@ -1,28 +1,26 @@
-<div class="sc-space-y-8" id="<%= preview.id %>">
+<div class="sc-space-y-8" id="\p(preview.id)">
   <section>
-    <% if preview.title %>
+    \if preview.title
       <div class="sc-flex sc-items-center sc-space-x-2 sc-mb-2">
-        <h2 class="sc-font-semibold sc-text-3xl sc-m-0"><%= preview.title %></h2>
+        <h2 class="sc-font-semibold sc-text-3xl sc-m-0">\= preview.title</h2>
 
-        <% preview.badges.each do |badge| %>
-          <span class="sc-border-0 sc-border-2 sc-border-solid sc-border-indigo-300 sc-rounded-full sc-px-2 sc-mt-1"><%= badge.to_s.titleize %></span>
-        <% end %>
+        \preview.badges.each do
+          \= tag.span _1.to_s.titleize, class: "sc-border-2 sc-border-solid sc-border-indigo-300 sc-rounded-full sc-px-2 sc-mt-1"
+        \end
       </div>
-    <% end %>
+    \end
 
-    <% if preview.description %>
-      <div class="sc-font-normal sc-text-base"><%= preview.description %></div>
-    <% end %>
+    \if preview.description
+      <div class="sc-font-normal sc-text-base">\= preview.description</div>
+    \end
   </section>
 
-  <% if preview.samples.any? %>
+  \if preview.samples.any?
     <section>
       <h2 class="sc-font-semibold sc-text-xl sc-m-0 sc-mb-2">Samples</h2>
-      <%= render partial: "showcase/engine/sample", collection: preview.samples %>
+      \= render partial: "showcase/engine/sample", collection: preview.samples
     </section>
-  <% end %>
+  \end
 
-  <% if options = preview.options.presence %>
-    <%= render "showcase/engine/options", options: options %>
-  <% end %>
+  \= options = preview.options.presence and render("showcase/engine/options", options:)
 </div>

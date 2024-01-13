@@ -21,12 +21,10 @@
       Showcase.start()
     </script>
 
-    <%= render "showcase/engine/head" %>
-    <%= render "showcase/engine/stylesheets" %>
-    <%= render "showcase/engine/javascripts" %>
+    \= render "showcase/engine/head"
+    \= render "showcase/engine/stylesheets"
+    \= render "showcase/engine/javascripts"
   </head>
 
-  <body>
-    <%= render "showcase/engine/root" %>
-  </body>
+  \= tag.body render "showcase/engine/root"
 </html>

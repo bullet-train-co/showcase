@@ -1,15 +1,15 @@
-<% showcase.badge :partial, :component %>
-<% showcase.description "Button is our standard element for what to click on" %>
+\showcase.badge :partial, :component
+\showcase.description "Button is our standard element for what to click on"
 
-<% showcase.sample "Basic" do %>
-  <%= render "components/button", content: "Button content", mode: :small %>
-<% end %>
+\showcase.sample "Basic" do
+  \= render "components/button", content: "Button content", mode: :small
+\end
 
-<% showcase.sample "Large", description: "This is our larger button" do %>
-  <%= render "components/button", content: "Button content", mode: :large %>
-<% end %>
+\showcase.sample "Large", description: "This is our larger button" do
+  \= render "components/button", content: "Button content", mode: :large
+\end
 
-<% showcase.options do |o| %>
-  <% o.required :content, "The content to output as the button text" %>
-  <% o.optional :mode, "We support three modes", default: :small, options: %i[ small medium large ] %>
-<% end %>
+\showcase.options do |o|
+  \o.required :content, "The content to output as the button text"
+  \o.optional :mode, "We support three modes", default: :small, options: %i[ small medium large ]
+\end

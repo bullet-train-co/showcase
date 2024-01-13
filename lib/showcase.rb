@@ -1,4 +1,7 @@
 require_relative "showcase/version"
+require "brb"
+
+BRB.enable
 
 module Showcase
   autoload :PreviewsTest, "showcase/previews_test"
