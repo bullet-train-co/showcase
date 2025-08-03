@@ -13,12 +13,11 @@ jobs:
       fail-fast: false
       matrix:
         rails-version:
-          - "7.1"
-          - "6.1"
+          - "7.2"
+          - "8.0"
           - "main"
         ruby-version:
-          - "3.2"
-          - "2.7"
+          - "3.4"
 
     env:
       RAILS_ENV: test
