@@ -39,6 +39,10 @@
   color: #116329;
   background-color: #dafbe1;
 }
+.sc-highlight .ges {
+  font-weight: bold;
+  font-style: italic;
+}
 .sc-highlight .kc {
   color: #0550ae;
 }
@@ -152,6 +156,10 @@
   .sc-highlight .gi {
     color: #aff5b4;
     background-color: #033a16;
+  }
+  .sc-highlight .ges {
+    font-weight: bold;
+    font-style: italic;
   }
   .sc-highlight .kc {
     color: #79c0ff;
