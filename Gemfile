@@ -13,7 +13,7 @@ else
 end
 
 gem "rails", rails_constraint
-gem "sqlite3", "< 2.0"
+gem "sqlite3", rails_version.start_with?("7") ? "< 2.0" : "> 2"
 gem "sprockets-rails"
 gem "tailwindcss-rails", "~> 2.3"
 
